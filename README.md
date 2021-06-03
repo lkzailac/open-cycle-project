@@ -19,6 +19,8 @@ This is the backend for the Flask React project.
 3. Create a **.env** file based on the example with proper settings for your
    development environment
 4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+CREATE USER ocp_user WITH CREATEDB PASSWORD 'password';
+CREATE DATABASE ocp_db WITH OWNER ocp_user;
 
 5. Get into your pipenv, migrate your database, seed your database, and run your flask app
 
@@ -40,6 +42,7 @@ This is the backend for the Flask React project.
 
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
+## Deploy to Heroku
 ***
 *IMPORTANT!*
    If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
@@ -54,8 +57,8 @@ This is the backend for the Flask React project.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
 
-## Deploy to Heroku
 
+0. Run npm run build in React App
 1. Create a new project on Heroku
 2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
 3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
@@ -78,19 +81,23 @@ This is the backend for the Flask React project.
 
    ```bash
    heroku container:push web -a {NAME_OF_HEROKU_APP}
+   heroku container:push web -a open-cycle-project
    ```
 
 8. Release your docker container to heroku
 
    ```bash
    heroku container:release web -a {NAME_OF_HEROKU_APP}
+   heroku container:release web -a open-cycle-project
    ```
 
 9. set up your database:
 
    ```bash
    heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
+   heroku run -a open-cycle-project flask db upgrade
    heroku run -a {NAME_OF_HEROKU_APP} flask seed all
+   heroku run -a open-cycle-project flask seed all
    ```
 
 10. Under Settings find "Config Vars" and add any additional/secret .env variables.
