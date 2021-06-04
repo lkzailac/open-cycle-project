@@ -1,0 +1,32 @@
+from flask_wtf import FlaskForm
+from wtforms import StringField, SelectField
+from wtforms.validators import DataRequired, Email, ValidationError
+from app.models import Company
+
+
+def company_exists(form, field):
+    print("Checking if company exists", field.data)
+    admin_email = field.data
+    company = Company.query.filter(Company.admin_email == admin_email).first()
+    if not company:
+        raise ValidationError("Email provided not found.")
+
+
+def password_matches(form, field):
+    print("Checking if password matches")
+    password = field.data
+    admin_email = form.data['admin_email']
+    company = Company.query.filter(Company.admin_email == admin_email).first()
+    if not company:
+        raise ValidationError("This Admin is not registered.")
+    if not company.check_password(password):
+        raise ValidationError("Password does not match account.")
+
+def company_names():
+    companies = Company.query.all()
+    return [company.name for company in companies]
+
+class LoginCompanyForm(FlaskForm):
+    name = SelectField('name', choices=company_names(), validators=[DataRequired()])
+    admin_email = StringField('admin_email', validators=[DataRequired(), company_exists])
+    password = StringField('password', validators=[DataRequired(), password_matches])
