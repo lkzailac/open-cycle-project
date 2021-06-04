@@ -1,33 +1,36 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
 import LogoutButton from './auth/LogoutButton';
 
+
 const NavBar = () => {
+  const user = useSelector(state => state.session.user)
+  const company = useSelector(state => state.session.company)
+
   return (
     <nav>
       <ul>
         <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
+          <NavLink to="/companylogin" exact={true} activeClassName="active">
+            Company Dashboard
           </NavLink>
         </li>
         <li>
           <NavLink to="/login" exact={true} activeClassName="active">
-            Login
+            Consumers
           </NavLink>
         </li>
         <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
+          <NavLink to="/ocp" exact={true} activeClassName="active">
+            Why OCP
           </NavLink>
         </li>
         <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
+          {user || company ?
+          <LogoutButton /> :
+          <></>
+          }
         </li>
       </ul>
     </nav>

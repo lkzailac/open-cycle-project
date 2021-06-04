@@ -13,7 +13,7 @@ const removeCompany = () => ({
 
 const initialState = { company: null };
 
-export const authenticate = () => async (dispatch) => {
+export const companyAuthenticate = () => async (dispatch) => {
     const response = await fetch('/api/cauth/',{
       headers: {
         'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export const authenticate = () => async (dispatch) => {
     dispatch(setCompany(data))
   }
 
-  export const login = (name, admin_email, password) => async (dispatch)  => {
+  export const companyLogin = (name, admin_email, password) => async (dispatch)  => {
     const response = await fetch('/api/cauth/login', {
       method: 'POST',
       headers: {
@@ -48,7 +48,7 @@ export const authenticate = () => async (dispatch) => {
     return {};
   }
 
-  export const logout = () => async (dispatch) => {
+  export const companyLogout = () => async (dispatch) => {
     const response = await fetch("/api/cauth/logout", {
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export const authenticate = () => async (dispatch) => {
   };
 
 
-  export const signUp = (name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date) => async (dispatch)  => {
+  export const companySignUp = (name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date) => async (dispatch)  => {
     const response = await fetch("/api/cauth/signup", {
       method: "POST",
       headers: {
