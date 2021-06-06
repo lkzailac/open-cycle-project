@@ -12,12 +12,12 @@ const NavBar = () => {
     <nav>
       <ul>
         <li>
-          <NavLink to="/companylogin" exact={true} activeClassName="active">
+          <NavLink to="/company/:id" exact={true} activeClassName="active">
             Company Dashboard
           </NavLink>
         </li>
         <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
+          <NavLink to="/consumers" exact={true} activeClassName="active">
             Consumers
           </NavLink>
         </li>
