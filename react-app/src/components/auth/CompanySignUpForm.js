@@ -20,16 +20,16 @@ const CompanySignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      await dispatch(companySignUp(name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date));
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateName = (e) => {
+    setName(e.target.value);
   };
 
   const updateEmail = (e) => {
-    setEmail(e.target.value);
+    setAdminEmail(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -40,28 +40,52 @@ const CompanySignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-  if (user) {
+  const updateLogo = (e) => {
+    setLogoUrl(e.target.value);
+  };
+
+  const updateStatement = (e) => {
+    setStatement(e.target.value);
+  };
+
+  const updateWarehouse = (e) => {
+    setWarehouseLocation(e.target.value);
+  };
+
+  const updateProducts = (e) => {
+    setProductsSold(e.target.value);
+  };
+
+  const updateCarbonGoal = (e) => {
+    setCarbonGoal(e.target.value);
+  };
+
+  const updateCarbonGoalDate = (e) => {
+    setCarbonGoalDate(e.target.value);
+  };
+
+  if (company) {
     return <Redirect to="/" />;
   }
 
   return (
     <form onSubmit={onSignUp}>
       <div>
-        <label>User Name</label>
+        <label>Company Name</label>
         <input
           type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
+          name="name"
+          onChange={updateName}
+          value={name}
         ></input>
       </div>
       <div>
-        <label>Email</label>
+        <label>Admin Email</label>
         <input
           type="text"
-          name="email"
+          name="admin_email"
           onChange={updateEmail}
-          value={email}
+          value={admin_email}
         ></input>
       </div>
       <div>
@@ -80,6 +104,64 @@ const CompanySignUpForm = () => {
           name="repeat_password"
           onChange={updateRepeatPassword}
           value={repeatPassword}
+          required={true}
+        ></input>
+      </div>
+      <div>
+        <label>Logo Url</label>
+        <input
+          type="text"
+          name="logo_url"
+          onChange={updateLogo}
+          value={logo_url}
+        ></input>
+      </div>
+      <div>
+        <label>Statement</label>
+        <input
+          type="text"
+          name="statement"
+          onChange={updateStatement}
+          value={statement}
+        ></input>
+      </div>
+      <div>
+        <label>Warehouse Location</label>
+        <input
+          type="text"
+          name="warehouse_location"
+          onChange={updateWarehouse}
+          value={warehouse_location}
+          required={true}
+        ></input>
+      </div>
+      <div>
+        <label>Total Products</label>
+        <input
+          type="text"
+          name="products_sold"
+          onChange={updateProducts}
+          value={products_sold}
+          required={true}
+        ></input>
+      </div>
+      <div>
+        <label>Carbon Goal</label>
+        <input
+          type="text"
+          name="carbon_goal"
+          onChange={updateCarbonGoal}
+          value={carbon_goal}
+          required={true}
+        ></input>
+      </div>
+      <div>
+        <label>Carbon Goal Due Date</label>
+        <input
+          type="text"
+          name="carbon_goal_date"
+          onChange={updateCarbonGoalDate}
+          value={carbon_goal_date}
           required={true}
         ></input>
       </div>
