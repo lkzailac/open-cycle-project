@@ -1,0 +1,24 @@
+nav {
+    position: fixed;
+    top: 2em;
+    width: 100%;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+}
+
+li{
+    display: inline;
+    text-decoration: none;
+}
+
+.nav-li {
+    text-decoration: none;
+    color: #353535;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    padding: 2em;
+}
