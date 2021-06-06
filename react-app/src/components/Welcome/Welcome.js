@@ -15,8 +15,8 @@ const Welcome = () => {
             <div className='background-image-container'>
                 <img id='background-image' src={background_img} />
             </div>
-            <div className='left-container'>
 
+            <div className='left-container'>
                 <div className='left-for'>
                     <h2>For</h2>
                 </div>
@@ -30,20 +30,49 @@ const Welcome = () => {
                     <img className='left-arrow bounce' src={leftArrow} />
                 </div>
                 <div className="join-container">
-                    <Link to='/company-signup'>
-                        <div className='join'>
+                    <div className='join'>
+                        <Link className='join-link' to='/company-signup'>
                             JOIN NOW
-                        </div>
-                    </Link>
+                        </Link>
+                    </div>
                 </div>
                 <div className='login-container'>
-                    <Link to='/company-login'>
-                        <div className='login'>
+                    <div className='login'>
+                        <Link className='login-link' to='/company-login'>
                             SIGN IN
-                        </div>
-                    </Link>
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            </div> {/* end left-container */}
+
+            <div className='right-container'>
+                <div className='right-for'>
+                    <h2>For</h2>
+                </div>
+                <div className='right-group'>
+                    <h1>Consumers</h1>
+                </div>
+                <div className='right-p'>
+                    <p>A place where consumers can find companies whose plans <br></br>for the future align with their own. </p>
+                </div>
+                <div className='right-arrow-container'>
+                    <img className='right-arrow bounce' src={largeArrow} />
+                </div>
+                <div className="r-join-container">
+                    <div className='r-join'>
+                        <Link className='r-join-link' to='/sign-up'>
+                            JOIN NOW
+                        </Link>
+                    </div>
+                </div>
+                <div className='r-login-container'>
+                    <div className='r-login'>
+                        <Link className='r-login-link' to='/login'>
+                            SIGN IN
+                        </Link>
+                    </div>
+                </div>
+            </div> {/* end right-container */}
 
         </div>
 
