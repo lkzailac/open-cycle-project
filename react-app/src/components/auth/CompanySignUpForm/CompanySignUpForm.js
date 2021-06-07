@@ -19,6 +19,7 @@ const CompanySignUpForm = () => {
   const [products_sold, setProductsSold] = useState("");
   const [carbon_goal, setCarbonGoal] = useState("");
   const [carbon_goal_date, setCarbonGoalDate] = useState("");
+  const [showHint, setShowHint] = useState(false)
   const company = useSelector(state => state.csession.company);
   const dispatch = useDispatch();
 
@@ -73,7 +74,22 @@ const CompanySignUpForm = () => {
     return <Redirect to="/" />;
   }
 
-  h
+  const popUp =''
+
+  const handleClick = (value) => {
+    setShowHint(true)
+    if (showHint) {
+      if(value === "admin_email") {
+        popUp = (
+          <div className='pop-up'>
+            <p>This is admin email hint</p>
+          </div>
+        )
+
+      }
+      return popUp;
+    }
+  }
 
   return (
     <>
@@ -102,7 +118,9 @@ const CompanySignUpForm = () => {
             <div>
               <div className='label-container'>
                 <label>Admin Email</label>
-                <button className='question-button' value='admin_email' onClick={(e) => handleClick(e.target.value)}><img className='question' src={question} /></button>
+                <button className='question-button' value='admin_email' onClick={(e) => [handleClick(e.target.value), console.log("button")]}><img className='question' src={question} /></button>
+                {/* <button className='question-button' value='admin_email' onClick={(e) => handleClick(e.target.value)}>Button</button> */}
+                {popUp}
               </div>
               <input
                 type="text"

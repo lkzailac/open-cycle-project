@@ -40,6 +40,7 @@ export const authenticate = () => async (dispatch) => {
       })
     });
     const data = await response.json();
+    console.log("dataaaaaaaaa", data)
     if (data.errors) {
         return data;
     }
