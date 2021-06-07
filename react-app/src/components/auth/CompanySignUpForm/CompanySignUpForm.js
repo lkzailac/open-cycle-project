@@ -85,124 +85,128 @@ const CompanySignUpForm = () => {
           </div>
         </div>
         <form onSubmit={onSignUp}>
-          <div>
-            <div className='label-container'>
-              <label>Company Name</label>
+          <div className='left-form'>
+            <div>
+              <div className='label-container'>
+                <label>Company Name</label>
+              </div>
+              <input
+                type="text"
+                name="name"
+                onChange={updateName}
+                value={name}
+              ></input>
             </div>
-            <input
-              type="text"
-              name="name"
-              onChange={updateName}
-              value={name}
-            ></input>
-          </div>
-          <div>
-            <div className='label-container'>
-              <label>Admin Email</label>
-              <button className='question-button'><img className='question' src={question} /></button>
+            <div>
+              <div className='label-container'>
+                <label>Admin Email</label>
+                <button className='question-button'><img className='question' src={question} /></button>
+              </div>
+              <input
+                type="text"
+                name="admin_email"
+                onChange={updateEmail}
+                value={admin_email}
+              ></input>
             </div>
-            <input
-              type="text"
-              name="admin_email"
-              onChange={updateEmail}
-              value={admin_email}
-            ></input>
-          </div>
-          <div>
-            <div className='label-container'>
-              <label>Password</label>
+            <div>
+              <div className='label-container'>
+                <label>Password</label>
+              </div>
+              <input
+                type="password"
+                name="password"
+                onChange={updatePassword}
+                value={password}
+              ></input>
             </div>
-            <input
-              type="password"
-              name="password"
-              onChange={updatePassword}
-              value={password}
-            ></input>
-          </div>
-          <div>
-            <div className='label-container'>
-              <label>Repeat Password</label>
+            <div>
+              <div className='label-container'>
+                <label>Repeat Password</label>
+              </div>
+              <input
+                type="password"
+                name="repeat_password"
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+              ></input>
             </div>
-            <input
-              type="password"
-              name="repeat_password"
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              required={true}
-            ></input>
-          </div>
-          <div>
-            <div className='label-container'>
-              <label>Logo Url</label>
+            <div>
+              <div className='label-container'>
+                <label>Logo Url</label>
+              </div>
+              <input
+                type="text"
+                name="logo_url"
+                onChange={updateLogo}
+                value={logo_url}
+              ></input>
             </div>
-            <input
-              type="text"
-              name="logo_url"
-              onChange={updateLogo}
-              value={logo_url}
-            ></input>
-          </div>
-          <div>
-            <div className='label-container'>
-              <label>Statement</label>
+          </div> {/* end left-form */}
+          <div className='right-form'>
+            <div>
+              <div className='label-container'>
+                <label>Statement</label>
+              </div>
+              <textarea
+                type="text"
+                name="statement"
+                onChange={updateStatement}
+                value={statement}
+              ></textarea>
             </div>
-            <input
-              type="text"
-              name="statement"
-              onChange={updateStatement}
-              value={statement}
-            ></input>
-          </div>
 
-          <div>
-            <div className='label-container'>
-              <label>Warehouse Location</label>
+            <div>
+              <div className='label-container'>
+                <label>Warehouse Location</label>
+              </div>
+              <input
+                type="text"
+                name="warehouse_location"
+                onChange={updateWarehouse}
+                value={warehouse_location}
+                required={true}
+              ></input>
             </div>
-            <input
-              type="text"
-              name="warehouse_location"
-              onChange={updateWarehouse}
-              value={warehouse_location}
-              required={true}
-            ></input>
-          </div>
-          <div>
-            <div className='label-container'>
-              <label>Total Products</label>
+            <div>
+              <div className='label-container'>
+                <label>Total Products</label>
+              </div>
+              <input
+                type="text"
+                name="products_sold"
+                onChange={updateProducts}
+                value={products_sold}
+                required={true}
+              ></input>
             </div>
-            <input
-              type="text"
-              name="products_sold"
-              onChange={updateProducts}
-              value={products_sold}
-              required={true}
-            ></input>
-          </div>
-          <div>
-            <div className='label-container'>
-              <label>Carbon Goal</label>
+            <div>
+              <div className='label-container'>
+                <label>Carbon Goal</label>
+              </div>
+              <input
+                type="text"
+                name="carbon_goal"
+                onChange={updateCarbonGoal}
+                value={carbon_goal}
+                required={true}
+              ></input>
             </div>
-            <input
-              type="text"
-              name="carbon_goal"
-              onChange={updateCarbonGoal}
-              value={carbon_goal}
-              required={true}
-            ></input>
-          </div>
-          <div>
-            <div className='label-container'>
-              <label>Carbon Goal Due Date</label>
+            <div>
+              <div className='label-container'>
+                <label>Carbon Goal Due Date</label>
+              </div>
+              <input
+                type="text"
+                name="carbon_goal_date"
+                onChange={updateCarbonGoalDate}
+                value={carbon_goal_date}
+                required={true}
+              ></input>
             </div>
-            <input
-              type="text"
-              name="carbon_goal_date"
-              onChange={updateCarbonGoalDate}
-              value={carbon_goal_date}
-              required={true}
-            ></input>
+            <button className='join-button' type="submit">JOIN NOW</button>
           </div>
-          <button className='join-button' type="submit">JOIN NOW</button>
         </form>
       </div>
     </>
