@@ -5,15 +5,21 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
+# print("1111111111111111")
+
 from .models import db, User, Company
+print("1111111111111111222222")
 from .api.user_routes import user_routes
+print("11111111111111113")
 from .api.auth_routes import auth_routes
+print("11111111111111114")
 from .api.company_auth_routes import cauth_routes
+print("11111111111111115")
 
 from .seeds import seed_commands
 
 from .config import Config
-
+print("22222222222222222")
 app = Flask(__name__)
 
 # Setup login manager
@@ -34,9 +40,11 @@ def load_company(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
+print("3333333333333333")
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(cauth_routes, url_prefix='/api/cauth')
+print("4444444444444444")
 db.init_app(app)
 Migrate(app, db)
 
@@ -77,3 +85,6 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+
+print("5555555555555555")

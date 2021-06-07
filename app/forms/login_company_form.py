@@ -26,7 +26,12 @@ def company_names():
     companies = Company.query.all()
     return [company.name for company in companies]
 
+
 class LoginCompanyForm(FlaskForm):
-    name = SelectField('name', choices=company_names(), validators=[DataRequired()])
+    name = SelectField('name', validators=[DataRequired()])
     admin_email = StringField('admin_email', validators=[DataRequired(), company_exists])
     password = StringField('password', validators=[DataRequired(), password_matches])
+
+
+# class LoginCompanyForm(FlaskForm):
+#     pass

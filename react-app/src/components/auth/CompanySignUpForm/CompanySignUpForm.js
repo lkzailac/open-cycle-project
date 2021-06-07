@@ -73,6 +73,8 @@ const CompanySignUpForm = () => {
     return <Redirect to="/" />;
   }
 
+  h
+
   return (
     <>
       <div className='container'>
@@ -100,7 +102,7 @@ const CompanySignUpForm = () => {
             <div>
               <div className='label-container'>
                 <label>Admin Email</label>
-                <button className='question-button'><img className='question' src={question} /></button>
+                <button className='question-button' value='admin_email' onClick={(e) => handleClick(e.target.value)}><img className='question' src={question} /></button>
               </div>
               <input
                 type="text"
@@ -150,6 +152,7 @@ const CompanySignUpForm = () => {
                 <label>Statement</label>
               </div>
               <textarea
+                className='statement-input'
                 type="text"
                 name="statement"
                 onChange={updateStatement}
@@ -171,7 +174,7 @@ const CompanySignUpForm = () => {
             </div>
             <div>
               <div className='label-container'>
-                <label>Total Products</label>
+                <label>Number of Products at Retail</label>
               </div>
               <input
                 type="text"
@@ -205,9 +208,14 @@ const CompanySignUpForm = () => {
                 required={true}
               ></input>
             </div>
-            <button className='join-button' type="submit">JOIN NOW</button>
+            <p className='full-width'>
+              <button className='join-button' type="submit">JOIN NOW</button>
+            </p>
           </div>
         </form>
+        <div className='comp-container'>
+          <img src={computers} />
+        </div>
       </div>
     </>
   );

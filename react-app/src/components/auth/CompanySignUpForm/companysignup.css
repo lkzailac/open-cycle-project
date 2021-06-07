@@ -1,8 +1,10 @@
 .container {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 2fr;
-    margin-top: 10em;
+    grid-template-rows: 1fr 3fr;
+    padding-top: 10em;
+    margin-top: 5em;
+    margin-left: 9em;
 
 }
 
@@ -10,6 +12,19 @@
     grid-column-start: 1;
     grid-row-start: 1;
     display: block;
+    height: 8em;
+    margin-bottom: 2em;
+}
+
+.comp-container {
+    display: inline;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    margin-top: 3em;;
+}
+
+.comp-container img {
+    height: 18em;
 }
 
 .share-p {
@@ -28,18 +43,16 @@ form {
     grid-row-start: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-    margin-left: 5em;
+    grid-gap: 0px;
+
 }
 
 .left-form {
     grid-column-start: 1;
-    /* grid-row-start: 2; */
 }
 
 .right-form {
     grid-column-start: 2;
-    /* grid-row-start: 2; */
 }
 
 .label-container {
@@ -51,6 +64,24 @@ label {
     font-weight: 300;
     font-style: normal;
     color: #353535;
+}
+
+input{
+    margin-top: .2em;
+    margin-bottom: .8em;
+    border: 2px solid #35353520;
+    border-radius: 3px;
+    width: 25em;
+    height: 2em;
+}
+
+textarea {
+    margin-top: .2em;
+    margin-bottom: .8em;
+    border: 2px solid #35353520;
+    border-radius: 3px;
+    width: 25em;
+    height: 2em;
 }
 
 img.question {
@@ -72,4 +103,10 @@ button.question-button {
     font-weight: 300;
     font-style: normal;
     color: white;
+    width: 10em;
+    height: 2.5em;
+}
+
+.full-width {
+    grid-column: 1 / 2;
 }
