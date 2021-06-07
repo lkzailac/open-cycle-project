@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Welcome from "./components/Welcome/index"
-import LoginForm from "./components/auth/LoginForm";
+import LoginForm from "./components/auth/LoginForm/index";
 import SignUpForm from "./components/auth/SignUpForm";
-import CompanyLoginForm from "./components/auth/CompanyLoginForm"
-import CompanySignUpForm from "./components/auth/CompanySignUpForm"
+import CompanyLoginForm from "./components/auth/CompanyLoginForm/index"
+import CompanySignUpForm from "./components/auth/CompanySignUpForm/index"
 import NavBar from "./components/NavBar/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
@@ -17,13 +17,13 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   (async() => {
-  //     await dispatch(authenticate());
-  //     await dispatch(companyAuthenticate())
-  //     setLoaded(true);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async() => {
+      await dispatch(authenticate());
+      // await dispatch(companyAuthenticate())
+      setLoaded(true);
+    })();
+  }, []);
 
   // if (!loaded) {
   //   return null;

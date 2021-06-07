@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
-from .models import db, User
+from .models import db, User, Company
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.company_auth_routes import cauth_routes
@@ -24,6 +24,10 @@ login.login_view = 'auth.unauthorized'
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+@login.user_loader
+def load_company(id):
+    return Company.query.get(int(id))
 
 
 # Tell flask about our seed commands

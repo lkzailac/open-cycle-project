@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { Redirect } from 'react-router-dom';
-import { companySignUp } from '../../store/csession';
+import { companySignUp } from '../../../store/csession';
+
+import './companysignup.css';
 
 const CompanySignUpForm = () => {
   const [name, setName] = useState("");

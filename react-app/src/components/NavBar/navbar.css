@@ -2,11 +2,13 @@ nav {
     position: fixed;
     top: 2em;
     width: 100%;
+
 }
 
 ul {
     display: flex;
     justify-content: center;
+    padding-left: 0;
 }
 
 li{
@@ -20,5 +22,29 @@ li{
     font-family: semplicitapro, sans-serif;
     font-weight: 300;
     font-style: normal;
-    padding: 2em;
+    /* padding: 2em; */
+}
+
+.r-pad {
+    padding-right: 30px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-logo {
+    width: 400px;
+    height: auto;
+    /* margin: 0 auto; */
+}
+
+.dont-hide {
+    display: flex;
+    justify-content: center;
+}
+
+.dont-hide-h3 {
+    font-size: 30px;
 }

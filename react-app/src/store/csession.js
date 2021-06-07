@@ -28,6 +28,7 @@ export const companyAuthenticate = () => async (dispatch) => {
   }
 
   export const companyLogin = (name, admin_email, password) => async (dispatch)  => {
+    console.log("compnayloginnnnnn", name, admin_email, password)
     const response = await fetch('/api/cauth/login', {
       method: 'POST',
       headers: {

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import background_img from "../../images/background.svg"
 import largeArrow from "../../images/large-arrow.svg"
 import leftArrow from "../../images/left-arrow.svg"
+
 import "./welcome.css"
 
 const Welcome = () => {
@@ -77,6 +78,10 @@ const Welcome = () => {
                         </div>
                     </div> {/* end right-container */}
                 </div>  {/* end content grid */}
+
+            </div>
+            <div className='dont-hide'>
+                <h3 className='dont-hide-h3'>Don’t hide your pollution. Own it.</h3>
             </div>
         </div>
     </>
