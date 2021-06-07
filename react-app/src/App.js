@@ -19,15 +19,15 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
+      // await dispatch(authenticate());
       // await dispatch(companyAuthenticate())
       setLoaded(true);
     })();
   }, []);
 
-  // if (!loaded) {
-  //   return null;
-  // }
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <BrowserRouter>

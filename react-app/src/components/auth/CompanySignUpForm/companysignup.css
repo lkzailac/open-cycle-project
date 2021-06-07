@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+
+}
+
+.share-container {
+    display: block;
+}
+
+form {
+    display: block;
+    margin-left: 5em;
+}
+
+.label-container {
+    display: block;
+}
+
+label {
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #353535;
+}
+
+img.question {
+    display: inline;
+    width: 1.5em;
+}
+
+button.question-button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.join-button {
+    border: none;
+    outline: none;
+    background-color: #ff9700;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+}
