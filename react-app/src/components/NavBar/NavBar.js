@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import LogoutButton from '../auth/LogoutButton';
-import CompanyLogoutButton from "../auth/CompanyLogoutButton";
+import CompanyLogoutButton from "../auth/CompanyLogoutButton/index";
 import logo from "../../images/ocp-logo.svg"
 import "./navbar.css"
 import LoginForm from '../auth/LoginForm';
@@ -15,7 +15,7 @@ const NavBar = (props) => {
 
   let sessionLinks = null;
 
-  if (props.user) {
+  if (props.user !== null) {
     sessionLinks = (
       <LogoutButton />
     )
@@ -63,7 +63,7 @@ const NavBar = (props) => {
           </NavLink>
         </li>
         <li>
-          {sessionLinks}
+
           {/* {company ?
           <CompanyLogoutButton />
           : null}
@@ -75,6 +75,9 @@ const NavBar = (props) => {
 
         </li>
       </ul>
+      <div className='company-logout-container'>
+        {sessionLinks}
+      </div>
     </nav>
   );
 }

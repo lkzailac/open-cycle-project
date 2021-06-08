@@ -1,6 +1,6 @@
 // constants
-const SET_COMPANY = "session/SET_COMPANY";
-const REMOVE_COMPANY = "session/REMOVE_COMPANY";
+const SET_COMPANY = "csession/SET_COMPANY";
+const REMOVE_COMPANY = "csession/REMOVE_COMPANY";
 
 const setCompany = (company) => ({
     type: SET_COMPANY,
