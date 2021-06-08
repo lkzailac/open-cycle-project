@@ -13,7 +13,7 @@ class Component(db.Model):
     waste_recycled = db.Column(db.Boolean)
     material_recycled_percent = db.Column(db.Float)
 
-    products = db.Relationship( "Component", secondary=component_table, back_populates="components")
+    products = db.relationship( "Component", secondary=component_table, back_populates="components")
 
 
     def to_dict(self):

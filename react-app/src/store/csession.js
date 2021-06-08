@@ -1,3 +1,4 @@
+
 // constants
 const SET_COMPANY = "csession/SET_COMPANY";
 const REMOVE_COMPANY = "csession/REMOVE_COMPANY";
@@ -78,6 +79,7 @@ export const companyAuthenticate = () => async (dispatch) => {
         products_sold,
         carbon_goal,
         carbon_goal_date,
+
       }),
     });
     const data = await response.json();

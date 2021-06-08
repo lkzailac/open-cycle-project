@@ -8,4 +8,4 @@ class Consumer_Use(db.Model):
     name = db.Column(db.String)
     weight = db.Column(db.Integer)
 
-    products = db.Relationship("Product", secondary=use_table, back_populates="consumer_uses")
+    products = db.relationship("Product", secondary=use_table, back_populates="consumer_uses")

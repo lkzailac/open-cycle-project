@@ -20,7 +20,7 @@ class Company(db.Model, UserMixin):
   c_footprint_mt = db.Column(db.Float)
   signup_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
-  products = db.Relationship("Product", back_populates='company')
+  products = db.relationship("Product", back_populates='company')
 
   @property
   def password(self):

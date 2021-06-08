@@ -30,12 +30,12 @@ class Product(db.Model):
     product_recycled_percent = db.Column(db.Float)
     carbon_footprint_kg = db.Column(db.Float)
 
-    company = db.Relationship("Company", back_populates="products")
-    manufacturing_process = db.Relationship("Manufacturing_Process", back_populates="products")
-    factory = db.Relationship("Factory", back_populates="products")
-    transport_mode = db.Relationship("Transport_Mode", back_populates="products")
-    consumer_uses = db.Relationship("Consumer_Use", secondary=use_table, back_populates="products")
-    components = db.Relationship( "Component", secondary=component_table, back_populates="products")
+    company = db.relationship("Company", back_populates="products")
+    manufacturing_process = db.relationship("Manufacturing_Process", back_populates="products")
+    factory = db.relationship("Factory", back_populates="products")
+    transport_mode = db.relationship("Transport_Mode", back_populates="products")
+    consumer_uses = db.relationship("Consumer_Use", secondary=use_table, back_populates="products")
+    components = db.relationship( "Component", secondary=component_table, back_populates="products")
 
     def to_dict(self):
         return {
