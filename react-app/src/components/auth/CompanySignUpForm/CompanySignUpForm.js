@@ -113,6 +113,7 @@ const CompanySignUpForm = () => {
                 name="name"
                 onChange={updateName}
                 value={name}
+                required={true}
               ></input>
             </div>
             <div>
@@ -127,6 +128,7 @@ const CompanySignUpForm = () => {
                 name="admin_email"
                 onChange={updateEmail}
                 value={admin_email}
+                required={true}
               ></input>
             </div>
             <div>
@@ -138,6 +140,7 @@ const CompanySignUpForm = () => {
                 name="password"
                 onChange={updatePassword}
                 value={password}
+                required={true}
               ></input>
             </div>
             <div>
@@ -187,7 +190,6 @@ const CompanySignUpForm = () => {
                 name="warehouse_location"
                 onChange={updateWarehouse}
                 value={warehouse_location}
-                required={true}
               ></input>
             </div>
             <div>
@@ -199,7 +201,6 @@ const CompanySignUpForm = () => {
                 name="products_sold"
                 onChange={updateProducts}
                 value={products_sold}
-                required={true}
               ></input>
             </div>
             <div>
@@ -211,7 +212,6 @@ const CompanySignUpForm = () => {
                 name="carbon_goal"
                 onChange={updateCarbonGoal}
                 value={carbon_goal}
-                required={true}
               ></input>
             </div>
             <div>
@@ -219,11 +219,12 @@ const CompanySignUpForm = () => {
                 <label>Carbon Goal Due Date</label>
               </div>
               <input
-                type="text"
+                type="datetime-local"
                 name="carbon_goal_date"
                 onChange={updateCarbonGoalDate}
                 value={carbon_goal_date}
-                required={true}
+                min="2021-06-07T00:00"
+                max="2021-06-14T00:00"
               ></input>
             </div>
             <p className='full-width'>

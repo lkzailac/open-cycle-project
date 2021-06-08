@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Welcome from "./components/Welcome/index"
 import LoginForm from "./components/auth/LoginForm/index";
-import SignUpForm from "./components/auth/SignUpForm";
+import SignUpForm from "./components/auth/SignUpForm/index";
 import CompanyLoginForm from "./components/auth/CompanyLoginForm/index"
 import CompanySignUpForm from "./components/auth/CompanySignUpForm/index"
 import CompanyDashboard from "./components/CompanyDashboard/index"

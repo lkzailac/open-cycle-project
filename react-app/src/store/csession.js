@@ -62,7 +62,8 @@ export const companyAuthenticate = () => async (dispatch) => {
 
 
   export const companySignUp = (name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date) => async (dispatch)  => {
-    const response = await fetch("/api/cauth/signup", {
+    console.log("thunkkkkkkkkkk", name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date)
+    const response = await fetch("/api/cauth/signup/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
