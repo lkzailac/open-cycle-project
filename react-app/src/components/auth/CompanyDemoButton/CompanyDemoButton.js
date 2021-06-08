@@ -1,11 +1,14 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useState} from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {companyLogin} from "../../../store/csession"
 
+import "./companydemo.css"
 
 function CompanyDemoButton() {
+    const [errors, setErrors] = useState([]);
+    const company = useSelector(state => state.csession.company);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -16,9 +19,14 @@ function CompanyDemoButton() {
         const admin_email = 'demo@company.com';
         const password = "password";
 
-        await dispatch(companyLogin(name, admin_email, password))
-        history.push('/')
+        const data = await dispatch(companyLogin(name, admin_email, password))
+        if (data.errors) {
+            setErrors(data.errors);
+        }
+    }
 
+    if (company) {
+        return <Redirect to={`/company/${company.id}`} />;
     }
 
     return (

@@ -22,13 +22,14 @@ def password_matches(form, field):
     if not company.check_password(password):
         raise ValidationError("Password does not match account.")
 
-def company_names():
-    companies = Company.query.all()
-    return [company.name for company in companies]
+# def company_names():
+#     companies = Company.query.all()
+#     return [company.name for company in companies]
 
 
 class LoginCompanyForm(FlaskForm):
-    name = SelectField('name', validators=[DataRequired()])
+    # name = SelectField('name', validators=[DataRequired()])
+    name = StringField('name')
     admin_email = StringField('admin_email', validators=[DataRequired(), company_exists])
     password = StringField('password', validators=[DataRequired(), password_matches])
 

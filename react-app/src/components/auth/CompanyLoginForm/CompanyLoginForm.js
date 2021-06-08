@@ -35,7 +35,7 @@ const CompanyLoginForm = () => {
   };
 
   if (company) {
-    return <Redirect to="/" />;
+    return <Redirect to={`/company/${company.id}`} />;
   }
 
   return (

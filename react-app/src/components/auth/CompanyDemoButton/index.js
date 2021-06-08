@@ -1,3 +1,3 @@
-import CompanyDemoButton from "../CompanyDemoButton"
+import CompanyDemoButton from "./CompanyDemoButton"
 
 export default CompanyDemoButton;
