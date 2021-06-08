@@ -71,7 +71,7 @@ const CompanySignUpForm = () => {
   };
 
   if (company) {
-    return <Redirect to="/" />;
+    return <Redirect to={`/company/${company.id}`} />;
   }
 
   const popUp =''

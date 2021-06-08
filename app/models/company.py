@@ -15,7 +15,7 @@ class Company(db.Model, UserMixin):
   warehouse_location = db.Column(db.String, nullable = False)
   products_sold = db.Column(db.Integer, nullable = False)
   carbon_goal = db.Column(db.Float)
-  carbon_goal_date = db.Column(db.DateTime)
+  carbon_goal_date = db.Column(db.String)
   transparency_score = db.Column(db.Integer)
   c_footprint_mt = db.Column(db.Float)
   signup_date = db.Column(db.DateTime, default=datetime.datetime.now())

@@ -21,7 +21,7 @@ class SignUpCompanyForm(FlaskForm):
     warehouse_location = StringField('warehouse_location')
     products_sold = IntegerField('products_sold')
     carbon_goal = FloatField('carbon_goal')
-    carbon_goal_date = DateTimeField('carbon_goal_date')
+    carbon_goal_date = StringField('carbon_goal_date')
 
 # class SignUpCompanyForm(FlaskForm):
 #     name = StringField('name')
