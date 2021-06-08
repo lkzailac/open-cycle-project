@@ -9,7 +9,7 @@ class Factory(db.Model):
     country_grid_id = db.Column(db.Integer, db.ForeignKey("country_grids.id"))
 
     country_grid = db.relationship("Country_Grid", back_populates="factories")
-    products = db.relationship("Products", back_populates='factory')
+    products = db.relationship("Product", back_populates='factory')
 
     def to_dict(self):
         return {

@@ -23,7 +23,7 @@ class Product(db.Model):
     unit = db.Column(db.String)
     factory_id = db.Column(db.Integer, db.ForeignKey("factories.id"), nullable=False)
     package_weight_g = db.Column(db.Float)
-    transport_mode_id = db.Column(db.Integer, db.ForeignKey("factories.id"))
+    transport_mode_id = db.Column(db.Integer, db.ForeignKey("transport_modes.id"))
     number_of_cycles = db.Column(db.Integer)
     returnable = db.Column(db.Boolean)
     product_returned_percent = db.Column(db.Float)

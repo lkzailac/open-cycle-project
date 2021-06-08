@@ -7,7 +7,7 @@ class Manufacturing_Process(db.Model):
     name = db.Column(db.String)
     weight = db.Column(db.Float)
 
-    products = db.relationship("Manufacturing_Process", back_populates="manufacturing_process")
+    products = db.relationship("Product", back_populates="manufacturing_process")
 
     def to_dict(self):
         return {
