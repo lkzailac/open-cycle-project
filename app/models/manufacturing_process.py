@@ -7,6 +7,8 @@ class Manufacturing_Process(db.Model):
     name = db.Column(db.String)
     weight = db.Column(db.Float)
 
+    products = db.Relationship("Manufacturing_Process", back_populates="manufacturing_process")
+
     def to_dict(self):
         return {
             "id": self.id,

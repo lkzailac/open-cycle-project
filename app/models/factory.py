@@ -9,10 +9,12 @@ class Factory(db.Model):
     country_grid_id = db.Column(db.Integer, db.ForeignKey("country_grids.id"))
 
     country_grid = db.Relationship("Country_Grid", back_populates="factories")
+    products = db.Relationship("Products", back_populates='factory')
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "weight": self.weight
+            "location": self.location,
+            "country_grid_id": self.country_grid_id
         }
