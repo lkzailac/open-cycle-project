@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CompanyLoginForm from "./components/auth/CompanyLoginForm/index"
 import CompanySignUpForm from "./components/auth/CompanySignUpForm/index"
 import CompanyDashboard from "./components/CompanyDashboard/index"
+import ProductForm from "./components/ProductForm/index";
 import {companyAuthenticate} from "./store/csession";
 
 function CompanyApp() {
@@ -34,6 +35,9 @@ function CompanyApp() {
         </Route>
         <Route path="/company/:id" exact={true}>
           <CompanyDashboard />
+        </Route>
+        <Route path="/product" exact={true}>
+          <ProductForm />
         </Route>
       </Switch>
     </BrowserRouter>

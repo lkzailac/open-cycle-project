@@ -21,6 +21,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 @cauth_routes.route('/')
 def authenticate():
+    print("hitting company authhhhhhhhhhh")
     """
     Authenticates a company.
     """
@@ -65,7 +66,7 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     print("form", form.validate())
     if form.validate_on_submit():
-        print("companysign up routeeeeeeeeeeeeeee validate?")
+
         company = Company(
             name=form.data['name'],
             admin_email=form.data['admin_email'],
@@ -84,7 +85,7 @@ def sign_up():
         db.session.commit()
         login_user(company)
         return company.to_dict()
-    print("companysign up routeeeeeeeeeeeeeee didnt validate")
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

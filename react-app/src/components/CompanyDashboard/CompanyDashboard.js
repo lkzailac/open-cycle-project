@@ -14,7 +14,7 @@ const CompanyDashboard = () => {
     const products = useSelector(state => state.products.products)
 
     useEffect(() => {
-        dispatch(getProducts(company.id))
+        dispatch(getProducts(company?.id))
     }, [dispatch])
 
 

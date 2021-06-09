@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Company
 from app.models import Product
@@ -20,5 +20,9 @@ def company(id):
     return {"products": products}
 
 
-    # Company.query.get(id)
-    # return company.to_dict()
+@company_routes.route('/products', methods=["POST"])
+@login_required
+def add_product():
+    json_data = request.get_json()
+    print('jsondata productssssssss from backend route', json_data)
+    pass
