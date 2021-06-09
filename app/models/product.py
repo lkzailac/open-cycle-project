@@ -16,6 +16,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+    photo_url = db.Column(db.String)
     company_id = db.Column(db.Integer, db.ForeignKey("companies.id"), nullable=False)
     product_category = db.Column(db.String)
     manufacturing_process_id = db.Column(db.Integer, db.ForeignKey("manufacturing_processes.id"))
@@ -41,6 +42,7 @@ class Product(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "photo_url": self.photo_url,
             "company_id": self.company_id,
             "product_category": self.product_category,
             "manufacturing_process_id": self.manufacturing_process_id,

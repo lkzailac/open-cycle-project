@@ -6,6 +6,6 @@ class Consumer_Use(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    weight = db.Column(db.Integer)
+    weight = db.Column(db.Float)
 
     products = db.relationship("Product", secondary=use_table, back_populates="consumer_uses")
