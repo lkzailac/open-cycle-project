@@ -22,12 +22,12 @@ def seed_consumer_uses():
         weight = .18
     )
 
-    use4 = Consumer_Use(
+    use5 = Consumer_Use(
         name = "Tumble Dry",
         weight = .61
     )
 
-    use5 = Consumer_Use(
+    use6 = Consumer_Use(
         name = "Dishwasher",
         weight = .12
     )
@@ -37,6 +37,7 @@ def seed_consumer_uses():
     db.session.add(use3)
     db.session.add(use4)
     db.session.add(use5)
+    db.session.add(use6)
     db.session.commit()
 
 
