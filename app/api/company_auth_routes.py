@@ -1,10 +1,11 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Company, db
-from app.forms import L
-from app.forms import SignUpForm
+from app.forms import LoginCompanyForm
+from app.forms import SignUpCompanyForm
 from flask_login import current_user, login_user, logout_user, login_required
+import datetime
 
-auth_routes = Blueprint('auth', __name__)
+cauth_routes = Blueprint('cauth', __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -18,66 +19,78 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@auth_routes.route('/')
+@cauth_routes.route('/')
 def authenticate():
     """
-    Authenticates a user.
+    Authenticates a company.
     """
     if current_user.is_authenticated:
         return current_user.to_dict()
-    return {'errors': ['Unauthorized']}
+    return {'errors': ['Company Unauthorized']}
 
 
-@auth_routes.route('/login', methods=['POST'])
+@cauth_routes.route('/login', methods=['POST'])
 def login():
     """
-    Logs a user in
+    Logs a company in
     """
-    form = LoginForm()
-    print(request.get_json())
+    form = LoginCompanyForm()
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
-        login_user(user)
-        return user.to_dict()
+        # Add the company to the session, we are logged in!
+        company = Company.query.filter(Company.admin_email == form.data['admin_email']).first()
+        login_user(company)
+        return company.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/logout')
+@cauth_routes.route('/logout')
 def logout():
     """
-    Logs a user out
+    Logs a company out
     """
     logout_user()
-    return {'message': 'User logged out'}
+    return {'message': 'Company logged out'}
 
 
-@auth_routes.route('/signup', methods=['POST'])
+@cauth_routes.route('/signup/', methods=['POST'])
 def sign_up():
+
     """
-    Creates a new user and logs them in
+    Creates a new company and logs them in
     """
-    form = SignUpForm()
+    form = SignUpCompanyForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("form", form.validate())
     if form.validate_on_submit():
-        user = User(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password']
+        print("companysign up routeeeeeeeeeeeeeee validate?")
+        company = Company(
+            name=form.data['name'],
+            admin_email=form.data['admin_email'],
+            password=form.data['password'],
+            logo_url=form.data['logo_url'],
+            statement=form.data['statement'],
+            warehouse_location=form.data['warehouse_location'],
+            products_sold=form.data['products_sold'],
+            carbon_goal=form.data['carbon_goal'],
+            carbon_goal_date=form.data['carbon_goal_date'],
+            transparency_score=1,
+            c_footprint_mt=0,
+            signup_date=datetime.datetime.now()
         )
-        db.session.add(user)
+        db.session.add(company)
         db.session.commit()
-        login_user(user)
-        return user.to_dict()
+        login_user(company)
+        return company.to_dict()
+    print("companysign up routeeeeeeeeeeeeeee didnt validate")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/unauthorized')
+@cauth_routes.route('/unauthorized')
 def unauthorized():
     """
     Returns unauthorized JSON when flask-login authentication fails
     """
-    return {'errors': ['Unauthorized']}, 401
+    return {'errors': ['Company Unauthorized']}, 401
