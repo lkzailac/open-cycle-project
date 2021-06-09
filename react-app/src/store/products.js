@@ -10,11 +10,13 @@ const loadProducts = (products) => ({
 
 // thunks
 export const getProducts = (companyId) => async (dispatch) => {
+
     const res = await fetch(`/api/company/${companyId}`)
 
     if(res.ok) {
         let data = await res.json()
         dispatch(loadProducts(data))
+        console.log("dataaaaaaa", data)
     }
 }
 
@@ -23,9 +25,10 @@ export const getProducts = (companyId) => async (dispatch) => {
 let initialState = {}
 export default function reducer(state=initialState, action) {
     switch (action.type) {
-        case LOAD_PRODUCTS: {
+        case LOAD_PRODUCTS:
             return {...state, ...action.products}
-        }
+        default:
+            return state
     }
 
 }

@@ -20,16 +20,17 @@ app = Flask(__name__)
 
 # Setup login manager
 login = LoginManager(app)
-login.login_view = 'auth.unauthorized'
-
+login.login_view = 'cauth.unauthorized'
+# login.login_view = 'auth.unauthorized'
 
 @login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+def load_company(id):
+    return Company.query.get(int(id))
 
 # @login.user_loader
-# def load_company(id):
-#     return Company.query.get(int(id))
+# def load_user(id):
+#     return User.query.get(int(id))
+
 
 
 # Tell flask about our seed commands
