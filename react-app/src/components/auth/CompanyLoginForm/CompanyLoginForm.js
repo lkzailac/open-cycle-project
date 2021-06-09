@@ -14,7 +14,7 @@ const CompanyLoginForm = () => {
   const company = useSelector(state => state.csession.company);
   const dispatch = useDispatch();
 
-  const onLogin = async (e) => {
+  const onCompanyLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(companyLogin(name, admin_email, password));
     if (data.errors) {
@@ -41,7 +41,7 @@ const CompanyLoginForm = () => {
   return (
     <>
       <div className='container'>
-        <form onSubmit={onLogin}>
+        <form onSubmit={onCompanyLogin}>
           <div>
             {errors.map((error) => (
               <div>{error}</div>

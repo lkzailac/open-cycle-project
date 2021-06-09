@@ -14,7 +14,7 @@ const removeCompany = () => ({
 
 const initialState = { company: null };
 
-export const companyAuthenticate = () => async (dispatch) => {
+  export const companyAuthenticate = () => async (dispatch) => {
     const response = await fetch('/api/cauth/',{
       headers: {
         'Content-Type': 'application/json'
@@ -24,12 +24,12 @@ export const companyAuthenticate = () => async (dispatch) => {
     if (data.errors) {
         return;
     }
-
     dispatch(setCompany(data))
+    return data
   }
 
   export const companyLogin = (name, admin_email, password) => async (dispatch)  => {
-    console.log("compnayloginnnnnn", name, admin_email, password)
+
     const response = await fetch('/api/cauth/login', {
       method: 'POST',
       headers: {
@@ -63,7 +63,7 @@ export const companyAuthenticate = () => async (dispatch) => {
 
 
   export const companySignUp = (name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date) => async (dispatch)  => {
-    console.log("thunkkkkkkkkkk", name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date)
+
     const response = await fetch("/api/cauth/signup/", {
       method: "POST",
       headers: {
@@ -96,7 +96,7 @@ export default function reducer(state=initialState, action) {
         case SET_COMPANY:
             return {company: action.payload}
         case REMOVE_COMPANY:
-            return {compnay: null}
+            return {company: null}
         default:
             return state;
     }

@@ -35,14 +35,14 @@ const Welcome = () => {
                         </div>
                         <div className="join-container">
                             <div className='join'>
-                                <Link className='join-link' to='/company-signup'>
+                                <Link className='join-link' to='/company/signup'>
                                     JOIN NOW
                                 </Link>
                             </div>
                         </div>
                         <div className='login-container'>
                             <div className='login'>
-                                <Link className='login-link' to='/company-login'>
+                                <Link className='login-link' to='/company/login'>
                                     SIGN IN
                                 </Link>
                             </div>
@@ -64,14 +64,14 @@ const Welcome = () => {
                         </div>
                         <div className="r-join-container">
                             <div className='r-join'>
-                                <Link className='r-join-link' to='/sign-up'>
+                                <Link className='r-join-link' to='/consumer/signup'>
                                     JOIN NOW
                                 </Link>
                             </div>
                         </div>
                         <div className='r-login-container'>
                             <div className='r-login'>
-                                <Link className='r-login-link' to='/login'>
+                                <Link className='r-login-link' to='/consumer/login'>
                                     SIGN IN
                                 </Link>
                             </div>
