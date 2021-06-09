@@ -12,12 +12,12 @@ def company(id):
 
     products_obj = Product.query.filter(Product.company_id == id).all()
 
-    products = {}
+    products = []
 
     for product in products_obj:
-        products[product.id] = product.to_dict()
+        products.append(product.to_dict())
 
-    return products
+    return {"products": products}
 
 
     # Company.query.get(id)

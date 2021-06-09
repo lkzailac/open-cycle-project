@@ -1,4 +1,10 @@
+.company-info-container {
+    display: block;
+    padding-top: 12em;
+}
+
 .grid {
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -13,4 +19,96 @@
 
 .col3{
     grid-column-start: 3;
+    justify-content: center;
+}
+
+.add-product{
+    margin-right: 5em;
+    text-align-last: right;
+    color: #353535;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1.1em;
+
+}
+
+.arrow {
+    width: 4em;
+}
+
+.add-container {
+    grid-row-start: 4;
+    grid-column-start: 2;
+    margin-top: 3.5em;
+    display: flex;
+    /* justify-self: flex-start; */
+    width: 200px;
+    height: 40px;
+    text-justify: center;
+    text-align: center;
+    background-color: #ff9700;
+    /* margin-left: 2em; */
+}
+
+.add-link{
+    text-decoration: none;
+    color: white;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+    text-align: center;
+}
+.add {
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin-top: 9px;
+}
+
+/************************   PRODUCT LIST ***********************/
+.products-container {
+    display: block;
+}
+
+.your-products-header {
+    width: 1000px;
+    height: 50px;
+    background-color: #353535;
+    color: white;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.product-photo img{
+    width: 100px;
+}
+
+.product-list {
+    display: block;
+}
+
+.single-product {
+    display: flex;
+}
+
+.product-photo {
+    display: block;
+}
+
+.product-table {
+
+}
+
+.edit-pencil {
+    width: 1.5em;
+}
+
+button.edit-button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    /* width: 5em; */
 }
