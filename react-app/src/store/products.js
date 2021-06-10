@@ -1,6 +1,8 @@
 const LOAD_PRODUCTS = "products/LOAD_PRODUCTS";
 const ADD_PRODUCT = "products/ADD_PRODUCT";
 const DELETE_PRODUCT = "products/DELETE_PRODUCT";
+const UPDATE_PRODUCT = "products/UPDATE_PRODUCT";
+const LOAD_ONE = "products/LOAD_ONE";
 
 const loadProducts = (products) => ({
     type: LOAD_PRODUCTS,
@@ -14,6 +16,16 @@ const addProduct = (product) => ({
 
 const removeProduct = (product) => ({
     type: DELETE_PRODUCT,
+    product
+})
+
+const loadProduct = (product) => ({
+    type: UPDATE_PRODUCT,
+    product
+})
+
+const loadOneP = (product) => ({
+    type: LOAD_ONE,
     product
 })
 
@@ -49,8 +61,6 @@ export const createProduct = (newProduct) => async (dispatch) => {
 // Delete a product
 export const deleteProduct = (id) => async (dispatch) => {
 
-    console.log("delete thunk ----------- id:", id)
-
     const res = await fetch(`/api/company/products/${id}`, {
         method: "DELETE"
     });
@@ -58,6 +68,35 @@ export const deleteProduct = (id) => async (dispatch) => {
     if(res.ok) {
         let product = await res.json();
         dispatch(removeProduct(product))
+    }
+}
+
+// update a product
+export const updateProduct = (product) => async (dispatch) => {
+    const res = await fetch(`/api/company/products/${product.id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            product
+        })
+    })
+
+    if(res.ok) {
+        const updatedProduct = await res.json()
+        dispatch(loadProduct(updatedProduct))
+        return updatedProduct;
+    }
+}
+
+export const getCurrentProd = (id) => async (dispatch) => {
+    console.log("thunk-----------id: ", id )
+    const res = await fetch(`/api/company/products/${id}`)
+
+    if(res.ok) {
+        let data = await res.json()
+        dispatch(loadOneP(data))
     }
 }
 
@@ -77,6 +116,22 @@ export default function reducer(state=initialState, action) {
             newState = { ...state }
             let prodArr = newState.products.filter((prod) => prod["id"] !== action.product.id)
             newState.products = prodArr
+            return newState;
+        case UPDATE_PRODUCT:
+            newState = { ...state }
+            let arr = [];
+            for (const prod of newState.products) {
+                if(prod.id === action.product.id) {
+                    arr.push(action.product)
+                } else {
+                    arr.push(prod)
+                }
+            }
+            newState.products = arr;
+            return newState;
+        case LOAD_ONE:
+            newState = { ...state }
+            newState.product = action.product
             return newState;
         default:
             return state

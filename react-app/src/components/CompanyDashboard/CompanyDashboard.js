@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getProducts, deleteProduct } from '../../store/products';
+import ProductPage from "../ProductPage/index"
 
 
 import downArrow from "../../images/down-arrow.svg";
@@ -9,10 +10,12 @@ import editPencil from "../../images/edit-pencil.svg";
 import './companydashboard.css';
 
 
+
 const CompanyDashboard = () => {
     const dispatch = useDispatch();
     const company = useSelector(state => state.csession.company);
     const products = useSelector(state => state.products.products)
+
 
     useEffect(() => {
         dispatch(getProducts(company?.id))
@@ -26,6 +29,8 @@ const CompanyDashboard = () => {
     const handleDeleteProduct = async(id) => {
         await dispatch(deleteProduct(id))
     }
+
+
 
     return (
         <>
@@ -101,6 +106,7 @@ const CompanyDashboard = () => {
                                     </table>
                                 </div>
                             </div>
+
                         ))}
 
                     </div>

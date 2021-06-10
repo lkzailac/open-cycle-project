@@ -139,7 +139,9 @@ def add_product():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-
+"""
+Delete a Product
+"""
 @company_routes.route('/products/<id>', methods=["DELETE"])
 def remove_product(id):
 
@@ -149,7 +151,23 @@ def remove_product(id):
     return prod_to_delete.to_dict()
 
 
-@company_routes.route('/products/<id>', methods=["PUT"])
+
+"""
+Get one Product
+"""
+@company_routes.route('/products/<id>', methods=["GET"])
+def load_product(id):
+
+    print("routeeeeee-----------id", id)
+    product = Product.query.get(id)
+    return product.to_dict()
+
+
+
+"""
+Update a Product
+"""
+@company_routes.route('/products/<id>', methods=["POST"])
 def update_product(id):
     json_data = request.get_json()
     try:

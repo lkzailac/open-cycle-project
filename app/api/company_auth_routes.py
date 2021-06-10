@@ -65,7 +65,7 @@ def sign_up():
     """
     form = SignUpCompanyForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("form", form.validate())
+
     if form.validate_on_submit():
 
         company = Company(
