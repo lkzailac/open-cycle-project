@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { getProducts } from '../../store/products';
+import { getProducts, deleteProduct } from '../../store/products';
+
 
 import downArrow from "../../images/down-arrow.svg";
 import editPencil from "../../images/edit-pencil.svg";
@@ -15,15 +16,15 @@ const CompanyDashboard = () => {
 
     useEffect(() => {
         dispatch(getProducts(company?.id))
-    }, [dispatch])
+    }, [dispatch, company.id])
 
 
     if (!company) {
         return <Redirect to="/" />;
     }
 
-    function deleteProduct(id) {
-
+    const handleDeleteProduct = async(id) => {
+        await dispatch(deleteProduct(id))
     }
 
     return (
@@ -85,14 +86,16 @@ const CompanyDashboard = () => {
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Carbon Footprint</th>
-                                                <th>Update</th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{product.name}</td>
                                                 <td>{product.carbon_footprint_kg} kg CO<span>&#8322;</span>e</td>
-                                                <td><button className='edit-button' value={product.id} onClick={(e) => deleteProduct(e.target.value)}><img className='edit-pencil' src={editPencil} /></button></td>
+                                                <td><Link className='edit-button' to={`/product/${product.id}`}><img className='edit-pencil' src={editPencil} alt="pencil"/></Link></td>
+                                                <td><button className='delete-button' value={product.id} onClick={(e) => handleDeleteProduct(e.target.value)}>Delete</button></td>
                                             </tr>
                                         </tbody>
                                     </table>

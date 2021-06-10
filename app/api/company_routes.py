@@ -79,7 +79,7 @@ def company(id):
 @company_routes.route('/products', methods=["POST"])
 def add_product():
     json_data = request.get_json()
-    print('jpsn_data from backend route==========================', json_data)
+
 
     # carbon_footprint_kg= json_data["newProduct"]["carbon_footprint_kg"]
 
@@ -137,3 +137,15 @@ def add_product():
         return latest_product2.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
+@company_routes.route('/products/<id>', methods=["DELETE"])
+def remove_product(id):
+
+    print("delete route -------------------------")
+
+    prod_to_delete = Product.query.get(id)
+    db.session.delete(prod_to_delete)
+    db.session.commit()
+    return prod_to_delete.to_dict()

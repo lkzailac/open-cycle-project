@@ -7,7 +7,6 @@ import { getFootprint } from "../../utils/carbonfootprintcalc"
 
 import downArrow from "../../images/down-arrow.svg";
 import "./productform.css";
-import { Redirect } from "react-router";
 
 
 const ProductForm = () => {
@@ -71,8 +70,6 @@ const ProductForm = () => {
         }
         const res= await dispatch(createProduct(product))
         if(res) {
-            console.log("from productfrom comp res---------", res)
-            // return <Redirect to={`/company/${company.id}`} />
             history.push(`/company/${company.id}`)
         }
     }
