@@ -16,7 +16,7 @@ const ProductForm = () => {
     const grids = useSelector(state => state.products.grids)
     const transport_modes = useSelector(state => state.products.transport_modes)
     const [name, setName] = useState('')
-    const [image_url, setImage_url] = useState('')
+    const [photo_url, setphoto_url] = useState('')
     const [product_category, setProductCategory] = useState('')
     const [componentState, setComponents] = useState(null)
     const [manufacturing_process_id, setManufacturing_process_id] = useState(0)
@@ -38,7 +38,7 @@ const ProductForm = () => {
 
         const product = {
             name,
-            image_url,
+            photo_url,
             "company_id": company.id,
             product_category,
             componentState,
@@ -61,8 +61,8 @@ const ProductForm = () => {
         setName(e.target.value)
     }
 
-    const updateImage_url = (e) => {
-        setImage_url(e.target.value)
+    const updatephoto_url = (e) => {
+        setphoto_url(e.target.value)
     }
 
     const updateProductCategory = (e) => {
@@ -196,9 +196,9 @@ const ProductForm = () => {
               </div>
               <input
                 type="text"
-                name="image_url"
-                onChange={updateImage_url}
-                value={image_url}
+                name="photo_url"
+                onChange={updatephoto_url}
+                value={photo_url}
               ></input>
             </div>
             <div>

@@ -22,14 +22,3 @@ class SignUpCompanyForm(FlaskForm):
     products_sold = IntegerField('products_sold')
     carbon_goal = FloatField('carbon_goal')
     carbon_goal_date = StringField('carbon_goal_date')
-
-# class SignUpCompanyForm(FlaskForm):
-#     name = StringField('name')
-#     admin_email = StringField('admin_email')
-#     password = StringField('password')
-#     logo_url = StringField('logo_url' )
-#     statement = TextAreaField('statement')
-#     warehouse_location = StringField('warehouse_location')
-#     products_sold = IntegerField('products_sold')
-#     carbon_goal = FloatField('carbon_goal')
-#     carbon_goal_date = DateTimeField('carbon_goal_date')
