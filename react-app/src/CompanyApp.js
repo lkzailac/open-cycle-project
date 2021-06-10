@@ -5,6 +5,7 @@ import CompanyLoginForm from "./components/auth/CompanyLoginForm/index"
 import CompanySignUpForm from "./components/auth/CompanySignUpForm/index"
 import CompanyDashboard from "./components/CompanyDashboard/index"
 import ProductForm from "./components/ProductForm/index";
+import ProductPage from "./components/ProductPage/index";
 import {companyAuthenticate} from "./store/csession";
 
 function CompanyApp() {
@@ -38,6 +39,9 @@ function CompanyApp() {
         </Route>
         <Route path="/product" exact={true}>
           <ProductForm />
+        </Route>
+        <Route path="/product/:id" exact={true}>
+          <ProductPage />
         </Route>
       </Switch>
     </BrowserRouter>

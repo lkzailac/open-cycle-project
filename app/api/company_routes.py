@@ -143,9 +143,22 @@ def add_product():
 @company_routes.route('/products/<id>', methods=["DELETE"])
 def remove_product(id):
 
-    print("delete route -------------------------")
-
     prod_to_delete = Product.query.get(id)
     db.session.delete(prod_to_delete)
     db.session.commit()
     return prod_to_delete.to_dict()
+
+
+@company_routes.route('/products/<id>', methods=["PUT"])
+def update_product(id):
+    json_data = request.get_json()
+    try:
+        prod = Product.query.filter(Product.id == id)
+        prod.update(dict(json_data))
+        db.session.commit()
+
+        prod_update = Product.query.filter(Product.id == id)
+        return prod_update.to_dict()
+
+    except Exception as e:
+        print("Failed to update product:", e)
