@@ -38,6 +38,12 @@ const ProductForm = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        let returnBoolean;
+        if (returnable === "yes") {
+            returnBoolean = true
+        } else {
+            returnBoolean = false
+        }
 
         const product = {
             name,
@@ -53,7 +59,7 @@ const ProductForm = () => {
             transport_mode_id,
             useArray,
             number_of_cycles,
-            returnable,
+            "returnable": returnBoolean,
             product_returned_percent,
             product_recycled_percent
         }
