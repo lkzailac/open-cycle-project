@@ -39,6 +39,7 @@ export const createProduct = (newProduct) => async (dispatch) => {
         if(res.ok) {
             const addedProduct = await res.json()
             dispatch(addProduct(addedProduct))
+            return addProduct;
         }
 }
 

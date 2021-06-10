@@ -1,3 +1,4 @@
+
 from flask import Blueprint, request
 from flask_login import login_required
 from app.forms import ProductForm
@@ -77,49 +78,62 @@ def company(id):
 
 @company_routes.route('/products', methods=["POST"])
 def add_product():
-    # json_data = request.get_json()
-    # print('components array productssssssss from backend route', json_data)
-    # {'newProduct': {'name': 'aefdwe',
-    # 'image_url': 'weR',
-    # 'company_id': 1,
-    # 'product_category':
-    # 'WERer',
-    # 'componentState': ['[object Object]'],
-    # 'manufacturing_process_id': 0,
-    # 'product_weight_g': '4',
-    # 'package_weight_g': '4',
-    # 'factory_id': 0,
-    # 'unit': 0,
-    # 'transport_mode_id': 0,
-    # 'consumer_useState': ['[object Object]'],
-    # 'number_of_cycles': 0,
-    # 'returnable': 'true',
-    # 'product_returned_percent': '4'}}
+    json_data = request.get_json()
+    print('jpsn_data from backend route==========================', json_data)
+
+    # carbon_footprint_kg= json_data["newProduct"]["carbon_footprint_kg"]
+
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print("form.dataaaaaaaa", form.data)
-        product = Product(
-            name=form.data['name'],
-            photo_url=form.data['photo_url'],
-            company_id  = form.data[""],
-            product_category = form.data["product_category"],
-            manufacturing_process_id = form.data["manufacturing_process_id"],
-            product_weight_g = form.data["product_weight_g"],
-            unit = form.data["unit"],
-            factory_id = form.data["factory_id"],
-            package_weight_g = form.data["package_weight_g"],
-            transport_mode_id = form.data["transport_mode_id"],
-            number_of_cycles = form.data["number_of_cycles"],
-            returnable = form.data["returnable"],
-            product_returned_percent = form.data["product_returned_percent"],
-            product_recycled_percent = form.data["product_recycled_percent"],
-            carbon_footprint_kg = form.data["carbon_footprint_kg"],
 
+        product = Product(
+            name=json_data["newProduct"]['name'],
+            photo_url=json_data["newProduct"]['photo_url'],
+            company_id  = json_data["newProduct"]["company_id"],
+            product_category = json_data["newProduct"]["product_category"],
+            manufacturing_process_id = json_data["newProduct"]["manufacturing_process_id"],
+            product_weight_g = json_data["newProduct"]["product_weight_g"],
+            unit = json_data["newProduct"]["unit"],
+            factory_id = json_data["newProduct"]["factory_id"],
+            package_weight_g = json_data["newProduct"]["package_weight_g"],
+            transport_mode_id = json_data["newProduct"]["transport_mode_id"],
+            number_of_cycles = json_data["newProduct"]["number_of_cycles"],
+            returnable = json_data["newProduct"]["returnable"],
+            product_returned_percent = json_data["newProduct"]["product_returned_percent"],
+            product_recycled_percent = json_data["newProduct"]["product_recycled_percent"],
+            carbon_footprint_kg = json_data["newProduct"]["carbon_footprint_kg"]
         )
+
         db.session.add(product)
         db.session.commit()
-        return product.to_dict()
+
+        # get the latest product and Append the components and uses
+        products = Product.query.all()
+        latest_product = products[-1]
+
+        comps_to_add = json_data["newProduct"]['compArray']
+
+        for comp_id in comps_to_add:
+            comp_to_add = Component.query.get(comp_id)
+            latest_product.components.append(comp_to_add)
+
+        uses_to_add = json_data["newProduct"]['useArray']
+
+        db.session.add(latest_product)
+        db.session.commit()
+
+        products = Product.query.all()
+        latest_product2 = products[-1]
+
+        for use_id in uses_to_add:
+            use_to_add = Consumer_Use.query.get(use_id)
+            latest_product2.consumer_uses.append(use_to_add)
+
+        db.session.add(latest_product2)
+        db.session.commit()
+
+        return latest_product2.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

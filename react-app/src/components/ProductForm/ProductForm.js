@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createProduct } from '../../store/products';
+import { getFootprint } from "../../utils/carbonfootprintcalc"
 
 
 import downArrow from "../../images/down-arrow.svg";
 import "./productform.css";
-import SignUpForm from "../auth/SignUpForm";
+import { Redirect } from "react-router";
 
 
 const ProductForm = () => {
@@ -33,6 +35,7 @@ const ProductForm = () => {
     const [product_returned_percent, setProduct_returned_percent] = useState(0)
     const [product_recycled_percent, setProduct_recycled_percent] = useState(0)
 
+    const history = useHistory()
     const dispatch = useDispatch()
 
     const onSubmit = async (e) => {
@@ -45,25 +48,33 @@ const ProductForm = () => {
             returnBoolean = false
         }
 
+        let carbon_footprint_kg = getFootprint()
+
         const product = {
             name,
             photo_url,
             "company_id": company.id,
             product_category,
             compArray,
-            manufacturing_process_id,
-            product_weight_g,
-            package_weight_g,
-            factory_id,
+            "manufacturing_process_id": Number(manufacturing_process_id),
+            "product_weight_g": Number(product_weight_g),
+            "package_weight_g": Number(package_weight_g),
+            "factory_id": Number(factory_id),
             unit,
-            transport_mode_id,
+            "transport_mode_id": Number(transport_mode_id),
             useArray,
-            number_of_cycles,
+            "number_of_cycles": Number(number_of_cycles),
             "returnable": returnBoolean,
-            product_returned_percent,
-            product_recycled_percent
+            "product_returned_percent": Number(product_returned_percent),
+            "product_recycled_percent": Number(product_recycled_percent),
+            carbon_footprint_kg
         }
-        await dispatch(createProduct(product))
+        const res= await dispatch(createProduct(product))
+        if(res) {
+            console.log("from productfrom comp res---------", res)
+            // return <Redirect to={`/company/${company.id}`} />
+            history.push(`/company/${company.id}`)
+        }
     }
 
     const updateName = (e) => {
@@ -352,7 +363,7 @@ const ProductForm = () => {
                 {consumer_uses.map((use, index) => (
                     <li key={index}>
                         <div className='label-container'>
-                            <label htmlFor={use.id}>{use.name}></label>
+                            <label htmlFor={use.id}>{use.name}</label>
                         </div>
                         <input
                         type="checkbox"
