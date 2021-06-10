@@ -5,6 +5,7 @@ import { createProduct } from '../../store/products';
 
 import downArrow from "../../images/down-arrow.svg";
 import "./productform.css";
+import SignUpForm from "../auth/SignUpForm";
 
 
 const ProductForm = () => {
@@ -13,21 +14,22 @@ const ProductForm = () => {
     const manufacturing_processes = useSelector(state => state.products.manufacturing)
     const consumer_uses = useSelector(state => state.products.consumer_uses)
     const factories = useSelector(state => state.products.factories)
-    const grids = useSelector(state => state.products.grids)
     const transport_modes = useSelector(state => state.products.transport_modes)
     const [name, setName] = useState('')
     const [photo_url, setphoto_url] = useState('')
     const [product_category, setProductCategory] = useState('')
-    const [componentState, setComponents] = useState(null)
-    const [manufacturing_process_id, setManufacturing_process_id] = useState(0)
+    const [componentChecked, setComponentChecked] = useState(new Array(components.length).fill(false))
+    const [compArray, setCompArray] = useState(null)
+    const [useChecked, setUseChecked] = useState(new Array(consumer_uses.length).fill(false))
+    const [useArray, setUseArray] = useState(null)
+    const [manufacturing_process_id, setManufacturing_process_id] = useState(1)
     const [product_weight_g, setProduct_weight_g] = useState(0)
     const [package_weight_g, setPackage_weight_g] = useState(0)
-    const [factory_id,  setFactory_id] = useState(0)
-    const [unit, setUnit] = useState(0)
-    const [transport_mode_id, setTransport_mode_id] = useState(0)
-    const [consumer_useState, setConsumer_uses] = useState(null)
+    const [factory_id,  setFactory_id] = useState(1)
+    const [unit, setUnit] = useState("pair")
+    const [transport_mode_id, setTransport_mode_id] = useState(1)
     const [number_of_cycles, setNumber_of_cycles] = useState(0)
-    const [returnable, setReturnable] = useState(false)
+    const [returnable, setReturnable] = useState("")
     const [product_returned_percent, setProduct_returned_percent] = useState(0)
     const [product_recycled_percent, setProduct_recycled_percent] = useState(0)
 
@@ -36,23 +38,24 @@ const ProductForm = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+
         const product = {
             name,
             photo_url,
             "company_id": company.id,
             product_category,
-            componentState,
+            compArray,
             manufacturing_process_id,
             product_weight_g,
             package_weight_g,
             factory_id,
             unit,
             transport_mode_id,
-            consumer_useState,
+            useArray,
             number_of_cycles,
             returnable,
             product_returned_percent,
-            setProduct_recycled_percent
+            product_recycled_percent
         }
         await dispatch(createProduct(product))
     }
@@ -69,11 +72,28 @@ const ProductForm = () => {
         setProductCategory(e.target.value)
     }
 
-    let comps= []
-    const updateComponents = (e) => {
-        comps.push(e.target.value)
-        setComponents(comps)
+
+    let totalComponents = new Array();
+    const updateComponents = (position) => {
+        const updatedCheckedState = componentChecked.map((item, index) =>
+            index === position ? !item : item
+        );
+        setComponentChecked(updatedCheckedState);
+
+        let arr = new Array();
+        for (const [index, element] of updatedCheckedState.entries()) {
+            if (element === true) {
+                arr.push(components[index].id)
+            } else {
+                arr.push(element)
+            }
+        }
+        totalComponents = arr.filter((el) => el !== false)
+        setCompArray(totalComponents)
+
     }
+
+
 
     const updateManufProcess = (e) => {
         setManufacturing_process_id(e.target.value)
@@ -99,10 +119,24 @@ const ProductForm = () => {
         setTransport_mode_id(e.target.value)
     }
 
-    let usess= []
-    const updateUse = (e) => {
-        usess.push(e.target.value)
-        setConsumer_uses(usess)
+    let totalUses = new Array();
+    const updateUse = (position) => {
+        const updatedCheckedState = useChecked.map((item, index) =>
+            index === position ? !item : item
+        );
+        setUseChecked(updatedCheckedState);
+
+        let arr = new Array();
+        for (const [index, element] of updatedCheckedState.entries()) {
+            if (element === true) {
+                arr.push(consumer_uses[index].id)
+            } else {
+                arr.push(element)
+            }
+        }
+        totalUses = arr.filter((el) => el !== false)
+        setUseArray(totalUses)
+
     }
 
     const updateCycles = (e) => {
@@ -122,7 +156,7 @@ const ProductForm = () => {
     }
 
     let returnElements;
-    if (returnable) {
+    if (returnable === "yes") {
         returnElements = (
             <>
             <div>
@@ -151,12 +185,18 @@ const ProductForm = () => {
             </div>
             </>
         )
-    } else {
+    } else if (returnable === "no") {
         returnElements = (
             <>
                 <p>Consider accepting your products back at the end of their life <br></br>in order to decrease their carbon footprint. </p>
             </>
         )
+    } else {
+        returnElements = (
+            <>
+            </>
+        )
+
     }
 
 
@@ -212,19 +252,31 @@ const ProductForm = () => {
                 value={product_category}
               ></input>
             </div>
+
             <div>
                 <div className='label-container'>
                     <label>Components</label>
                 </div>
-                {components.map((component) => (
-                    <>
-                        <div key={component.id} className='label-container'>
+                <ul className= 'components-list'>
+                {components.map((component, index) => (
+                    <li key={index}>
+                        <div className='label-container'>
                             <label htmlFor={component.id}>{component.name}</label>
                         </div>
-                        <input type="checkbox" onChange={updateComponents} id={component.id} name={component.id} value={component} ></input>
-                    </>
+                        <input
+                        type="checkbox"
+                        id={component.id}
+                        onChange={() => updateComponents(index)}
+                        name={component.id}
+                        value={component.id}
+                        checked={componentChecked[index]} >
+
+                        </input>
+                    </li>
                 ))}
+                </ul>
             </div>
+
             <div>
               <div className='label-container'>
                 <label>Manufacturing Process</label>
@@ -290,14 +342,23 @@ const ProductForm = () => {
                 <div className='label-container'>
                     <label>Consumer Uses</label>
                 </div>
-                {consumer_uses.map((use) => (
-                    <>
-                        <div className='label-container' key={use.id}>
-                            <label htmlFor={use.id}>{use.name}</label>
+                <ul className= 'uses-list'>
+                {consumer_uses.map((use, index) => (
+                    <li key={index}>
+                        <div className='label-container'>
+                            <label htmlFor={use.id}>{use.name}></label>
                         </div>
-                        <input type="checkbox" onChange={updateUse} id={use.id} name={use.id} value={use} ></input>
-                    </>
+                        <input
+                        type="checkbox"
+                        onChange={() => updateUse(index)}
+                        id={use.id}
+                        name={use.id}
+                        value={use.id}
+                        checked={useChecked[index]} >
+                        </input>
+                    </li>
                 ))}
+                </ul>
             </div>
             <div>
                 <div className='label-container'>
@@ -316,9 +377,9 @@ const ProductForm = () => {
                 <div className='label-container'>
                     <label>Returnable at End of Life?</label>
                 </div>
-                <input type="radio" name="returnable" value={true} onChange={updateReturn}></input>
+                <input type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
                 <label>Yes</label>
-                <input type="radio" name="returnable" value={false} onChange={updateReturn}></input>
+                <input type="radio" name="returnable" value="no" onChange={updateReturn}></input>
                 <label>Not Yet</label>
             </div>
             { returnElements }
