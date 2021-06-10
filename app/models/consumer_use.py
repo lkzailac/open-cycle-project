@@ -9,3 +9,11 @@ class Consumer_Use(db.Model):
     weight = db.Column(db.Float)
 
     products = db.relationship("Product", secondary=use_table, back_populates="consumer_uses")
+
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "weight": self.weight,
+        }

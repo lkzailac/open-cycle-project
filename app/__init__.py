@@ -23,9 +23,22 @@ login = LoginManager(app)
 login.login_view = 'cauth.unauthorized'
 # login.login_view = 'auth.unauthorized'
 
-@login.user_loader
-def load_company(id):
-    return Company.query.get(int(id))
+@login.request_loader
+def load_user_from_req(request):
+    if request.url == "http://localhost:5000/api/cauth/":
+        @login.user_loader
+        def load_company(id):
+            return Company.query.get(int(id))
+    else:
+        @login.user_loader
+        def load_user(id):
+            return User.query.get(int(id))
+
+
+
+# @login.user_loader
+# def load_company(id):
+#     return Company.query.get(int(id))
 
 # @login.user_loader
 # def load_user(id):

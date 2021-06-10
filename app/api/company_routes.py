@@ -1,7 +1,13 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import Company
+from app.models import Company, consumer_use, manufacturing_process, transport_mode
 from app.models import Product
+from app.models import Component
+from app.models import Manufacturing_Process
+from app.models import Factory
+from app.models import Transport_Mode
+from app.models import Consumer_Use
+from app.models import Country_Grid
 
 company_routes = Blueprint('company', __name__)
 
@@ -17,7 +23,45 @@ def company(id):
     for product in products_obj:
         products.append(product.to_dict())
 
-    return {"products": products}
+    components_obj = Component.query.all()
+    components = []
+    for component in components_obj:
+        components.append(component.to_dict())
+
+    man_obj = Manufacturing_Process.query.all()
+    manufacturing_processes = []
+    for process in man_obj:
+        manufacturing_processes.append(process.to_dict())
+
+    factory_obj = Factory.query.all()
+    factories = []
+    for factory in factory_obj:
+        factories.append(factory.to_dict())
+
+    trans_obj = Transport_Mode.query.all()
+    transport_modes = []
+    for mode in trans_obj:
+        transport_modes.append(mode.to_dict())
+
+    con_obj = Consumer_Use.query.all()
+    consumer_uses = []
+    for con in con_obj:
+        consumer_uses.append(con.to_dict())
+
+    grid_obj = Country_Grid.query.all()
+    grids = []
+    for g in grid_obj:
+        grids.append(g.to_dict())
+
+
+    return {"products": products,
+    "components": components,
+    "manufacturing": manufacturing_processes,
+    "factories": factories,
+    "transport_modes": transport_modes,
+    "consumer_uses": consumer_uses,
+    "grids": grids
+    }
 
 
 @company_routes.route('/products', methods=["POST"])
