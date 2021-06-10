@@ -103,6 +103,9 @@ const CompanySignUpForm = () => {
           </div>
         </div>
         <form onSubmit={onSignUp}>
+          {/* {errors.map((error) => (
+            <p>error</p>
+          ))} */}
           <div className='left-form'>
             <div>
               <div className='label-container'>

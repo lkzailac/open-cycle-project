@@ -1,0 +1,9 @@
+.product-form-container {
+    display: block;
+    margin-top: 15em;
+    margin-left: 20em;
+}
+
+form {
+    display: block;
+}

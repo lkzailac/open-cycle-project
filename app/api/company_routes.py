@@ -65,8 +65,13 @@ def company(id):
 
 
 @company_routes.route('/products', methods=["POST"])
-@login_required
 def add_product():
     json_data = request.get_json()
     print('jsondata productssssssss from backend route', json_data)
-    pass
+    # {'newProduct': {'name': 'aefdwe',
+    # 'image_url': 'weR',
+    # 'company_id': 1,
+    # 'product_category':
+    # 'WERer',
+    # 'componentState': ['[object Object]'],
+    # 'manufacturing_process_id': 0, 'product_weight_g': '4', 'package_weight_g': '4', 'factory_id': 0, 'unit': 0, 'transport_mode_id': 0, 'consumer_useState': ['[object Object]'], 'number_of_cycles': 0, 'returnable': 'true', 'product_returned_percent': '4'}}

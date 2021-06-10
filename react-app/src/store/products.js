@@ -25,7 +25,7 @@ export const getProducts = (companyId) => async (dispatch) => {
 }
 
 export const createProduct = (newProduct) => async (dispatch) => {
-
+        console.log("newprod from thunkkkkk", newProduct)
         const res = await fetch("/api/company/products", {
             method: "POST",
             headers: {
@@ -60,6 +60,10 @@ export default function reducer(state=initialState, action) {
 }
 
 
-// name, image_url, company_id, product_category, components, manufacturing_process_id,
-//     product_weight_g, package_weight_g, factory_id, unit, transport_mode_id, consumer_uses, number_of_cycles,
-//     returnable, product_returned_percent, product_recycled_percent
+// name, image_url, company_id, product_category,
+// components, manufacturing_process_id,
+//     product_weight_g, package_weight_g,
+// factory_id, unit, transport_mode_id, consumer_uses,
+// number_of_cycles,
+//     returnable, product_returned_percent,
+// product_recycled_percent
