@@ -51,10 +51,10 @@ function CompanyApp() {
         <Route path="/company/:id" exact={true}>
           <CompanyDashboard />
         </Route>
-        <Route path="/product" exact={true}>
+        <Route path="/company/product" exact={true}>
           <ProductForm />
         </Route>
-        <Route path="/product/:id" exact={true}>
+        <Route path="/company/product/:id" exact={true}>
           <ProductPage />
         </Route>
       </Switch>

@@ -8,3 +8,4 @@ from .factory import Factory
 from .manufacturing_process import Manufacturing_Process
 from .product import Product
 from .transport_mode import Transport_Mode
+from .base_user import BaseUser

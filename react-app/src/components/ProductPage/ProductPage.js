@@ -26,11 +26,11 @@ const ProductPage = () => {
     const [editPhoto, setEditPhoto] = useState(false)
     const [product_category, setProductCategory] = useState("")
     const [editCategory , setEditCategory] =useState(false);
-    const [componentChecked, setComponentChecked] = useState(new Array(components.length).fill(false))
+    const [componentChecked, setComponentChecked] = useState(new Array(components?.length).fill(false))
     // const [editcomponentChecked , setEdit] =useState(false);
     const [compArray, setCompArray] = useState(null)
     const [editcompArray , setEditCompArray] =useState(false);
-    const [useChecked, setUseChecked] = useState(new Array(consumer_uses.length).fill(false))
+    const [useChecked, setUseChecked] = useState(new Array(consumer_uses?.length).fill(false))
     // const [edit , setEdit] =useState(false);
     const [useArray, setUseArray] = useState(null)
     const [editUseArray, setEditUseArray] =useState(false);
