@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { updateProduct, getCurrentProd } from '../../store/products';
+import EditProdModal from '../EditProdModal';
 import { getFootprint } from "../../utils/carbonfootprintcalc"
 
 import downArrow from "../../images/down-arrow.svg";
@@ -19,6 +20,7 @@ const ProductPage = () => {
     const factories = useSelector(state => state.products.factories)
     const transport_modes = useSelector(state => state.products.transport_modes)
     const [name, setName] = useState(currentProd?.name)
+    const [showEditName, setEditName] = useState(false)
     const [photo_url, setphoto_url] = useState(currentProd?.photo_url)
     const [product_category, setProductCategory] = useState(currentProd?.product_category)
     const [componentChecked, setComponentChecked] = useState(new Array(components.length).fill(false))
@@ -241,7 +243,9 @@ const ProductPage = () => {
                         <tr>
                             <th className='prod-table-head'>Product Name</th>
                             <td>{currentProd?.name}</td>
-                            <td><img className='edit-pencil' src={editPencil} alt="pencil"/></td>
+                            {/* <td><button value={currentProd?.id}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td> */}
+                            <td><EditProdModal /></td>
+
                         </tr>
                         <tr>
                             <th>Photo</th>
