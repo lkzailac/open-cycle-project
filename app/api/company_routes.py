@@ -194,24 +194,112 @@ def update_product(id):
         db.session.add(prod)
         db.session.commit()
 
+    if key == "photo_url":
+        prod.photo_url = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "product_category":
+        prod.product_category = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "compArray":
+        new_components = []
+        for comp_id in prod["compArray"]:
+            comp = Component.query.get(comp_id)
+            new_components.append(comp)
+
+        prod.components = new_components
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "manufacturing_process_id":
+        prod.manufacturing_process_id = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "product_weight_g":
+        prod.product_weight_g = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "package_weight_g":
+        prod.package_weight_g = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "factory_id":
+        prod.factory_id = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "unit":
+        prod.unit = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "transport_mode_id":
+        prod.transport_mode_id = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "useArray":
+        new_uses = []
+        for use_id in prod["useArray"]:
+            use = Consumer_Use.query.get(use_id)
+            new_uses.append(use)
+
+        prod.components = new_uses
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "number_of_cycles":
+        prod.number_of_cycles = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "returnable":
+        prod.returnable = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "product_returned_percent":
+        prod.product_returned_percent = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "product_recycled_percent":
+        prod.product_recycled_percent = val
+        db.session.add(prod)
+        db.session.commit()
+
+
     prod_update = Product.query.filter(Product.id == id).one()
+
+
 
     ####### CALC NEW CARBON FOOTPRINT
     sumMaterials = 0
     for comp in prod_update["components"]:
         sumMaterials += comp.weight_g
     manuf = prod_update["manufacturing_process"].weight
+    trans = Transport_Mode.query.get(prod_update.transport_mode_id)
+    transport = trans.weight * prod_update.product_weight_g
+    sumuses = 0
+    for use in prod_update['consumer_uses']:
+        sumuses += (use.weight * prod_update.product_weight_g)
+    eol= prod_update.product_weight_g - ((prod_update.product_weight_g * (prod_update.product_recycled_percent/100)))
+    newPrint = 10 * (sumMaterials + manuf + transport + sumuses + eol)
 
+    prod_update["carbon_footprint_kg"] = newPrint
+    db.session.add(prod_update)
+    db.session.commit()
 
-    # return sumMaterials + manuf + transport + uses + eol
-
-    if(name) {
-        return 8
-    }
-
+    final_product = Product.query.get(id)
 
     print("updated prod-----------", prod_update.to_dict())
-    return prod_update.to_dict()
+    return final_product.to_dict()
 
     # except Exception as e:
     #     print("Failed to update product:", e)
