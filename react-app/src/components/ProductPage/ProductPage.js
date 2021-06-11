@@ -621,89 +621,110 @@ const ProductPage = () => {
                     <img className ='arrow-img bounce3' src={downArrow} alt='arrow'/>
                 </div>
             </div>
+            <div className='footprint-container'>
+                <h2>Carbon Footprint</h2>
+                <p>{`${currentProd?.carbon_footprint_kg}`}</p>
+            </div>
             <div className='edit-prod-table-container'>
                 <table className='edit-product-table'>
                     <tbody>
                         <tr>
                             <th className='prod-table-head'>Product Name</th>
                             <td>{editName ? [editor] : currentProd?.name}</td>
-                            <td><button className='edit-button' value={currentProd?.id} onClick={(e) => setEditName(!editName)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+                            <td><button className='edit-button' onClick={() => setEditName(!editName)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                             {/* <td><EditProdModal /></td> */}
 
                         </tr>
                         <tr>
                             <th>Photo</th>
-                            <td><div className='product-image'><img src={currentProd?.photo_url} alt="prodimage"/></div></td>
+                            <td><div className='product-image'>{editPhoto ? [editor] : <img src={currentProd?.photo_url} alt="prodimage"/>}</div></td>
+                            <td><button className='edit-button' onClick={() => setEditPhoto(!editPhoto)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Product Category</th>
-                            <td>{currentProd?.product_category}</td>
+                            <td>{editCategory ? [editor] : currentProd?.product_category}</td>
+                            <td><button className='edit-button' onClick={() => setEditCategory(!editCategory)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Components</th>
                             <td>
-                            {currentProd?.components?.map((comp) => (
+                            {editcompArray ? [editor] : currentProd?.components?.map((comp) => (
                                <p key={comp.id}>{comp.name}</p>
                             ))}
                             </td>
+                            <td><button className='edit-button' onClick={() => setEditCompArray(!editcompArray)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Manufacturing Process</th>
-                            <td>{manufacturing_processes?.filter((pro) => pro.id === currentProd?.manufacturing_process_id)[0]?.name }</td>
+                            <td>{editManu ? [editor] : manufacturing_processes?.filter((pro) => pro.id === currentProd?.manufacturing_process_id)[0]?.name }</td>
+                            <td><button className='edit-button' onClick={() => setEditManu(!editManu)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Product Weight (g)</th>
-                            <td>{currentProd?.product_weight_g}</td>
+                            <td>{editProdWeight ? [editor] : currentProd?.product_weight_g}</td>
+                            <td><button className='edit-button' onClick={() => setEditProdWeight(!editProdWeight)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Package Weight (g)</th>
-                            <td>{currentProd?.package_weight_g}</td>
+                            <td>{editPackWeight ? [editor] : currentProd?.package_weight_g}</td>
+                            <td><button className='edit-button' onClick={() => setEditPackWeight(!editPackWeight)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Factory</th>
-                            <td>{factories?.filter((factory) => factory.id === currentProd?.factory_id)[0]?.name}</td>
+                            <td>{editFactId ? [editor] : factories?.filter((factory) => factory.id === currentProd?.factory_id)[0]?.name}</td>
+                            <td><button className='edit-button' onClick={() => setEditFactId(!editFactId)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Unit</th>
-                            <td>{currentProd?.unit}</td>
+                            <td>{editUnit ? [editor] : currentProd?.unit}</td>
+                            <td><button className='edit-button' onClick={() => setEditUnit(!editUnit)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Transport Mode</th>
-                            <td>{transport_modes?.filter((mode) => mode.id === currentProd?.transport_mode_id)[0]?.name}</td>
+                            <td>{editTransMode ? [editor] : transport_modes?.filter((mode) => mode.id === currentProd?.transport_mode_id)[0]?.name}</td>
+                            <td><button className='edit-button' onClick={() => setEditTransMode(!editTransMode)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Consumer Uses</th>
                             <td>
-                                {currentProd?.uses ? currentProd?.uses.map((use) => (
+                                {editUseArray ? [editor] : currentProd?.uses ? currentProd?.uses.map((use) => (
                                     <p key={use.id}>{use.name}</p>
                                 )) : <p>None</p>}
                             </td>
+                            <td><button className='edit-button' onClick={() => setEditUseArray(!editUseArray)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Number of Use Cycles</th>
-                            <td>{currentProd?.number_of_cycles}</td>
+                            <td>{editCycles ? [editor] : currentProd?.number_of_cycles}</td>
+                            <td><button className='edit-button' onClick={() => setEditCycles(!editCycles)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Returnable?</th>
-                            <td>{currentProd?.returnable ? "Yes" : "No"}</td>
+                            <td>{editRturnable ? [editor] : currentProd?.returnable ? "Yes" : "No"}</td>
+                            <td><button className='edit-button' onClick={() => setEditRetrunable(!editRturnable)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         {currentProd?.returnable ?
                         <>
                         <tr>
                             <th>Percentage Returned</th>
-                            <td>{currentProd?.product_returned_percent}</td>
+                            <td>{editProdReturn ? [editor] : currentProd?.product_returned_percent}</td>
+                            <td><button className='edit-button' onClick={() => setEditProdReturn(!editProdReturn)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Percentage Recycled</th>
-                            <td>{currentProd?.product_recycled_percent}</td>
+                            <td>{editProdRecycle ? [editor] : currentProd?.product_recycled_percent}</td>
+                            <td><button className='edit-button' onClick={() => setEditProdRecycle(!editProdRecycle)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         </> :
                         <></>
                         }
-                        <tr>
-                            <th>Carbon Footprint</th>
-                            <td>{`${currentProd?.carbon_footprint_kg}`}</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
