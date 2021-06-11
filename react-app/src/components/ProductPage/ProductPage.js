@@ -50,7 +50,7 @@ const ProductPage = () => {
         if (productId) {
             dispatch(getCurrentProd(productId))
         }
-    }, [dispatch])
+    }, [dispatch, name])
 
     /////////////////////////////  HANDLE SUBMITS
     const handleNameSub = async (e) => {
