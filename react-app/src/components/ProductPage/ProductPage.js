@@ -19,24 +19,24 @@ const ProductPage = () => {
     const consumer_uses = useSelector(state => state.products.consumer_uses)
     const factories = useSelector(state => state.products.factories)
     const transport_modes = useSelector(state => state.products.transport_modes)
-    const [name, setName] = useState(currentProd?.name)
-    const [showEditName, setEditName] = useState(false)
+    const [name, setName] = useState("")
+    const [editName, setEditName] = useState(false)
     const [photo_url, setphoto_url] = useState(currentProd?.photo_url)
     const [product_category, setProductCategory] = useState(currentProd?.product_category)
     const [componentChecked, setComponentChecked] = useState(new Array(components.length).fill(false))
     const [compArray, setCompArray] = useState(null)
     const [useChecked, setUseChecked] = useState(new Array(consumer_uses.length).fill(false))
     const [useArray, setUseArray] = useState(null)
-    const [manufacturing_process_id, setManufacturing_process_id] = useState(1)
-    const [product_weight_g, setProduct_weight_g] = useState(0)
-    const [package_weight_g, setPackage_weight_g] = useState(0)
+    const [manufacturing_process_id, setManufacturing_process_id] = useState(currentProd?.manufacturing_process_id)
+    const [product_weight_g, setProduct_weight_g] = useState(currentProd?.product_weight_g)
+    const [package_weight_g, setPackage_weight_g] = useState(currentProd?.package_weight_g)
     const [factory_id,  setFactory_id] = useState(currentProd?.factory_id)
-    const [unit, setUnit] = useState("pair")
-    const [transport_mode_id, setTransport_mode_id] = useState(1)
-    const [number_of_cycles, setNumber_of_cycles] = useState(0)
-    const [returnable, setReturnable] = useState("")
-    const [product_returned_percent, setProduct_returned_percent] = useState(0)
-    const [product_recycled_percent, setProduct_recycled_percent] = useState(0)
+    const [unit, setUnit] = useState(currentProd?.unit)
+    const [transport_mode_id, setTransport_mode_id] = useState(currentProd?.transport_mode_id)
+    const [number_of_cycles, setNumber_of_cycles] = useState(currentProd?.number_of_cycles)
+    const [returnable, setReturnable] = useState(currentProd?.returnable)
+    const [product_returned_percent, setProduct_returned_percent] = useState(currentProd?.product_returned_percent)
+    const [product_recycled_percent, setProduct_recycled_percent] = useState(currentProd?.product_recycled_percent)
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -52,43 +52,51 @@ const ProductPage = () => {
         }
     }, [dispatch])
 
-    const onSubmit = async (e) => {
+    /////////////////////////////  HANDLE SUBMITS
+    const handleNameSub = async (e) => {
         e.preventDefault();
-
-        let returnBoolean;
-        if (returnable === "yes") {
-            returnBoolean = true
-        } else {
-            returnBoolean = false
-        }
-
-        let carbon_footprint_kg = getFootprint()
-
-        const product = {
-            name,
-            photo_url,
-            "company_id": company.id,
-            product_category,
-            compArray,
-            "manufacturing_process_id": Number(manufacturing_process_id),
-            "product_weight_g": Number(product_weight_g),
-            "package_weight_g": Number(package_weight_g),
-            "factory_id": Number(factory_id),
-            unit,
-            "transport_mode_id": Number(transport_mode_id),
-            useArray,
-            "number_of_cycles": Number(number_of_cycles),
-            "returnable": returnBoolean,
-            "product_returned_percent": Number(product_returned_percent),
-            "product_recycled_percent": Number(product_recycled_percent),
-            carbon_footprint_kg
-        }
+        const product = {"id":productId, "name": name}
         const res= await dispatch(updateProduct(product))
-        if(res) {
-            history.push(`/company/${company.id}`)
-        }
+        setEditName(false)
     }
 
+    // const onSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     let returnBoolean;
+    //     if (returnable === "yes") {
+    //         returnBoolean = true
+    //     } else {
+    //         returnBoolean = false
+    //     }
+
+    //     let carbon_footprint_kg = getFootprint()
+
+    //     const product = {
+    //         name,
+    //         photo_url,
+    //         "company_id": company.id,
+    //         product_category,
+    //         compArray,
+    //         "manufacturing_process_id": Number(manufacturing_process_id),
+    //         "product_weight_g": Number(product_weight_g),
+    //         "package_weight_g": Number(package_weight_g),
+    //         "factory_id": Number(factory_id),
+    //         unit,
+    //         "transport_mode_id": Number(transport_mode_id),
+    //         useArray,
+    //         "number_of_cycles": Number(number_of_cycles),
+    //         "returnable": returnBoolean,
+    //         "product_returned_percent": Number(product_returned_percent),
+    //         "product_recycled_percent": Number(product_recycled_percent),
+    //         carbon_footprint_kg
+    //     }
+    //     const res= await dispatch(updateProduct(product))
+
+    // }
+
+
+    ///////////////////////////// UPDATE STATES
     const updateName = (e) => {
         setName(e.target.value)
     }
@@ -226,6 +234,29 @@ const ProductPage = () => {
 
     }
 
+    ///////////////////////////// SHOW CORRESPONDING EDITOR FORM
+    let editor;
+    if (editName) {
+        editor = (
+            <div className="mini-form">
+              {/* <form onSubmit={() => [handleNameSub(), setEditName(false)]}> */}
+              <form onSubmit={handleNameSub}>
+                <input
+                    type="text"
+                    name="name"
+                    onChange={updateName}
+                    value={name}
+                    required={true}
+                ></input>
+                <div className='edit-button-contain'>
+                    <button className='edit-button' type="submit">CHECK</button>
+                </div>
+              </form>
+            </div>
+        )
+    }
+
+    ///////////////////////////// RENDER
     return (
         <div className="pp-contain">
         <div className='product-page-container'>
@@ -242,9 +273,9 @@ const ProductPage = () => {
                     <tbody>
                         <tr>
                             <th className='prod-table-head'>Product Name</th>
-                            <td>{currentProd?.name}</td>
-                            {/* <td><button value={currentProd?.id}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td> */}
-                            <td><EditProdModal /></td>
+                            <td>{editName ? [editor] : currentProd?.name}</td>
+                            <td><button value={currentProd?.id} onClick={(e) => setEditName(!editName)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+                            {/* <td><EditProdModal /></td> */}
 
                         </tr>
                         <tr>
@@ -258,7 +289,7 @@ const ProductPage = () => {
                         <tr>
                             <th>Components</th>
                             <td>
-                            {currentProd?.components.map((comp) => (
+                            {currentProd?.components?.map((comp) => (
                                <p key={comp.id}>{comp.name}</p>
                             ))}
                             </td>

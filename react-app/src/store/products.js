@@ -73,6 +73,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 
 // update a product
 export const updateProduct = (product) => async (dispatch) => {
+    console.log("thunk updated prod------------------", product)
     const res = await fetch(`/api/company/products/${product.id}`, {
         method: "POST",
         headers: {
@@ -85,7 +86,7 @@ export const updateProduct = (product) => async (dispatch) => {
 
     if(res.ok) {
         const updatedProduct = await res.json()
-        dispatch(loadProduct(updatedProduct))
+        dispatch(loadOneP(updatedProduct))
         return updatedProduct;
     }
 }
@@ -117,18 +118,18 @@ export default function reducer(state=initialState, action) {
             let prodArr = newState.products.filter((prod) => prod["id"] !== action.product.id)
             newState.products = prodArr
             return newState;
-        case UPDATE_PRODUCT:
-            newState = { ...state }
-            let arr = [];
-            for (const prod of newState.products) {
-                if(prod.id === action.product.id) {
-                    arr.push(action.product)
-                } else {
-                    arr.push(prod)
-                }
-            }
-            newState.products = arr;
-            return newState;
+        // case UPDATE_PRODUCT:
+        //     newState = { ...state }
+        //     let arr = [];
+        //     for (const prod of newState.products) {
+        //         if(prod.id === action.product.id) {
+        //             arr.push(action.product)
+        //         } else {
+        //             arr.push(prod)
+        //         }
+        //     }
+        //     newState.products = arr;
+        //     return newState;
         case LOAD_ONE:
             newState = { ...state }
             newState.product = action.product

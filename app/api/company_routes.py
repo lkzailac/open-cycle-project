@@ -182,13 +182,24 @@ Update a Product
 @company_routes.route('/products/<id>', methods=["POST"])
 def update_product(id):
     json_data = request.get_json()
-    try:
-        prod = Product.query.filter(Product.id == id)
-        prod.update(dict(json_data))
+
+    # print("route jsondata------------------", list(json_data["product"].keys())[-1], list(json_data["product"].values())[-1])
+    key = list(json_data["product"].keys())[-1]
+    val = list(json_data["product"].values())[-1]
+    prod = Product.query.get(id)
+    if key == "name":
+
+        print(' key, val---------- ', key, val)
+        # print("prodto dict at name---------", prod.to_dict()[key])
+        print("prod at key---------", prod.name)
+        prod.name = val
+        db.session.add(prod)
         db.session.commit()
 
-        prod_update = Product.query.filter(Product.id == id)
-        return prod_update.to_dict()
+    prod_update = Product.query.filter(Product.id == id).one()
 
-    except Exception as e:
-        print("Failed to update product:", e)
+    print("updated prod-----------", prod_update.to_dict())
+    return prod_update.to_dict()
+
+    # except Exception as e:
+    #     print("Failed to update product:", e)
