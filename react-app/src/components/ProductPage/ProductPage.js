@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { updateProduct, getCurrentProd } from '../../store/products';
 // import EditProdModal from '../EditProdModal';
-import { getFootprint } from "../../utils/carbonfootprintcalc"
 
 import downArrow from "../../images/down-arrow.svg";
 import editPencil from "../../images/edit-pencil.svg";
@@ -73,8 +72,7 @@ const ProductPage = () => {
     /////////////////////////////  HANDLE SUBMITS
     const handleNameSub = async (e) => {
         e.preventDefault();
-        let carbon_footprint_kg = getFootprint(currentProd?.name)
-        const product = {"id":productId, "name": name, carbon_footprint_kg}
+        const product = {"id":productId, "name": name}
         const res= await dispatch(updateProduct(product))
         setEditName(false)
     }
