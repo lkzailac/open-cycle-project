@@ -5,6 +5,7 @@ import CompanyApp from "./CompanyApp";
 import ConsumerApp from "./ConsumerApp";
 import Welcome from "./components/Welcome/index";
 import NavBar from "./components/NavBar/index";
+import Footer from "./components/Footer/index";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <ConsumerApp />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
