@@ -158,9 +158,21 @@ Get one Product
 @company_routes.route('/products/<id>', methods=["GET"])
 def load_product(id):
 
-    print("routeeeeee-----------id", id)
     product = Product.query.get(id)
-    return product.to_dict()
+
+    comps = []
+    for comp in product.components:
+        comps.append(comp.to_dict())
+    prod_dict = product.to_dict()
+    prod_dict["components"] = comps
+
+    uses = []
+    for use in product.consumer_uses:
+        uses.append(use.to_dict())
+
+    prod_dict["uses"] = uses
+
+    return prod_dict
 
 
 

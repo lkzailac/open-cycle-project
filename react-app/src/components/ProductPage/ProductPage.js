@@ -5,7 +5,8 @@ import { updateProduct, getCurrentProd } from '../../store/products';
 import { getFootprint } from "../../utils/carbonfootprintcalc"
 
 import downArrow from "../../images/down-arrow.svg";
-// import "./productform.css";
+import editPencil from "../../images/edit-pencil.svg";
+import "./productpage.css";
 
 const ProductPage = () => {
     const company = useSelector(state => state.csession.company)
@@ -39,11 +40,10 @@ const ProductPage = () => {
     const dispatch = useDispatch()
 
     let location = useLocation()
-    // let { productId } = useParams();
     let arr = location.pathname.split('')
     let num = arr.splice(9)
     let productId = Number(num.join(""))
-    console.log("location---------------id",productId)
+
     useEffect(() => {
         if (productId) {
             dispatch(getCurrentProd(productId))
@@ -225,206 +225,105 @@ const ProductPage = () => {
     }
 
     return (
-        <>
-            <div className='edit-prod-table'>
-                <table>
-                    <tr>
-                        <th>Product Name</th>
-                        <td>{currentProd?.name}</td>
-                    </tr>
+        <div className="pp-contain">
+        <div className='product-page-container'>
+            <div className="blurb-container">
+                <div className='blurb-p'>
+                    <p>Update your product <br></br>to recalculate the carbon footprint.</p>
+                </div>
+                <div className='arrow'>
+                    <img className ='arrow-img bounce3' src={downArrow} alt='arrow'/>
+                </div>
+            </div>
+            <div className='edit-prod-table-container'>
+                <table className='edit-product-table'>
+                    <tbody>
+                        <tr>
+                            <th className='prod-table-head'>Product Name</th>
+                            <td>{currentProd?.name}</td>
+                            <td><img className='edit-pencil' src={editPencil} alt="pencil"/></td>
+                        </tr>
+                        <tr>
+                            <th>Photo</th>
+                            <td><div className='product-image'><img src={currentProd?.photo_url} alt="prodimage"/></div></td>
+                        </tr>
+                        <tr>
+                            <th>Product Category</th>
+                            <td>{currentProd?.product_category}</td>
+                        </tr>
+                        <tr>
+                            <th>Components</th>
+                            <td>
+                            {currentProd?.components.map((comp) => (
+                               <p key={comp.id}>{comp.name}</p>
+                            ))}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Manufacturing Process</th>
+                            <td>{manufacturing_processes?.filter((pro) => pro.id === currentProd?.manufacturing_process_id)[0]?.name }</td>
+                        </tr>
+                        <tr>
+                            <th>Product Weight (g)</th>
+                            <td>{currentProd?.product_weight_g}</td>
+                        </tr>
+                        <tr>
+                            <th>Package Weight (g)</th>
+                            <td>{currentProd?.package_weight_g}</td>
+                        </tr>
+                        <tr>
+                            <th>Factory</th>
+                            <td>{factories?.filter((factory) => factory.id === currentProd?.factory_id)[0]?.name}</td>
+                        </tr>
+                        <tr>
+                            <th>Unit</th>
+                            <td>{currentProd?.unit}</td>
+                        </tr>
+                        <tr>
+                            <th>Transport Mode</th>
+                            <td>{transport_modes?.filter((mode) => mode.id === currentProd?.transport_mode_id)[0]?.name}</td>
+                        </tr>
+                        <tr>
+                            <th>Consumer Uses</th>
+                            <td>
+                                {currentProd?.uses ? currentProd?.uses.map((use) => (
+                                    <p key={use.id}>{use.name}</p>
+                                )) : <p>None</p>}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Number of Use Cycles</th>
+                            <td>{currentProd?.number_of_cycles}</td>
+                        </tr>
+                        <tr>
+                            <th>Returnable?</th>
+                            <td>{currentProd?.returnable ? "Yes" : "No"}</td>
+                        </tr>
+                        {currentProd?.returnable ?
+                        <>
+                        <tr>
+                            <th>Percentage Returned</th>
+                            <td>{currentProd?.product_returned_percent}</td>
+                        </tr>
+                        <tr>
+                            <th>Percentage Recycled</th>
+                            <td>{currentProd?.product_recycled_percent}</td>
+                        </tr>
+                        </> :
+                        <></>
+                        }
+                        <tr>
+                            <th>Carbon Footprint</th>
+                            <td>{`${currentProd?.carbon_footprint_kg}`}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
-      <div className='product-form-container'>
-        <div className="blurb-container">
-          <div className='blurb-p'>
-            <p>Update your product <br></br>to recalculate the carbon footprint.</p>
-          </div>
-          <div className='arrow'>
-            <img src={downArrow} />
-          </div>
-        </div>
-        <form onSubmit={onSubmit}>
-          {/* {errors.map((error) => (
-            <p>error</p>
-          ))} */}
+        </div>   {/* end product-page-container */}
 
-            <div>
-              <div className='label-container'>
-                <label>Product Name</label>
-              </div>
-              <input
-                placeholder={currentProd?.name}
-                type="text"
-                name="name"
-                onChange={updateName}
-                value={name}
-                required={true}
-              ></input>
-            </div>
-            <div>
-              <div className='label-container'>
-                <label>Image Url</label>
-                {/* <button className='question-button' value='admin_email' onClick={(e) => [handleClick(e.target.value), console.log("button")]}><img className='question' src={question} /></button> */}
-                {/* <button className='question-button' value='admin_email' onClick={(e) => handleClick(e.target.value)}>Button</button> */}
-              </div>
-              <input
-                type="text"
-                name="photo_url"
-                onChange={updatephoto_url}
-                value={photo_url}
-              ></input>
-            </div>
-            <div>
-              <div className='label-container'>
-                <label>Product Category</label>
-              </div>
-              <input
-                type="text"
-                name="product_category"
-                onChange={updateProductCategory}
-                value={product_category}
-              ></input>
-            </div>
 
-            <div>
-                <div className='label-container'>
-                    <label>Components</label>
-                </div>
-                <ul className= 'components-list'>
-                {components.map((component, index) => (
-                    <li key={index}>
-                        <div className='label-container'>
-                            <label htmlFor={component.id}>{component.name}</label>
-                        </div>
-                        <input
-                        type="checkbox"
-                        id={component.id}
-                        onChange={() => updateComponents(index)}
-                        name={component.id}
-                        value={component.id}
-                        checked={componentChecked[index]} >
 
-                        </input>
-                    </li>
-                ))}
-                </ul>
-            </div>
-
-            <div>
-              <div className='label-container'>
-                <label>Manufacturing Process</label>
-              </div>
-              <select value={manufacturing_process_id} onChange={updateManufProcess}>
-                  {manufacturing_processes.map((process) => (
-                      <option key={process.id} value={process.id}>{process.name}</option>
-                  ))}
-              </select>
-            </div>
-            <div>
-              <div className='label-container'>
-                <label>Product Weight (g)</label>
-              </div>
-              <input
-                type="text"
-                name="product_weight_g"
-                onChange={updateProdweight}
-                value={product_weight_g}
-              ></input>
-            </div>
-            <div>
-              <div className='label-container'>
-                <label>Package Weight (g)</label>
-              </div>
-              <input
-                type="text"
-                name="package_weight_g"
-                onChange={updatePackweight}
-                value={package_weight_g}
-              ></input>
-            </div>
-            <div>
-              <div className='label-container'>
-                <label>Factory</label>
-              </div>
-              <select value={factory_id} onChange={updateFactId}>
-                  {factories.map((fact) => (
-                      <option key={fact.id} value={fact.id}>{fact.name}</option>
-                  ))}
-              </select>
-            </div>
-            <div>
-              <div className='label-container'>
-                <label>Unit</label>
-              </div>
-              <select value={unit} onChange={updateUnit}>
-                    <option key="unit1" value="Pair">Pair</option>
-                    <option key="unit2" value="Single">Single</option>
-              </select>
-            </div>
-            <div>
-                <div className='label-container'>
-                    <label>Transport Mode</label>
-                </div>
-                <select value={transport_mode_id} onChange={updateTransMode}>
-                    {transport_modes.map((trans) => (
-                        <option key={trans.id} value={trans.id}>{trans.name}</option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <div className='label-container'>
-                    <label>Consumer Uses</label>
-                </div>
-                <ul className= 'uses-list'>
-                {consumer_uses.map((use, index) => (
-                    <li key={index}>
-                        <div className='label-container'>
-                            <label htmlFor={use.id}>{use.name}</label>
-                        </div>
-                        <input
-                        type="checkbox"
-                        onChange={() => updateUse(index)}
-                        id={use.id}
-                        name={use.id}
-                        value={use.id}
-                        checked={useChecked[index]} >
-                        </input>
-                    </li>
-                ))}
-                </ul>
-            </div>
-            <div>
-                <div className='label-container'>
-                    <label>Number of Use Cycles</label>
-                </div>
-                <select value={number_of_cycles} onChange={updateCycles}>
-                        <option key="cycle1" value={5}>5</option>
-                        <option key="cycle2" value={25}>25</option>
-                        <option key="cycle3" value={50}>50</option>
-                        <option key="cycle4" value={100}>100</option>
-                        <option key="cycle5" value={200}>200</option>
-                        <option key="cycle6" value={500}>500</option>
-                </select>
-            </div>
-            <div>
-                <div className='label-container'>
-                    <label>Returnable at End of Life?</label>
-                </div>
-                <input type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
-                <label>Yes</label>
-                <input type="radio" name="returnable" value="no" onChange={updateReturn}></input>
-                <label>Not Yet</label>
-            </div>
-            { returnElements }
-
-            <p className='full-width'>
-              <button className='create-button' type="submit">SUBMIT PRODUCT</button>
-            </p>
-
-        </form>
-
-      </div>
-    </>
+    </ div>
     )
 }
 

@@ -91,7 +91,7 @@ export const updateProduct = (product) => async (dispatch) => {
 }
 
 export const getCurrentProd = (id) => async (dispatch) => {
-    console.log("thunk-----------id: ", id )
+
     const res = await fetch(`/api/company/products/${id}`)
 
     if(res.ok) {

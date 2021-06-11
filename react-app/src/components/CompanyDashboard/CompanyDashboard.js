@@ -83,7 +83,7 @@ const CompanyDashboard = () => {
                         {products?.map((product) => (
                             <div className='single-product'>
                                 <div className='product-photo'>
-                                    <img src={product.photo_url} />
+                                    <img src={product.photo_url} alt="product image"/>
                                 </div>
                                 <div className='product-table'>
                                     <table>
