@@ -64,7 +64,7 @@
       flex-wrap: wrap;
       margin-top: 100px;
       z-index: 999;
-}
+    }
 
     #names-container {
         display: flex;
@@ -83,4 +83,13 @@
     #copyright {
         display: none;
     }
+}
+
+
+@media screen and (max-height: 1083px) {
+    #footer-container {
+      display: none;
+    }
+
+
 }
