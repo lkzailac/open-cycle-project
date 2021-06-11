@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { updateProduct, getCurrentProd } from '../../store/products';
+import { createProduct } from '../../store/products';
 // import EditProdModal from '../EditProdModal';
 
 import downArrow from "../../images/down-arrow.svg";
@@ -25,11 +26,11 @@ const ProductPage = () => {
     const [editPhoto, setEditPhoto] = useState(false)
     const [product_category, setProductCategory] = useState("")
     const [editCategory , setEditCategory] =useState(false);
-    const [componentChecked, setComponentChecked] = useState(new Array(components.length).fill(false))
+    const [componentChecked, setComponentChecked] = useState(new Array(components?.length).fill(false))
     // const [editcomponentChecked , setEdit] =useState(false);
     const [compArray, setCompArray] = useState(null)
     const [editcompArray , setEditCompArray] =useState(false);
-    const [useChecked, setUseChecked] = useState(new Array(consumer_uses.length).fill(false))
+    const [useChecked, setUseChecked] = useState(new Array(consumer_uses?.length).fill(false))
     // const [edit , setEdit] =useState(false);
     const [useArray, setUseArray] = useState(null)
     const [editUseArray, setEditUseArray] =useState(false);
@@ -60,14 +61,14 @@ const ProductPage = () => {
 
     let location = useLocation()
     let arr = location.pathname.split('')
-    let num = arr.splice(9)
+    let num = arr.splice(17)
     let productId = Number(num.join(""))
 
     useEffect(() => {
         if (productId) {
             dispatch(getCurrentProd(productId))
         }
-    }, [dispatch, name])
+    }, [dispatch])
 
     /////////////////////////////  HANDLE SUBMITS
     const handleNameSub = async (e) => {
@@ -375,7 +376,7 @@ const ProductPage = () => {
             <div className="mini-form">
               <form onSubmit={handleCompArray}>
                 <ul className= 'components-list'>
-                    {components.map((component, index) => (
+                    {components?.map((component, index) => (
                         <li key={index}>
                             <div className='label-container'>
                                 <label htmlFor={component.id}>{component.name}</label>
@@ -405,7 +406,7 @@ const ProductPage = () => {
             <div className="mini-form">
               <form onSubmit={handleManu}>
                 <select value={manufacturing_process_id} onChange={updateManufProcess}>
-                    {manufacturing_processes.map((process) => (
+                    {manufacturing_processes?.map((process) => (
                         <option key={process.id} value={process.id}>{process.name}</option>
                     ))}
                 </select>
@@ -458,7 +459,7 @@ const ProductPage = () => {
             <div className="mini-form">
               <form onSubmit={handleFactory}>
                 <select value={factory_id} onChange={updateFactId}>
-                    {factories.map((fact) => (
+                    {factories?.map((fact) => (
                         <option key={fact.id} value={fact.id}>{fact.name}</option>
                     ))}
                 </select>
@@ -491,7 +492,7 @@ const ProductPage = () => {
             <div className="mini-form">
                 <form onSubmit={handleTrans}>
                     <select value={transport_mode_id} onChange={updateTransMode}>
-                        {transport_modes.map((trans) => (
+                        {transport_modes?.map((trans) => (
                             <option key={trans.id} value={trans.id}>{trans.name}</option>
                         ))}
                     </select>
@@ -508,7 +509,7 @@ const ProductPage = () => {
             <div className="mini-form">
                 <form onSubmit={handleUse}>
                     <ul className= 'uses-list'>
-                        {consumer_uses.map((use, index) => (
+                        {consumer_uses?.map((use, index) => (
                             <li key={index}>
                                 <div className='label-container'>
                                     <label htmlFor={use.id}>{use.name}</label>
