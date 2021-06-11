@@ -88,3 +88,16 @@ table.edit-product-table > tbody > tr > td {
 .product-image img {
     width: 70px;
 }
+
+button.edit-button {
+    outline: none;
+    border: none;
+}
+
+
+/******* FORM STYLING  */
+
+.mini-form input {
+    border: none;
+    border-bottom: 1px solid #35353520;
+}

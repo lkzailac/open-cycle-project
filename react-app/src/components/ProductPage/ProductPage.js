@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { updateProduct, getCurrentProd } from '../../store/products';
-import EditProdModal from '../EditProdModal';
+// import EditProdModal from '../EditProdModal';
 import { getFootprint } from "../../utils/carbonfootprintcalc"
 
 import downArrow from "../../images/down-arrow.svg";
@@ -19,24 +19,42 @@ const ProductPage = () => {
     const consumer_uses = useSelector(state => state.products.consumer_uses)
     const factories = useSelector(state => state.products.factories)
     const transport_modes = useSelector(state => state.products.transport_modes)
+
     const [name, setName] = useState("")
     const [editName, setEditName] = useState(false)
-    const [photo_url, setphoto_url] = useState(currentProd?.photo_url)
-    const [product_category, setProductCategory] = useState(currentProd?.product_category)
+    const [photo_url, setphoto_url] = useState("")
+    const [editPhoto, setEditPhoto] = useState(false)
+    const [product_category, setProductCategory] = useState("")
+    const [editCategory , setEditCategory] =useState(false);
     const [componentChecked, setComponentChecked] = useState(new Array(components.length).fill(false))
+    // const [editcomponentChecked , setEdit] =useState(false);
     const [compArray, setCompArray] = useState(null)
+    const [editcompArray , setEditCompArray] =useState(false);
     const [useChecked, setUseChecked] = useState(new Array(consumer_uses.length).fill(false))
+    // const [edit , setEdit] =useState(false);
     const [useArray, setUseArray] = useState(null)
-    const [manufacturing_process_id, setManufacturing_process_id] = useState(currentProd?.manufacturing_process_id)
-    const [product_weight_g, setProduct_weight_g] = useState(currentProd?.product_weight_g)
-    const [package_weight_g, setPackage_weight_g] = useState(currentProd?.package_weight_g)
-    const [factory_id,  setFactory_id] = useState(currentProd?.factory_id)
-    const [unit, setUnit] = useState(currentProd?.unit)
-    const [transport_mode_id, setTransport_mode_id] = useState(currentProd?.transport_mode_id)
-    const [number_of_cycles, setNumber_of_cycles] = useState(currentProd?.number_of_cycles)
-    const [returnable, setReturnable] = useState(currentProd?.returnable)
-    const [product_returned_percent, setProduct_returned_percent] = useState(currentProd?.product_returned_percent)
-    const [product_recycled_percent, setProduct_recycled_percent] = useState(currentProd?.product_recycled_percent)
+    const [editUseArray, setEditUseArray] =useState(false);
+    const [manufacturing_process_id, setManufacturing_process_id] = useState(1)
+    const [editManu , setEditManu] =useState(false);
+    const [product_weight_g, setProduct_weight_g] = useState(0)
+    const [editProdWeight , setEditProdWeight] =useState(false);
+    const [package_weight_g, setPackage_weight_g] = useState(0)
+    const [editPackWeight , setEditPackWeight] =useState(false);
+    const [factory_id,  setFactory_id] = useState(1)
+    const [editFactId , setEditFactId] =useState(false);
+    const [unit, setUnit] = useState("pair")
+    const [editUnit , setEditUnit] =useState(false);
+    const [transport_mode_id, setTransport_mode_id] = useState(1)
+    const [editTransMode , setEditTransMode] =useState(false);
+    const [number_of_cycles, setNumber_of_cycles] = useState(0)
+    const [editCycles , setEditCycles] =useState(false);
+    const [returnable, setReturnable] = useState("")
+    const [editRturnable , setEditRetrunable] =useState(false);
+    const [product_returned_percent, setProduct_returned_percent] = useState(0)
+    const [editProdReturn , setEditProdReturn] =useState(false);
+    const [product_recycled_percent, setProduct_recycled_percent] = useState(0)
+    const [editProdRecycle, setEditProdRecycle] =useState(false);
+
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -55,9 +73,115 @@ const ProductPage = () => {
     /////////////////////////////  HANDLE SUBMITS
     const handleNameSub = async (e) => {
         e.preventDefault();
-        const product = {"id":productId, "name": name}
+        let carbon_footprint_kg = getFootprint(currentProd?.name)
+        const product = {"id":productId, "name": name, carbon_footprint_kg}
         const res= await dispatch(updateProduct(product))
         setEditName(false)
+    }
+
+    const handlePhotoSub = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "photo_url": photo_url}
+        const res= await dispatch(updateProduct(product))
+        setEditPhoto(false)
+    }
+
+    const handleCategorySub = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "product_category": product_category}
+        const res= await dispatch(updateProduct(product))
+        setEditCategory(false)
+    }
+
+    const handleCompArray = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "compArray": compArray}
+        const res= await dispatch(updateProduct(product))
+        setEditCompArray(false)
+    }
+
+    const handleManu = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "manufacturing_process_id": manufacturing_process_id}
+        const res= await dispatch(updateProduct(product))
+        setEditManu(false)
+    }
+
+    const handleProdWeight = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "product_weight_g": Number(product_weight_g)}
+        const res= await dispatch(updateProduct(product))
+        setEditProdWeight(false)
+    }
+
+    const handlePackWeight = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "package_weight_g": Number(package_weight_g)}
+        const res= await dispatch(updateProduct(product))
+        setEditPackWeight(false)
+    }
+
+    const handleFactory = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "factory_id": Number(factory_id)}
+        const res= await dispatch(updateProduct(product))
+        setEditFactId(false)
+    }
+
+    const handleUnit = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "unit": unit}
+        const res= await dispatch(updateProduct(product))
+        setEditUnit(false)
+    }
+
+    const handleTrans = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "transport_mode_id": Number(transport_mode_id)}
+        const res= await dispatch(updateProduct(product))
+        setEditTransMode(false)
+    }
+
+    const handleUse = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "useArray": useArray}
+        const res= await dispatch(updateProduct(product))
+        setEditUseArray(false)
+    }
+
+    const handleCycles = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "number_of_cycles": Number(number_of_cycles)}
+        const res= await dispatch(updateProduct(product))
+        setEditCycles(false)
+    }
+
+    const handleReturn = async (e) => {
+        e.preventDefault();
+
+        let returnBoolean;
+        if (returnable === "yes") {
+            returnBoolean = true
+        } else {
+            returnBoolean = false
+        }
+        const product = {"id":productId, "returnable": returnBoolean}
+        const res= await dispatch(updateProduct(product))
+        setEditRetrunable(false)
+    }
+
+    const handleReturnPer = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "product_returned_percent": Number(product_returned_percent)}
+        const res= await dispatch(updateProduct(product))
+        setEditProdReturn(false)
+    }
+
+    const handleRecyclePer = async (e) => {
+        e.preventDefault();
+        const product = {"id":productId, "product_recycled_percent": Number(product_recycled_percent)}
+        const res= await dispatch(updateProduct(product))
+        setEditProdRecycle(false)
     }
 
     // const onSubmit = async (e) => {
@@ -190,56 +314,13 @@ const ProductPage = () => {
         setProduct_recycled_percent(e.target.value)
     }
 
-    let returnElements;
-    if (returnable === "yes") {
-        returnElements = (
-            <>
-            <div>
-                <div className='label-container'>
-                    <label>Percentage Returned</label>
-                </div>
-                    <input
-                    type="number"
-                    min="1" max="100"
-                    name="product_returned_percent"
-                    onChange={updateReturnPer}
-                    value={product_returned_percent}
-                    ></input>
-            </div>
-            <div>
-            <div className='label-container'>
-                <label>{`Percentage Recycled by ${company.name}`}</label>
-            </div>
-                <input
-                type="number"
-                min="1" max="100"
-                name="product_recycled_percent"
-                onChange={updateRecyPer}
-                value={product_recycled_percent}
-                ></input>
-            </div>
-            </>
-        )
-    } else if (returnable === "no") {
-        returnElements = (
-            <>
-                <p>Consider accepting your products back at the end of their life <br></br>in order to decrease their carbon footprint. </p>
-            </>
-        )
-    } else {
-        returnElements = (
-            <>
-            </>
-        )
 
-    }
 
     ///////////////////////////// SHOW CORRESPONDING EDITOR FORM
     let editor;
     if (editName) {
         editor = (
             <div className="mini-form">
-              {/* <form onSubmit={() => [handleNameSub(), setEditName(false)]}> */}
               <form onSubmit={handleNameSub}>
                 <input
                     type="text"
@@ -255,6 +336,278 @@ const ProductPage = () => {
             </div>
         )
     }
+    if (editPhoto) {
+        editor = (
+            <div className="mini-form">
+              <form onSubmit={handlePhotoSub}>
+                <input
+                    type="text"
+                    name="photo_url"
+                    onChange={updatephoto_url}
+                    value={photo_url}
+                ></input>
+                <div className='edit-button-contain'>
+                    <button className='edit-button' type="submit">CHECK</button>
+                </div>
+              </form>
+            </div>
+        )
+    }
+
+    if (editCategory) {
+        editor = (
+            <div className="mini-form">
+              <form onSubmit={handleCategorySub}>
+                <input
+                    type="text"
+                    name="product_category"
+                    onChange={updateProductCategory}
+                    value={product_category}
+                ></input>
+                <div className='edit-button-contain'>
+                    <button className='edit-button' type="submit">CHECK</button>
+                </div>
+              </form>
+            </div>
+        )
+    }
+
+    if (editcompArray) {
+        editor = (
+            <div className="mini-form">
+              <form onSubmit={handleCompArray}>
+                <ul className= 'components-list'>
+                    {components.map((component, index) => (
+                        <li key={index}>
+                            <div className='label-container'>
+                                <label htmlFor={component.id}>{component.name}</label>
+                            </div>
+                            <input
+                            type="checkbox"
+                            id={component.id}
+                            onChange={() => updateComponents(index)}
+                            name={component.id}
+                            value={component.id}
+                            checked={componentChecked[index]} >
+
+                            </input>
+                        </li>
+                    ))}
+                    </ul>
+                    <div className='edit-button-contain'>
+                        <button className='edit-button' type="submit">CHECK</button>
+                    </div>
+              </form>
+            </div>
+        )
+    }
+
+    if (editManu) {
+        editor = (
+            <div className="mini-form">
+              <form onSubmit={handleManu}>
+                <select value={manufacturing_process_id} onChange={updateManufProcess}>
+                    {manufacturing_processes.map((process) => (
+                        <option key={process.id} value={process.id}>{process.name}</option>
+                    ))}
+                </select>
+                <div className='edit-button-contain'>
+                    <button className='edit-button' type="submit">CHECK</button>
+                </div>
+              </form>
+            </div>
+        )
+    }
+
+    if (editProdWeight) {
+        editor = (
+            <div className="mini-form">
+              <form onSubmit={handleProdWeight}>
+                <input
+                    type="text"
+                    name="product_weight_g"
+                    onChange={updateProdweight}
+                    value={product_weight_g}
+                ></input>
+                <div className='edit-button-contain'>
+                    <button className='edit-button' type="submit">CHECK</button>
+                </div>
+              </form>
+            </div>
+        )
+    }
+
+    if (editPackWeight) {
+        editor = (
+            <div className="mini-form">
+              <form onSubmit={handlePackWeight}>
+                <input
+                    type="text"
+                    name="package_weight_g"
+                    onChange={updatePackweight}
+                    value={package_weight_g}
+                ></input>
+                <div className='edit-button-contain'>
+                    <button className='edit-button' type="submit">CHECK</button>
+                </div>
+              </form>
+            </div>
+        )
+    }
+
+    if (editFactId) {
+        editor = (
+            <div className="mini-form">
+              <form onSubmit={handleFactory}>
+                <select value={factory_id} onChange={updateFactId}>
+                    {factories.map((fact) => (
+                        <option key={fact.id} value={fact.id}>{fact.name}</option>
+                    ))}
+                </select>
+                <div className='edit-button-contain'>
+                    <button className='edit-button' type="submit">CHECK</button>
+                </div>
+              </form>
+            </div>
+        )
+    }
+
+    if (editUnit) {
+        editor = (
+            <div className="mini-form">
+                <form onSubmit={handleUnit}>
+                    <select value={unit} onChange={updateUnit}>
+                        <option key="unit1" value="Pair">Pair</option>
+                        <option key="unit2" value="Single">Single</option>
+                    </select>
+                    <div className='edit-button-contain'>
+                        <button className='edit-button' type="submit">CHECK</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
+    if (editTransMode) {
+        editor = (
+            <div className="mini-form">
+                <form onSubmit={handleTrans}>
+                    <select value={transport_mode_id} onChange={updateTransMode}>
+                        {transport_modes.map((trans) => (
+                            <option key={trans.id} value={trans.id}>{trans.name}</option>
+                        ))}
+                    </select>
+                    <div className='edit-button-contain'>
+                        <button className='edit-button' type="submit">CHECK</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
+    if (editUseArray) {
+        editor = (
+            <div className="mini-form">
+                <form onSubmit={handleUse}>
+                    <ul className= 'uses-list'>
+                        {consumer_uses.map((use, index) => (
+                            <li key={index}>
+                                <div className='label-container'>
+                                    <label htmlFor={use.id}>{use.name}</label>
+                                </div>
+                                <input
+                                type="checkbox"
+                                onChange={() => updateUse(index)}
+                                id={use.id}
+                                name={use.id}
+                                value={use.id}
+                                checked={useChecked[index]} >
+                                </input>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className='edit-button-contain'>
+                        <button className='edit-button' type="submit">CHECK</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
+    if (editCycles) {
+        editor = (
+            <div className="mini-form">
+                <form onSubmit={handleCycles}>
+                    <select value={number_of_cycles} onChange={updateCycles}>
+                        <option key="cycle1" value={5}>5</option>
+                        <option key="cycle2" value={25}>25</option>
+                        <option key="cycle3" value={50}>50</option>
+                        <option key="cycle4" value={100}>100</option>
+                        <option key="cycle5" value={200}>200</option>
+                        <option key="cycle6" value={500}>500</option>
+                    </select>
+                    <div className='edit-button-contain'>
+                        <button className='edit-button' type="submit">CHECK</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
+    if (editRturnable) {
+        editor = (
+            <div className="mini-form">
+                <form onSubmit={handleReturn}>
+                    <input type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
+                    <label>Yes</label>
+                    <input type="radio" name="returnable" value="no" onChange={updateReturn}></input>
+                    <label>Not Yet</label>
+                    <div className='edit-button-contain'>
+                        <button className='edit-button' type="submit">CHECK</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
+    if (editProdReturn) {
+        editor = (
+            <div className="mini-form">
+                <form onSubmit={handleReturnPer}>
+                    <input
+                        type="number"
+                        min="1" max="100"
+                        name="product_returned_percent"
+                        onChange={updateReturnPer}
+                        value={product_returned_percent}
+                    ></input>
+                    <div className='edit-button-contain'>
+                        <button className='edit-button' type="submit">CHECK</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
+    if (editProdRecycle) {
+        editor = (
+            <div className="mini-form">
+                <form onSubmit={handleRecyclePer}>
+                    <input
+                    type="number"
+                    min="1" max="100"
+                    name="product_recycled_percent"
+                    onChange={updateRecyPer}
+                    value={product_recycled_percent}
+                    ></input>
+                    <div className='edit-button-contain'>
+                        <button className='edit-button' type="submit">CHECK</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
 
     ///////////////////////////// RENDER
     return (
@@ -274,7 +627,7 @@ const ProductPage = () => {
                         <tr>
                             <th className='prod-table-head'>Product Name</th>
                             <td>{editName ? [editor] : currentProd?.name}</td>
-                            <td><button value={currentProd?.id} onClick={(e) => setEditName(!editName)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+                            <td><button className='edit-button' value={currentProd?.id} onClick={(e) => setEditName(!editName)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                             {/* <td><EditProdModal /></td> */}
 
                         </tr>

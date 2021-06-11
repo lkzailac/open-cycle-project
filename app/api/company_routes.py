@@ -184,8 +184,9 @@ def update_product(id):
     json_data = request.get_json()
 
     # print("route jsondata------------------", list(json_data["product"].keys())[-1], list(json_data["product"].values())[-1])
-    key = list(json_data["product"].keys())[-1]
-    val = list(json_data["product"].values())[-1]
+    key = list(json_data["product"].keys())[1]
+    val = list(json_data["product"].values())[1]
+    cf_val =list(json_data["product"].values())[-1]
     prod = Product.query.get(id)
     if key == "name":
 
@@ -193,6 +194,7 @@ def update_product(id):
         # print("prodto dict at name---------", prod.to_dict()[key])
         print("prod at key---------", prod.name)
         prod.name = val
+        prod.carbon_footprint_kg = cf_val
         db.session.add(prod)
         db.session.commit()
 
