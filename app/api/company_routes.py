@@ -184,21 +184,31 @@ def update_product(id):
     json_data = request.get_json()
 
     # print("route jsondata------------------", list(json_data["product"].keys())[-1], list(json_data["product"].values())[-1])
-    key = list(json_data["product"].keys())[1]
-    val = list(json_data["product"].values())[1]
-    cf_val =list(json_data["product"].values())[-1]
-    prod = Product.query.get(id)
-    if key == "name":
+    key = list(json_data["product"].keys())[-1]
+    val = list(json_data["product"].values())[-1]
 
-        print(' key, val---------- ', key, val)
-        # print("prodto dict at name---------", prod.to_dict()[key])
-        print("prod at key---------", prod.name)
+    prod = Product.query.get(id)
+
+    if key == "name":
         prod.name = val
-        prod.carbon_footprint_kg = cf_val
         db.session.add(prod)
         db.session.commit()
 
     prod_update = Product.query.filter(Product.id == id).one()
+
+    ####### CALC NEW CARBON FOOTPRINT
+    sumMaterials = 0
+    for comp in prod_update["components"]:
+        sumMaterials += comp.weight_g
+    manuf = prod_update["manufacturing_process"].weight
+
+
+    # return sumMaterials + manuf + transport + uses + eol
+
+    if(name) {
+        return 8
+    }
+
 
     print("updated prod-----------", prod_update.to_dict())
     return prod_update.to_dict()
