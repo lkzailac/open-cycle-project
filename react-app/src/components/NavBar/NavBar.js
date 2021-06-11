@@ -46,7 +46,7 @@ const NavBar = (props) => {
           <NavLink to={`/company/${company.id}`} exact={true} activeClassName="active" className='nav-li r-pad'>
             Company Dashboard
           </NavLink> :
-          <NavLink to='/company-login' exact={true} activeClassName="active" className='nav-li r-pad'>
+          <NavLink to='/company/login' exact={true} activeClassName="active" className='nav-li r-pad'>
             Company Dashboard
           </NavLink>
           }
