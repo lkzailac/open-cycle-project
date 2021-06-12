@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CompanyApp from "./CompanyApp";
 import ConsumerApp from "./ConsumerApp";
 import Welcome from "./components/Welcome/index";
 import NavBar from "./components/NavBar/index";
 import Footer from "./components/Footer/index";
 
+import {companyAuthenticate} from "./store/csession";
+import { authenticate } from "./store/session";
 
 function App() {
   const company = useSelector(state => state.csession.company)
   const user = useSelector(state => state.session.user)
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async() => {
+      await dispatch(companyAuthenticate());
+
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async() => {
+        await dispatch(authenticate());
+
+    })();
+  }, []);
+
+
 
   return (
     <BrowserRouter>

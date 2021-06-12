@@ -7,6 +7,7 @@ import CompanyDashboard from "./components/CompanyDashboard/index"
 import ProductForm from "./components/ProductForm/index";
 import ProductPage from "./components/ProductPage/index";
 import {companyAuthenticate} from "./store/csession";
+import {companyAuthenticateCompany } from './store/csession';
 
 function CompanyApp() {
   // const company = useSelector(state => state.csession.company)
@@ -28,9 +29,16 @@ function CompanyApp() {
 
 
 
+  // useEffect(() => {
+  //   (async() => {
+  //     await dispatch(companyAuthenticate());
+  //     setCompanyLoaded(true);
+  //   })();
+  // }, []);
+
   useEffect(() => {
     (async() => {
-      await dispatch(companyAuthenticate());
+      await dispatch(companyAuthenticateCompany());
       setCompanyLoaded(true);
     })();
   }, []);

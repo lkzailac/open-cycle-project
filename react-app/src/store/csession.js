@@ -14,7 +14,7 @@ const removeCompany = () => ({
 
 const initialState = { company: null };
 
-  export const companyAuthenticate = () => async (dispatch) => {
+export const companyAuthenticate = () => async (dispatch) => {
     const response = await fetch('/api/cauth/',{
       headers: {
         'Content-Type': 'application/json'
@@ -26,9 +26,23 @@ const initialState = { company: null };
     }
     dispatch(setCompany(data))
     return data
-  }
+}
 
-  export const companyLogin = (name, admin_email, password) => async (dispatch)  => {
+export const companyAuthenticateCompany = () => async (dispatch) => {
+  const response = await fetch('/api/cauth/company',{
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await response.json();
+  if (data.errors) {
+      return;
+  }
+  dispatch(setCompany(data))
+  return data
+}
+
+export const companyLogin = (name, admin_email, password) => async (dispatch)  => {
 
     const response = await fetch('/api/cauth/login', {
       method: 'POST',
@@ -48,9 +62,9 @@ const initialState = { company: null };
 
     dispatch(setCompany(data))
     return {};
-  }
+}
 
-  export const companyLogout = () => async (dispatch) => {
+export const companyLogout = () => async (dispatch) => {
     const response = await fetch("/api/cauth/logout", {
       headers: {
         "Content-Type": "application/json",
@@ -59,10 +73,10 @@ const initialState = { company: null };
 
     const data = await response.json();
     dispatch(removeCompany());
-  };
+};
 
 
-  export const companySignUp = (name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date) => async (dispatch)  => {
+export const companySignUp = (name, admin_email, password, logo_url, statement, warehouse_location, products_sold, carbon_goal, carbon_goal_date) => async (dispatch)  => {
 
     const response = await fetch("/api/cauth/signup/", {
       method: "POST",
@@ -89,7 +103,7 @@ const initialState = { company: null };
 
     dispatch(setCompany(data))
     return {};
-  }
+}
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {

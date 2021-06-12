@@ -25,11 +25,21 @@ def authenticate():
     """
     Authenticates a company.
     """
-    print("current userrrrrr", dir(current_user ))
+
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Company Unauthorized']}
 
+@cauth_routes.route('/company')
+def authenticateCompany():
+    print("hitting company authhhhhhhhhhh")
+    """
+    Authenticates a company.
+    """
+
+    if current_user.is_authenticated:
+        return current_user.to_dict()
+    return {'errors': ['Company Unauthorized']}
 
 @cauth_routes.route('/login', methods=['POST'])
 def login():

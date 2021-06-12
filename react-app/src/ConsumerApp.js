@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import SignUpForm from "./components/auth/SignUpForm/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import ConsumerPage from "./components/ConsumerPage/index";
-import { authenticate } from "./store/session";
+import { authenticateUser } from "./store/session";
+// import { authenticate } from "./store/session";
 
 
 function ConsumerApp() {
@@ -13,9 +14,16 @@ function ConsumerApp() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   (async() => {
+  //       await dispatch(authenticate());
+  //       setLoaded(true);
+  //   })();
+  // }, []);
+
   useEffect(() => {
     (async() => {
-        await dispatch(authenticate());
+        await dispatch(authenticateUser());
         setLoaded(true);
     })();
   }, []);
