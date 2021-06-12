@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import LoginForm from "./components/auth/LoginForm/index";
+// import LoginForm from "./components/auth/LoginForm/index";
 import SignUpForm from "./components/auth/SignUpForm/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
@@ -29,9 +29,9 @@ function ConsumerApp() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/consumer/login" exact={true}>
+        {/* <Route path="/consumer/login" exact={true}>
           <LoginForm />
-        </Route>
+        </Route> */}
         <Route path="/consumer/signup" exact={true}>
           <SignUpForm />
         </Route>
