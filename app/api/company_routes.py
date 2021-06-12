@@ -25,6 +25,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f"{field} : {error}")
     return errorMessages
 
+
 @company_routes.route('/<int:id>')
 def company(id):
 
@@ -75,7 +76,9 @@ def company(id):
     "grids": grids
     }
 
-
+"""
+Create a product
+ """
 @company_routes.route('/products', methods=["POST"])
 def add_product():
     json_data = request.get_json()
@@ -184,24 +187,134 @@ def update_product(id):
     json_data = request.get_json()
 
     # print("route jsondata------------------", list(json_data["product"].keys())[-1], list(json_data["product"].values())[-1])
-    key = list(json_data["product"].keys())[1]
-    val = list(json_data["product"].values())[1]
-    cf_val =list(json_data["product"].values())[-1]
-    prod = Product.query.get(id)
-    if key == "name":
+    key = list(json_data["product"].keys())[-1]
+    val = list(json_data["product"].values())[-1]
 
-        print(' key, val---------- ', key, val)
-        # print("prodto dict at name---------", prod.to_dict()[key])
-        print("prod at key---------", prod.name)
+    prod = Product.query.get(id)
+
+    if key == "name":
         prod.name = val
-        prod.carbon_footprint_kg = cf_val
         db.session.add(prod)
         db.session.commit()
 
-    prod_update = Product.query.filter(Product.id == id).one()
+    if key == "photo_url":
+        prod.photo_url = val
+        db.session.add(prod)
+        db.session.commit()
 
-    print("updated prod-----------", prod_update.to_dict())
-    return prod_update.to_dict()
+    if key == "product_category":
+        prod.product_category = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "compArray":
+        new_components = []
+        for comp_id in val:
+            comp = Component.query.get(comp_id)
+            new_components.append(comp)
+
+        prod.components = new_components
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "manufacturing_process_id":
+        prod.manufacturing_process_id = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "product_weight_g":
+        prod.product_weight_g = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "package_weight_g":
+        prod.package_weight_g = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "factory_id":
+        prod.factory_id = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "unit":
+        prod.unit = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "transport_mode_id":
+        prod.transport_mode_id = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "useArray":
+        new_uses = []
+        for use_id in val:
+            use = Consumer_Use.query.get(use_id)
+            new_uses.append(use)
+
+        prod.consumer_uses = new_uses
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "number_of_cycles":
+        prod.number_of_cycles = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "returnable":
+        prod.returnable = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "product_returned_percent":
+        prod.product_returned_percent = val
+        db.session.add(prod)
+        db.session.commit()
+
+    if key == "product_recycled_percent":
+        prod.product_recycled_percent = val
+        db.session.add(prod)
+        db.session.commit()
+
+
+    prod_update = Product.query.get(id)
+
+
+
+    ####### CALC NEW CARBON FOOTPRINT
+    sumMaterials = 0
+    for comp in prod_update.components:
+        sumMaterials += comp.weight_g
+    manuf = prod_update.manufacturing_process.weight
+    trans = Transport_Mode.query.get(prod_update.transport_mode_id)
+    transport = trans.weight * prod_update.product_weight_g
+    sumuses = 0
+    for use in prod_update.consumer_uses:
+        sumuses += (use.weight * prod_update.product_weight_g)
+    eol= prod_update.product_weight_g - ((prod_update.product_weight_g * (prod_update.product_recycled_percent/100)))
+    newPrint = 10 * (sumMaterials + manuf + transport + sumuses + eol)
+
+    prod_update.carbon_footprint_kg = newPrint
+    db.session.add(prod_update)
+    db.session.commit()
+
+    final_product = Product.query.get(id)
+
+    comps = []
+    for comp in final_product.components:
+        comps.append(comp.to_dict())
+    prod_dict = final_product.to_dict()
+    prod_dict["components"] = comps
+
+    uses = []
+    for use in final_product.consumer_uses:
+        uses.append(use.to_dict())
+
+    prod_dict["uses"] = uses
+
+
+    return prod_dict
 
     # except Exception as e:
     #     print("Failed to update product:", e)

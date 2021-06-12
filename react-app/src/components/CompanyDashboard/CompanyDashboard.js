@@ -67,7 +67,7 @@ const CompanyDashboard = () => {
                         </div>
                         <div className='add-container'>
                             <div className='add'>
-                                <Link className='add-link' to='/product'>
+                                <Link className='add-link' to='/company/product'>
                                     ADD PRODUCT
                                 </Link>
                             </div>
@@ -99,7 +99,7 @@ const CompanyDashboard = () => {
                                             <tr>
                                                 <td>{product.name}</td>
                                                 <td>{product.carbon_footprint_kg} kg CO<span>&#8322;</span>e</td>
-                                                <td><Link className='edit-button' to={`/product/${product.id}`}><img className='edit-pencil' src={editPencil} alt="pencil"/></Link></td>
+                                                <td><Link className='edit-button' to={`/company/product/${product.id}`}><img className='edit-pencil' src={editPencil} alt="pencil"/></Link></td>
                                                 <td><button className='delete-button' value={product.id} onClick={(e) => handleDeleteProduct(e.target.value)}>Delete</button></td>
                                             </tr>
                                         </tbody>
