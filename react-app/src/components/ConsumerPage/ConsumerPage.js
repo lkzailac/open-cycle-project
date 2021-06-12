@@ -36,25 +36,25 @@ const ConsumerPage = () => {
                         {
                             groups[1]?.map((item, j) => {
                                 return (
-                                   <div className='item-container'>
-                                    <div className='single-company-products'>
-                                        <h2 key={j} className='prod-name'>{item.name}</h2>
-                                        <div className='product-photo'>
-                                            <img src={item.photo_url} alt="product image"/>
+                                    <div className='item-container'>
+                                        <div className='single-company-products'>
+                                            <h2 key={j} className='prod-name'>{item.name}</h2>
+                                            <div className='product-photo'>
+                                                <img src={item.photo_url} alt="product image"/>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className='prod-info'>
-                                        <div className='footprint'>
-                                            Carbon Footprint:
-                                            <p>{item.carbon_footprint_kg} kg CO<span>&#8322;</span>e</p>
+                                        <div className='prod-info'>
+                                            <div className='footprint'>
+                                                Carbon Footprint:
+                                                <p>{item.carbon_footprint_kg} kg CO<span>&#8322;</span>e</p>
+                                            </div>
+                                            <div className='returnable'>
+                                                Returnable at the end of life?
+                                                {item.returnable === true ?
+                                                <p>Yes, this item can be returned <br></br>to {groups[0]?.name}.</p> :
+                                                <p>No, please consider repairing or recycling.</p>}
+                                            </div>
                                         </div>
-                                        <div className='returnable'>
-                                            Returnable at the end of life?
-                                            {item.returnable === true ?
-                                            <p>Yes, this item can be returned <br></br>to {groups[0]?.name}.</p> :
-                                            <p>No, please consider repairing or recycling.</p>}
-                                        </div>
-                                    </div>
                                     </div>
                                 )
                             })
