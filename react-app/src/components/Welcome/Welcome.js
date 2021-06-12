@@ -64,19 +64,20 @@ const Welcome = () => {
                             <img className='right-arrow right-bounce' src={largeArrow} />
                         </div>
                         <div className="r-join-container">
-                            < UserLoginModal />
-                            {/* <div className='r-join'>
+
+                            <div className='r-join'>
                                 <Link className='r-join-link' to='/consumer/signup'>
                                     JOIN NOW
                                 </Link>
-                            </div> */}
+                            </div>
                         </div>
                         <div className='r-login-container'>
-                            <div className='r-login'>
+                            < UserLoginModal />
+                            {/* <div className='r-login'>
                                 <Link className='r-login-link' to='/consumer/login'>
                                     SIGN IN
                                 </Link>
-                            </div>
+                            </div> */}
                         </div>
                     </div> {/* end right-container */}
                 </div>  {/* end content grid */}

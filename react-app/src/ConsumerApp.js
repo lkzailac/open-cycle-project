@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import LoginForm from "./components/auth/LoginForm/index";
 import SignUpForm from "./components/auth/SignUpForm/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import User from "./components/User";
+import ConsumerPage from "./components/ConsumerPage/index";
 import { authenticate } from "./store/session";
 
 
@@ -36,7 +36,7 @@ function ConsumerApp() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path="/consumer/:userId" exact={true} >
-          <User />
+          <ConsumerPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

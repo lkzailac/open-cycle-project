@@ -32,7 +32,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to={`/user/${user.id}`} />;
+    return <Redirect to={`/consumer/${user.id}`} />;
   }
 
   return (
@@ -67,7 +67,9 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
             <button className='user-login-button' type="submit">SIGN IN</button>
-            <UserDemoButton />
+            <div className='user-demo-div'>
+              <UserDemoButton />
+            </div>
           </div>
         </form>
       </div> {/* end login-form-container*/}

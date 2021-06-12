@@ -248,6 +248,12 @@
     margin-left: 2em;
 }
 
+.r-join-container:hover {
+    background-color:#efe8e140;
+    box-shadow: 0px 0px 10px #35353540 inset;
+    box-shadow: 0px 0px 10px #ffffff40;
+}
+
 .r-join-link{
     text-decoration: none;
     color: white;
@@ -275,11 +281,11 @@
     height: 35px;
     text-justify: center;
     text-align: center;
-    background-color: #ff9700;
+
     margin-left: 2em;
 }
 
-.r-login-link{
+/* .r-login-link{
     text-decoration: none;
     color: white;
     font-family: semplicitapro, sans-serif;
@@ -293,7 +299,7 @@
     height: 15px;
     text-align: center;
     margin-top: 9px;
-}
+} */
 
 
 .right-bounce {
