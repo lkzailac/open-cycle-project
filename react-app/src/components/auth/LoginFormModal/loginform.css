@@ -53,6 +53,10 @@ button.r-login-link:hover {
     margin-top:.5em;
 }
 
+.login-form input:hover {
+    background-color: #efe8e120;
+}
+
 .login-form input[placeholder] {
     font-family: semplicitapro, sans-serif;
     font-weight: 300;

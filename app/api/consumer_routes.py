@@ -22,11 +22,12 @@ def get_user_products(id):
     all_list = []
     companies = Company.query.all()
     for company in companies:
-        company_dict = {}
-        company_dict[company.name] = company.to_dict()
+        company_list = []
+        company_list.append(company.to_dict())
+        # company_dict[company.name] = company.to_dict()
         prods = [prod.to_dict() for prod in company.products]
-        company_dict["products"] = prods
-        all_list.append(company_dict)
+        company_list.append(prods)
+        all_list.append(company_list)
 
     # print("route id----------------", id)
     # user = User.query.get(id)
