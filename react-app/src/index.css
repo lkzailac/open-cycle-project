@@ -1,4 +1,9 @@
 /* TODO Add site wide styles */
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -250px;
+}
+
 
 h1, h2, h3 {
     font-family: semplicitapro, sans-serif;

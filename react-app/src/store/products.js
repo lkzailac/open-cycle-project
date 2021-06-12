@@ -3,6 +3,12 @@ const ADD_PRODUCT = "products/ADD_PRODUCT";
 const DELETE_PRODUCT = "products/DELETE_PRODUCT";
 const UPDATE_PRODUCT = "products/UPDATE_PRODUCT";
 const LOAD_ONE = "products/LOAD_ONE";
+const LOAD_ALL = 'products/LOAD_ALL';
+
+const loadAll = (all) => ({
+    type: LOAD_ALL,
+    all
+})
 
 const loadProducts = (products) => ({
     type: LOAD_PRODUCTS,
@@ -31,6 +37,10 @@ const loadOneP = (product) => ({
 
 
 // thunks
+export const getAll = (id) => async (dispatch) => {
+    const res = await fetch('/api/consumer/${id}')
+}
+
 export const getProducts = (companyId) => async (dispatch) => {
     const res = await fetch(`/api/company/${companyId}`)
 

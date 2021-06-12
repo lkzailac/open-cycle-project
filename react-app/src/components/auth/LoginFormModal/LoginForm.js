@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../../store/session";
+import UserDemoButton from '../UserDemoButton/index'
 
+import logo from '../../../images/ocp-logo.svg'
+import cycle from '../../../images/cycle.png';
 import './loginform.css'
 
 const LoginForm = () => {
@@ -29,20 +32,23 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to={`/user/${user.id}`} />;
+    return <Redirect to={`/consumer/${user.id}`} />;
   }
 
   return (
-    <>
-      <div className='container'>
-        <form onSubmit={onLogin}>
+    <div className='login-contain'>
+      <div className='login-form-container'>
+        <div className='ocp-logo'>
+          <img src={logo} alt='logo' />
+        </div>
+        <form className='login-form' onSubmit={onLogin}>
           <div>
             {errors.map((error) => (
               <div>{error}</div>
             ))}
           </div>
           <div>
-            <label htmlFor="email">Email</label>
+            {/* <label htmlFor="email">Email</label> */}
             <input
               name="email"
               type="text"
@@ -52,7 +58,7 @@ const LoginForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="password">Password</label>
+            {/* <label htmlFor="password">Password</label> */}
             <input
               name="password"
               type="password"
@@ -60,14 +66,19 @@ const LoginForm = () => {
               value={password}
               onChange={updatePassword}
             />
-            <button type="submit">Login</button>
+            <button className='user-login-button' type="submit">SIGN IN</button>
+            <div className='user-demo-div'>
+              <UserDemoButton />
+            </div>
           </div>
         </form>
+      </div> {/* end login-form-container*/}
+      <div className='cycle-container'>
+        <img src={cycle} alt="cycle" />
       </div>
 
 
-
-    </>
+    </ div>
   );
 };
 

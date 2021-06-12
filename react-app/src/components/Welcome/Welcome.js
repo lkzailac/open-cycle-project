@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
+import UserLoginModal from '../auth/LoginFormModal';
 // import { NavLink } from 'react-router-dom';
 // import LogoutButton from './auth/LogoutButton';
 import background_img from "../../images/background.svg"
@@ -63,6 +64,7 @@ const Welcome = () => {
                             <img className='right-arrow right-bounce' src={largeArrow} />
                         </div>
                         <div className="r-join-container">
+
                             <div className='r-join'>
                                 <Link className='r-join-link' to='/consumer/signup'>
                                     JOIN NOW
@@ -70,11 +72,12 @@ const Welcome = () => {
                             </div>
                         </div>
                         <div className='r-login-container'>
-                            <div className='r-login'>
+                            < UserLoginModal />
+                            {/* <div className='r-login'>
                                 <Link className='r-login-link' to='/consumer/login'>
                                     SIGN IN
                                 </Link>
-                            </div>
+                            </div> */}
                         </div>
                     </div> {/* end right-container */}
                 </div>  {/* end content grid */}
