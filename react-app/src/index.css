@@ -1,4 +1,7 @@
 /* TODO Add site wide styles */
+body {
+    background-color: #fcfcfc;
+}
 .wrapper {
     min-height: 100%;
     margin-bottom: -250px;
