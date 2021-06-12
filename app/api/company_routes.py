@@ -1,7 +1,7 @@
 
 from flask import Blueprint, request
 from flask_login import login_required
-from app.forms import ProductForm
+# from .forms import ProductForm
 from app.models import db
 from app.models import Company
 from app.models import Product

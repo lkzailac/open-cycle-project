@@ -14,7 +14,7 @@ const ConsumerPage = () => {
     const [searchInput, setSearchInput] = useState('')
 
     useEffect(() => {
-        dispatch(getAll())
+        dispatch(getAll(user.id))
     }, [dispatch])
 
     const handleSearch =() => {

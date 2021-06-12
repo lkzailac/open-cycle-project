@@ -38,7 +38,13 @@ const loadOneP = (product) => ({
 
 // thunks
 export const getAll = (id) => async (dispatch) => {
-    const res = await fetch('/api/consumer/${id}')
+    const res = await fetch(`/api/consumer/${id}`)
+
+    if(res.ok) {
+        let data = await res.json()
+        console.log('thunk data---------', data)
+        dispatch(loadAll(data))
+    }
 }
 
 export const getProducts = (companyId) => async (dispatch) => {
@@ -127,6 +133,10 @@ export default function reducer(state=initialState, action) {
             newState = { ...state }
             let prodArr = newState.products.filter((prod) => prod["id"] !== action.product.id)
             newState.products = prodArr
+            return newState;
+        case LOAD_ALL:
+            newState = { ...state}
+            newState.all = action.all
             return newState;
         // case UPDATE_PRODUCT:
         //     newState = { ...state }
