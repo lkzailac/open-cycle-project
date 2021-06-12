@@ -46,11 +46,6 @@ def load_user_from_req(request):
     @login.user_loader
     def load_user(id):
         return User.query.get(int(id))
-<<<<<<< HEAD
-
-=======
->>>>>>> main
-
 
 
 # @login.user_loader

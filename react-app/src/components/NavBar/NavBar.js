@@ -9,7 +9,7 @@ import "./navbar.css"
 
 const NavBar = (props) => {
   const user = useSelector(state => state.session.user)
-  const company = useSelector(state => state.session.company)
+  const company = useSelector(state => state.csession.company)
 
 
 
@@ -62,18 +62,7 @@ const NavBar = (props) => {
             Why OCP
           </NavLink>
         </li>
-        <li>
 
-          {/* {company ?
-          <CompanyLogoutButton />
-          : null}
-          {user ?
-          <LogoutButton /> :
-          <></>
-          } */}
-
-
-        </li>
       </ul>
       <div className='company-logout-container'>
         {sessionLinks}
