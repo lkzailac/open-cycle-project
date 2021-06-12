@@ -1,6 +1,12 @@
 .company-info-container {
     display: block;
-    padding-top: 12em;
+    padding-top: 0em;
+}
+
+.tag-contain {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .grid {

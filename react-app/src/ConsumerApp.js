@@ -35,6 +35,9 @@ function ConsumerApp() {
         <Route path="/consumer/signup" exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path="/consumer/" exact={true} >
+          <ConsumerPage />
+        </ProtectedRoute>
         <ProtectedRoute path="/consumer/:userId" exact={true} >
           <ConsumerPage />
         </ProtectedRoute>
