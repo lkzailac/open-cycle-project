@@ -22,7 +22,7 @@ function UserDemoButton() {
     }
 
     if (user) {
-        return <Redirect to={`/consumers/${user.id}`} />;
+        return <Redirect to={`/consumer/${user.id}`} />;
     }
 
     return (
