@@ -38,7 +38,7 @@ login.login_view = 'cauth.unauthorized'
 @login.request_loader
 def load_user_from_req(request):
     print("request URL---------", request.url)
-    if request.url == "http://localhost:5000/api/auth/":
+    if request.url == "http://localhost:5000/api/cauth/":
         @login.user_loader
         def load_company(id):
             return Company.query.get(int(id))
