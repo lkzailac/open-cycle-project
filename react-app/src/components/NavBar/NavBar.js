@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import LogoutButton from '../auth/LogoutButton';
+import UserLogoutButton from '../auth/UserLogoutButton/index';
 import CompanyLogoutButton from "../auth/CompanyLogoutButton/index";
 import logo from "../../images/ocp-logo.svg"
 import "./navbar.css"
-import LoginForm from '../auth/LoginForm';
+
 
 const NavBar = (props) => {
   const user = useSelector(state => state.session.user)
@@ -17,7 +17,7 @@ const NavBar = (props) => {
 
   if (props.user !== null) {
     sessionLinks = (
-      <LogoutButton />
+      <UserLogoutButton />
     )
   } else if (props.company) {
     sessionLinks = (

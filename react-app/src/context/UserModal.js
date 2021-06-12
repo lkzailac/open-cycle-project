@@ -1,30 +1,30 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import ReactDOM from 'react-dom';
 
-import "./EditModal.css";
+import "./UserModal.css";
 
-const EditModalContext = React.createContext();
+const UserModalContext = React.createContext();
 
-export function EditModalProvider({ children }) {
-    const editModalRef = useRef();
+export function UserModalProvider({ children }) {
+    const userModalRef = useRef();
     const [value, setValue] = useState();
 
     useEffect(() => {
-        setValue(editModalRef.current);
+        setValue(userModalRef.current);
     }, [])
 
     return (
         <>
-            <EditModalContext.Provider value={value}>
+            <UserModalContext.Provider value={value}>
                 {children}
-            </EditModalContext.Provider>
-            <div ref={editModalRef} />
+            </UserModalContext.Provider>
+            <div ref={userModalRef} />
         </>
     )
 }
 
-export function EditModal({ onClose, children }) {
-    const modalNode = useContext(EditModalContext);
+export function UserModal({ onClose, children }) {
+    const modalNode = useContext(UserModalContext);
     if (!modalNode) return null;
 
     return ReactDOM.createPortal(

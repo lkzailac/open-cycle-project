@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getProducts, deleteProduct } from '../../store/products';
-import ProductPage from "../ProductPage/index"
+
 
 
 import downArrow from "../../images/down-arrow.svg";
