@@ -42,9 +42,9 @@ function CompanyApp() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/company/login' exact={true}>
+        {/* <Route path='/company/login' exact={true}>
           <CompanyLoginForm />
-        </Route>
+        </Route> */}
         <Route path='/company/signup' exact={true}>
           <CompanySignUpForm />
         </Route>

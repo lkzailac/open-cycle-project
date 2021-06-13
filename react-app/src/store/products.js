@@ -3,12 +3,12 @@ const ADD_PRODUCT = "products/ADD_PRODUCT";
 const DELETE_PRODUCT = "products/DELETE_PRODUCT";
 const UPDATE_PRODUCT = "products/UPDATE_PRODUCT";
 const LOAD_ONE = "products/LOAD_ONE";
-const LOAD_ALL = 'products/LOAD_ALL';
+// const LOAD_ALL = 'products/LOAD_ALL';
 
-const loadAll = (all) => ({
-    type: LOAD_ALL,
-    all
-})
+// const loadAll = (all) => ({
+//     type: LOAD_ALL,
+//     all
+// })
 
 const loadProducts = (products) => ({
     type: LOAD_PRODUCTS,
@@ -37,16 +37,26 @@ const loadOneP = (product) => ({
 
 
 // thunks
-export const getAll = (id) => async (dispatch) => {
-    const res = await fetch(`/api/consumer/${id}`)
+// export const getAll = (id) => async (dispatch) => {
+//     const res = await fetch(`/api/consumer/${id}`)
 
-    if(res.ok) {
-        let data = await res.json()
-        console.log('thunk data---------', data)
-        dispatch(loadAll(data))
-    }
-}
+//     if(res.ok) {
+//         let data = await res.json()
+//         console.log('thunk data---------', data)
+//         dispatch(loadAll(data))
+//     }
+// }
 
+// for consumer
+// export const getProductsConsumer = (consumerId) => async (dispatch) => {
+//     const res = await fetch(`/api/consumer/${consumerId}`)
+
+//     if(res.ok) {
+//         let data = await res.json()
+//         dispatch(loadProducts(data))
+//     }
+// }
+// get all products for a company
 export const getProducts = (companyId) => async (dispatch) => {
     const res = await fetch(`/api/company/${companyId}`)
 
@@ -134,10 +144,10 @@ export default function reducer(state=initialState, action) {
             let prodArr = newState.products.filter((prod) => prod["id"] !== action.product.id)
             newState.products = prodArr
             return newState;
-        case LOAD_ALL:
-            newState = { ...state}
-            newState.all = action.all
-            return newState;
+        // case LOAD_ALL:
+        //     newState = { ...state}
+        //     newState.all = action.all
+        //     return newState;
         // case UPDATE_PRODUCT:
         //     newState = { ...state }
         //     let arr = [];

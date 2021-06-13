@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { getAll } from '../../store/products';
+import { getAll } from '../../store/allproducts';
 
 import downArrow from "../../images/down-arrow.svg";
 import './consumerpg.css';
@@ -10,12 +10,12 @@ import './consumerpg.css';
 const ConsumerPage = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const allgroup = useSelector(state => state.products.all)
+    const allgroup = useSelector(state => state.allproducts.all)
     const all = allgroup?.all
     const [searchInput, setSearchInput] = useState('')
 
-    useEffect(async() => {
-        await dispatch(getAll(user.id))
+    useEffect(() => {
+       dispatch(getAll(user.id))
     }, [dispatch])
 
     const handleSearch =() => {
