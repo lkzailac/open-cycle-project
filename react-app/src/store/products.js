@@ -144,10 +144,10 @@ export default function reducer(state=initialState, action) {
             let prodArr = newState.products.filter((prod) => prod["id"] !== action.product.id)
             newState.products = prodArr
             return newState;
-        case LOAD_ALL:
-            newState = { ...state}
-            newState.all = action.all
-            return newState;
+        // case LOAD_ALL:
+        //     newState = { ...state}
+        //     newState.all = action.all
+        //     return newState;
         // case UPDATE_PRODUCT:
         //     newState = { ...state }
         //     let arr = [];
