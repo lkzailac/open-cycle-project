@@ -39,7 +39,7 @@ const ConsumerPage = () => {
                                     <div className='item-container'>
                                         <div className='single-company-products'>
                                             <h2 key={j} className='prod-name'>{item.name}</h2>
-                                            <div className='product-photo'>
+                                            <div className='product-photo_cp'>
                                                 <img src={item.photo_url} alt="product image"/>
                                             </div>
                                         </div>
