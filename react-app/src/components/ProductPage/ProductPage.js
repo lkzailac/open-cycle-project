@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { updateProduct, getCurrentProd } from '../../store/products';
-import { createProduct } from '../../store/products';
-// import EditProdModal from '../EditProdModal';
+import { getProducts } from '../../store/products';
+
 
 import downArrow from "../../images/down-arrow.svg";
 import editPencil from "../../images/edit-pencil.svg";
@@ -26,11 +26,11 @@ const ProductPage = () => {
     const [editPhoto, setEditPhoto] = useState(false)
     const [product_category, setProductCategory] = useState("")
     const [editCategory , setEditCategory] =useState(false);
-    const [componentChecked, setComponentChecked] = useState(new Array(components?.length).fill(false))
-    // const [editcomponentChecked , setEdit] =useState(false);
+    const [componentSaveed, setComponentSaveed] = useState(new Array(components?.length).fill(false))
+    // const [editcomponentSaveed , setEdit] =useState(false);
     const [compArray, setCompArray] = useState(null)
     const [editcompArray , setEditCompArray] =useState(false);
-    const [useChecked, setUseChecked] = useState(new Array(consumer_uses?.length).fill(false))
+    const [useSaveed, setUseSaveed] = useState(new Array(consumer_uses?.length).fill(false))
     // const [edit , setEdit] =useState(false);
     const [useArray, setUseArray] = useState(null)
     const [editUseArray, setEditUseArray] =useState(false);
@@ -68,6 +68,12 @@ const ProductPage = () => {
         if (productId) {
             dispatch(getCurrentProd(productId))
         }
+    }, [dispatch])
+
+    useEffect(() => {
+
+        dispatch(getProducts(company.id))
+
     }, [dispatch])
 
     /////////////////////////////  HANDLE SUBMITS
@@ -235,13 +241,13 @@ const ProductPage = () => {
 
     let totalComponents = new Array();
     const updateComponents = (position) => {
-        const updatedCheckedState = componentChecked.map((item, index) =>
+        const updatedSaveedState = componentSaveed.map((item, index) =>
             index === position ? !item : item
         );
-        setComponentChecked(updatedCheckedState);
+        setComponentSaveed(updatedSaveedState);
 
         let arr = new Array();
-        for (const [index, element] of updatedCheckedState.entries()) {
+        for (const [index, element] of updatedSaveedState.entries()) {
             if (element === true) {
                 arr.push(components[index].id)
             } else {
@@ -279,13 +285,13 @@ const ProductPage = () => {
 
     let totalUses = new Array();
     const updateUse = (position) => {
-        const updatedCheckedState = useChecked.map((item, index) =>
+        const updatedSaveedState = useSaveed.map((item, index) =>
             index === position ? !item : item
         );
-        setUseChecked(updatedCheckedState);
+        setUseSaveed(updatedSaveedState);
 
         let arr = new Array();
-        for (const [index, element] of updatedCheckedState.entries()) {
+        for (const [index, element] of updatedSaveedState.entries()) {
             if (element === true) {
                 arr.push(consumer_uses[index].id)
             } else {
@@ -328,8 +334,8 @@ const ProductPage = () => {
                     value={name}
                     required={true}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -345,8 +351,8 @@ const ProductPage = () => {
                     onChange={updatephoto_url}
                     value={photo_url}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -363,8 +369,8 @@ const ProductPage = () => {
                     onChange={updateProductCategory}
                     value={product_category}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -387,14 +393,14 @@ const ProductPage = () => {
                             onChange={() => updateComponents(index)}
                             name={component.id}
                             value={component.id}
-                            checked={componentChecked[index]} >
+                            Saveed={componentSaveed[index]} >
 
                             </input>
                         </li>
                     ))}
                     </ul>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
               </form>
             </div>
@@ -410,8 +416,8 @@ const ProductPage = () => {
                         <option key={process.id} value={process.id}>{process.name}</option>
                     ))}
                 </select>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -428,8 +434,8 @@ const ProductPage = () => {
                     onChange={updateProdweight}
                     value={product_weight_g}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -446,8 +452,8 @@ const ProductPage = () => {
                     onChange={updatePackweight}
                     value={package_weight_g}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -463,8 +469,8 @@ const ProductPage = () => {
                         <option key={fact.id} value={fact.id}>{fact.name}</option>
                     ))}
                 </select>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -479,8 +485,8 @@ const ProductPage = () => {
                         <option key="unit1" value="Pair">Pair</option>
                         <option key="unit2" value="Single">Single</option>
                     </select>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -496,8 +502,8 @@ const ProductPage = () => {
                             <option key={trans.id} value={trans.id}>{trans.name}</option>
                         ))}
                     </select>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -520,13 +526,13 @@ const ProductPage = () => {
                                 id={use.id}
                                 name={use.id}
                                 value={use.id}
-                                checked={useChecked[index]} >
+                                Saveed={useSaveed[index]} >
                                 </input>
                             </li>
                         ))}
                     </ul>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -545,8 +551,8 @@ const ProductPage = () => {
                         <option key="cycle5" value={200}>200</option>
                         <option key="cycle6" value={500}>500</option>
                     </select>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -556,13 +562,13 @@ const ProductPage = () => {
     if (editRturnable) {
         editor = (
             <div className="mini-form">
-                <form onSubmit={handleReturn}>
-                    <input type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
+                <form id='radios-form' onSubmit={handleReturn}>
+                    <input id='radios' type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
                     <label>Yes</label>
-                    <input type="radio" name="returnable" value="no" onChange={updateReturn}></input>
+                    <input  id='radios' type="radio" name="returnable" value="no" onChange={updateReturn}></input>
                     <label>Not Yet</label>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -580,8 +586,8 @@ const ProductPage = () => {
                         onChange={updateReturnPer}
                         value={product_returned_percent}
                     ></input>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -599,8 +605,8 @@ const ProductPage = () => {
                     onChange={updateRecyPer}
                     value={product_recycled_percent}
                     ></input>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -616,8 +622,8 @@ const ProductPage = () => {
                 <div className='blurb-p'>
                     <p>Update your product <br></br>to recalculate the carbon footprint.</p>
                 </div>
-                <div className='arrow'>
-                    <img className ='arrow-img bounce3' src={downArrow} alt='arrow'/>
+                <div className='arrow-img bounce3'>
+                    <img className ='pe-arrow' src={downArrow} alt='arrow'/>
                 </div>
             </div>
             <div className='footprint-container'>
@@ -631,7 +637,7 @@ const ProductPage = () => {
                             <th className='prod-table-head'>Product Name</th>
                             <td>{editName ? [editor] : currentProd?.name}</td>
                             <td><button className='edit-button' onClick={() => setEditName(!editName)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
-                            {/* <td><EditProdModal /></td> */}
+
 
                         </tr>
                         <tr>

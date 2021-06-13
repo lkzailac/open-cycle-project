@@ -122,14 +122,15 @@ h2.prod-name {
     font-size: 1em;
 }
 
-.product-photo {
+.product-photo_cp {
     height: 180px;
     position: relative;
 
 }
 
-.product-photo img {
+.product-photo_cp img {
     position: absolute;
+    width: 100px;
     top: 50%;
     left: 50%;
     margin-right: -50%;

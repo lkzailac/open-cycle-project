@@ -28,14 +28,17 @@
     font-size: 1.1em;
 }
 
-.arrow {
-    width: 4em;
+.pe-arrow {
+    height: 2.5em;
+    /* width: 10em; */
 }
 
 .arrow-img {
     animation-duration: 2s;
     animation-iteration-count: 10;
     transform-origin: top;
+    margin-left: 180px;
+    /* width: 7em; */
 }
 
 .bounce3 {
@@ -65,6 +68,7 @@ table.edit-product-table {
     width: 800px;
     border-collapse: collapse;
     box-shadow: 0px 5px 10px #35353510;
+    background-color: white;
 
 }
 
@@ -93,12 +97,94 @@ table.edit-product-table > tbody > tr > td {
 button.edit-button {
     outline: none;
     border: none;
+    background-color: transparent;
+    margin-right: 2em;
 }
 
 
-/******* FORM STYLING  */
 
+/******* FORM STYLING  */
+.mini-form {
+    width: 100%;
+    text-align-last: left;
+
+}
 .mini-form input {
     border: none;
     border-bottom: 1px solid #35353520;
+    width: 300px;
+    background-color: #efe8e180;
+
+}
+
+.mini-form input:hover {
+    background-color: #efe8e120;
+}
+
+.mini-form select {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #35353520;
+    width: 300px;
+    background-color: #efe8e180;
+
+}
+
+.mini-form option {
+    text-align: center;
+    color: #353535;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.mini-form li {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    display: block;
+
+    width: 3em;
+}
+
+.label-container {
+    font-size: .7em;
+
+}
+
+#radios-form {
+    display: flex;
+    width: 200px;
+}
+#radios {
+    /* margin: 0 2em 0 0; */
+}
+
+.components-list input {
+    width: 20px;
+}
+
+.uses-list input {
+    width: 20px;
+}
+
+.save-button-contain {
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+}
+
+button.save-button {
+    outline: none;
+    border:none;
+    background-color: transparent;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1em;
+
+}
+
+button.save-button:hover {
+    font-weight: bold;
 }
