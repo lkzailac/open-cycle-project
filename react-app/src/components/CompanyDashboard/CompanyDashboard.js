@@ -46,7 +46,7 @@ const CompanyDashboard = () => {
                         <div className='carbon-footprint'>
                             <h2>Your Carbon Footprint:</h2>
                             {company?.c_footprint_mt !== 0 ? company?.c_footprint_mt :
-                            <p>Please add 100% of your products to calculate your<br></br>
+                            <p>Please add 100% of your products to calculate your
                             overall Carbon Footprint</p>}
                         </div>
                         <div className='transparency-score'>
@@ -82,17 +82,19 @@ const CompanyDashboard = () => {
                     </div> {/* end col3 */}
                 </div> {/* end grid */}
 
-                <div className='products-container'>
+                <div className='c-products-container'>
                     <div className='flex-prods'>
-                        <div className='your-products-header'>YOUR PRODUCTS</div>
+                        <div className='your-products-header'>
+                            <h3>YOUR PRODUCTS</h3>
+                        </div>
                         <div className='product-list'>
 
                         {products?.map((product) => (
                             <div key={product.id} className='single-product'>
-                                <div className='product-photo'>
+                                <div className='c-product-photo'>
                                     <img src={product.photo_url} alt="product image"/>
                                 </div>
-                                <div className='product-table'>
+                                <div className='c-product-table'>
                                     <table>
                                         <thead>
                                             <tr>
