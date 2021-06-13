@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import CompanyLoginForm from "./components/auth/CompanyLoginForm/index"
+// import CompanyLoginForm from "./components/auth/CompanyLoginForm/index"
 import CompanySignUpForm from "./components/auth/CompanySignUpForm/index"
 import CompanyDashboard from "./components/CompanyDashboard/index"
 import ProductForm from "./components/ProductForm/index";
