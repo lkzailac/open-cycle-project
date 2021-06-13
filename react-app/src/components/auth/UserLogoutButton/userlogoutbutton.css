@@ -2,7 +2,7 @@
     position: relative;
 }
 
-.company-logout-button {
+.user-logout-button {
     position: absolute;
     display: inline;
     /* float: right; */
@@ -22,7 +22,7 @@
     right: 3em;
 }
 
-.company-logout-button:hover {
+.user-logout-button:hover {
     box-shadow: 0px 0px 10px #35353540 inset;
     transform: translateY(2px);
 }

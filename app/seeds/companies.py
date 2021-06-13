@@ -17,8 +17,9 @@ def seed_companies():
         carbon_goal_date= '2022-06-03 16:08:33.882507',
         transparency_score= 0,
         c_footprint_mt= 0,
-        signup_date = '2021-06-03 16:08:33.882507')
+        signup_date = '2021-06-03 16:08:33.882507',
 
+    )
     c2 = Company(
         name='Nike',
         admin_email='nike@company.com',

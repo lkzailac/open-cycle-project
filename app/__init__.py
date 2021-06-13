@@ -9,7 +9,7 @@ from flask_login import LoginManager
 
 from .models.base_user import BaseUser
 from .models import db, User, Company
-from .api.user_routes import user_routes
+from .api.consumer_routes import consumer_routes
 from .api.company_routes import company_routes
 from .api.auth_routes import auth_routes
 from .api.company_auth_routes import cauth_routes
@@ -36,6 +36,28 @@ login.login_view = 'auth.unauthorized'
 #         def load_user(id):
 #             return User.query.get(int(id))
 
+# @login.request_loader
+# def load_user_from_req(request):
+#     print("request URL---------", request.url)
+#     if request.url == "http://localhost:5000/api/cauth/":
+#         @login.user_loader
+#         def load_company(id):
+#             return Company.query.get(int(id))
+
+#     @login.user_loader
+#     def load_user(id):
+#         return User.query.get(int(id))
+
+
+@login.user_loader
+def load_company(id):
+    if request.url == "http://localhost:5000/api/cauth/":
+        return Company.query.get(int(id))
+
+@login.user_loader
+def load_user(id):
+    if request.url == "http://localhost:5000/api/auth/":
+        return User.query.get(int(id))
 
 
 @login.user_loader
@@ -63,7 +85,7 @@ app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
 
-app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(consumer_routes, url_prefix='/api/consumer')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(cauth_routes, url_prefix='/api/cauth')
 app.register_blueprint(company_routes, url_prefix='/api/company')

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-import LogoutButton from '../auth/LogoutButton';
+import UserLogoutButton from '../auth/UserLogoutButton/index';
 import CompanyLogoutButton from "../auth/CompanyLogoutButton/index";
 import logo from "../../images/ocp-logo.svg"
 import "./navbar.css"
-import LoginForm from '../auth/LoginForm';
+
 
 const NavBar = (props) => {
   const user = useSelector(state => state.session.user)
-  const company = useSelector(state => state.session.company)
+  const company = useSelector(state => state.csession.company)
 
 
 
@@ -17,7 +17,7 @@ const NavBar = (props) => {
 
   if (props.user !== null) {
     sessionLinks = (
-      <LogoutButton />
+      <UserLogoutButton />
     )
   } else if (props.company) {
     sessionLinks = (
@@ -62,18 +62,7 @@ const NavBar = (props) => {
             Why OCP
           </NavLink>
         </li>
-        <li>
 
-          {/* {company ?
-          <CompanyLogoutButton />
-          : null}
-          {user ?
-          <LogoutButton /> :
-          <></>
-          } */}
-
-
-        </li>
       </ul>
       <div className='company-logout-container'>
         {sessionLinks}

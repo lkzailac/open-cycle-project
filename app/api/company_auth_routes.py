@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Company, db
-from app.forms import LoginCompanyForm
-from app.forms import SignUpCompanyForm
+from .forms import LoginCompanyForm
+from .forms import SignUpCompanyForm
 from flask_login import current_user, login_user, logout_user, login_required
 import datetime
 

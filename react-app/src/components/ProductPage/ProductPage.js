@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { updateProduct, getCurrentProd } from '../../store/products';
-// import EditProdModal from '../EditProdModal';
-import { getFootprint } from "../../utils/carbonfootprintcalc"
+import { getProducts } from '../../store/products';
+
 
 import downArrow from "../../images/down-arrow.svg";
 import editPencil from "../../images/edit-pencil.svg";
@@ -26,11 +26,11 @@ const ProductPage = () => {
     const [editPhoto, setEditPhoto] = useState(false)
     const [product_category, setProductCategory] = useState("")
     const [editCategory , setEditCategory] =useState(false);
-    const [componentChecked, setComponentChecked] = useState(new Array(components?.length).fill(false))
+    const [componentSaveed, setComponentSaveed] = useState(new Array(components?.length).fill(false))
     // const [editcomponentChecked , setEdit] =useState(false);
     const [compArray, setCompArray] = useState(null)
     const [editcompArray , setEditCompArray] =useState(false);
-    const [useChecked, setUseChecked] = useState(new Array(consumer_uses?.length).fill(false))
+    const [useSaveed, setUseSaveed] = useState(new Array(consumer_uses?.length).fill(false))
     // const [edit , setEdit] =useState(false);
     const [useArray, setUseArray] = useState(null)
     const [editUseArray, setEditUseArray] =useState(false);
@@ -61,20 +61,25 @@ const ProductPage = () => {
 
     let location = useLocation()
     let arr = location.pathname.split('')
-    let num = arr.splice(9)
+    let num = arr.splice(17)
     let productId = Number(num.join(""))
 
     useEffect(() => {
         if (productId) {
             dispatch(getCurrentProd(productId))
         }
-    }, [dispatch, name])
+    }, [dispatch])
+
+    useEffect(() => {
+
+        dispatch(getProducts(company.id))
+
+    }, [dispatch])
 
     /////////////////////////////  HANDLE SUBMITS
     const handleNameSub = async (e) => {
         e.preventDefault();
-        let carbon_footprint_kg = getFootprint(currentProd?.name)
-        const product = {"id":productId, "name": name, carbon_footprint_kg}
+        const product = {"id":productId, "name": name}
         const res= await dispatch(updateProduct(product))
         setEditName(false)
     }
@@ -236,13 +241,13 @@ const ProductPage = () => {
 
     let totalComponents = new Array();
     const updateComponents = (position) => {
-        const updatedCheckedState = componentChecked.map((item, index) =>
+        const updatedSaveedState = componentSaveed.map((item, index) =>
             index === position ? !item : item
         );
-        setComponentChecked(updatedCheckedState);
+        setComponentSaveed(updatedSaveedState);
 
         let arr = new Array();
-        for (const [index, element] of updatedCheckedState.entries()) {
+        for (const [index, element] of updatedSaveedState.entries()) {
             if (element === true) {
                 arr.push(components[index].id)
             } else {
@@ -280,13 +285,13 @@ const ProductPage = () => {
 
     let totalUses = new Array();
     const updateUse = (position) => {
-        const updatedCheckedState = useChecked.map((item, index) =>
+        const updatedSaveedState = useSaveed.map((item, index) =>
             index === position ? !item : item
         );
-        setUseChecked(updatedCheckedState);
+        setUseSaveed(updatedSaveedState);
 
         let arr = new Array();
-        for (const [index, element] of updatedCheckedState.entries()) {
+        for (const [index, element] of updatedSaveedState.entries()) {
             if (element === true) {
                 arr.push(consumer_uses[index].id)
             } else {
@@ -329,8 +334,8 @@ const ProductPage = () => {
                     value={name}
                     required={true}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -346,8 +351,8 @@ const ProductPage = () => {
                     onChange={updatephoto_url}
                     value={photo_url}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -364,8 +369,8 @@ const ProductPage = () => {
                     onChange={updateProductCategory}
                     value={product_category}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -377,7 +382,7 @@ const ProductPage = () => {
             <div className="mini-form">
               <form onSubmit={handleCompArray}>
                 <ul className= 'components-list'>
-                    {components.map((component, index) => (
+                    {components?.map((component, index) => (
                         <li key={index}>
                             <div className='label-container'>
                                 <label htmlFor={component.id}>{component.name}</label>
@@ -388,14 +393,14 @@ const ProductPage = () => {
                             onChange={() => updateComponents(index)}
                             name={component.id}
                             value={component.id}
-                            checked={componentChecked[index]} >
+                            Saveed={componentSaveed[index]} >
 
                             </input>
                         </li>
                     ))}
                     </ul>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
               </form>
             </div>
@@ -407,12 +412,12 @@ const ProductPage = () => {
             <div className="mini-form">
               <form onSubmit={handleManu}>
                 <select value={manufacturing_process_id} onChange={updateManufProcess}>
-                    {manufacturing_processes.map((process) => (
+                    {manufacturing_processes?.map((process) => (
                         <option key={process.id} value={process.id}>{process.name}</option>
                     ))}
                 </select>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -429,8 +434,8 @@ const ProductPage = () => {
                     onChange={updateProdweight}
                     value={product_weight_g}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -447,8 +452,8 @@ const ProductPage = () => {
                     onChange={updatePackweight}
                     value={package_weight_g}
                 ></input>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -460,12 +465,12 @@ const ProductPage = () => {
             <div className="mini-form">
               <form onSubmit={handleFactory}>
                 <select value={factory_id} onChange={updateFactId}>
-                    {factories.map((fact) => (
+                    {factories?.map((fact) => (
                         <option key={fact.id} value={fact.id}>{fact.name}</option>
                     ))}
                 </select>
-                <div className='edit-button-contain'>
-                    <button className='edit-button' type="submit">CHECK</button>
+                <div className='save-button-contain'>
+                    <button className='save-button' type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -480,8 +485,8 @@ const ProductPage = () => {
                         <option key="unit1" value="Pair">Pair</option>
                         <option key="unit2" value="Single">Single</option>
                     </select>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -493,12 +498,12 @@ const ProductPage = () => {
             <div className="mini-form">
                 <form onSubmit={handleTrans}>
                     <select value={transport_mode_id} onChange={updateTransMode}>
-                        {transport_modes.map((trans) => (
+                        {transport_modes?.map((trans) => (
                             <option key={trans.id} value={trans.id}>{trans.name}</option>
                         ))}
                     </select>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -510,7 +515,7 @@ const ProductPage = () => {
             <div className="mini-form">
                 <form onSubmit={handleUse}>
                     <ul className= 'uses-list'>
-                        {consumer_uses.map((use, index) => (
+                        {consumer_uses?.map((use, index) => (
                             <li key={index}>
                                 <div className='label-container'>
                                     <label htmlFor={use.id}>{use.name}</label>
@@ -521,13 +526,13 @@ const ProductPage = () => {
                                 id={use.id}
                                 name={use.id}
                                 value={use.id}
-                                checked={useChecked[index]} >
+                                Saveed={useSaveed[index]} >
                                 </input>
                             </li>
                         ))}
                     </ul>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -546,8 +551,8 @@ const ProductPage = () => {
                         <option key="cycle5" value={200}>200</option>
                         <option key="cycle6" value={500}>500</option>
                     </select>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -557,13 +562,13 @@ const ProductPage = () => {
     if (editRturnable) {
         editor = (
             <div className="mini-form">
-                <form onSubmit={handleReturn}>
-                    <input type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
+                <form id='radios-form' onSubmit={handleReturn}>
+                    <input id='radios' type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
                     <label>Yes</label>
-                    <input type="radio" name="returnable" value="no" onChange={updateReturn}></input>
+                    <input  id='radios' type="radio" name="returnable" value="no" onChange={updateReturn}></input>
                     <label>Not Yet</label>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -581,8 +586,8 @@ const ProductPage = () => {
                         onChange={updateReturnPer}
                         value={product_returned_percent}
                     ></input>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -600,8 +605,8 @@ const ProductPage = () => {
                     onChange={updateRecyPer}
                     value={product_recycled_percent}
                     ></input>
-                    <div className='edit-button-contain'>
-                        <button className='edit-button' type="submit">CHECK</button>
+                    <div className='save-button-contain'>
+                        <button className='save-button' type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -617,9 +622,13 @@ const ProductPage = () => {
                 <div className='blurb-p'>
                     <p>Update your product <br></br>to recalculate the carbon footprint.</p>
                 </div>
-                <div className='arrow'>
-                    <img className ='arrow-img bounce3' src={downArrow} alt='arrow'/>
+                <div className='arrow-img bounce3'>
+                    <img className ='pe-arrow' src={downArrow} alt='arrow'/>
                 </div>
+            </div>
+            <div className='footprint-container'>
+                <h2>Carbon Footprint</h2>
+                <p>{`${currentProd?.carbon_footprint_kg}`}</p>
             </div>
             <div className='edit-prod-table-container'>
                 <table className='edit-product-table'>
@@ -627,83 +636,100 @@ const ProductPage = () => {
                         <tr>
                             <th className='prod-table-head'>Product Name</th>
                             <td>{editName ? [editor] : currentProd?.name}</td>
-                            <td><button className='edit-button' value={currentProd?.id} onClick={(e) => setEditName(!editName)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
-                            {/* <td><EditProdModal /></td> */}
+                            <td><button className='edit-button' onClick={() => setEditName(!editName)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
 
                         </tr>
                         <tr>
                             <th>Photo</th>
-                            <td><div className='product-image'><img src={currentProd?.photo_url} alt="prodimage"/></div></td>
+                            <td><div className='product-image'>{editPhoto ? [editor] : <img src={currentProd?.photo_url} alt="prodimage"/>}</div></td>
+                            <td><button className='edit-button' onClick={() => setEditPhoto(!editPhoto)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Product Category</th>
-                            <td>{currentProd?.product_category}</td>
+                            <td>{editCategory ? [editor] : currentProd?.product_category}</td>
+                            <td><button className='edit-button' onClick={() => setEditCategory(!editCategory)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Components</th>
                             <td>
-                            {currentProd?.components?.map((comp) => (
+                            {editcompArray ? [editor] : currentProd?.components?.map((comp) => (
                                <p key={comp.id}>{comp.name}</p>
                             ))}
                             </td>
+                            <td><button className='edit-button' onClick={() => setEditCompArray(!editcompArray)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Manufacturing Process</th>
-                            <td>{manufacturing_processes?.filter((pro) => pro.id === currentProd?.manufacturing_process_id)[0]?.name }</td>
+                            <td>{editManu ? [editor] : manufacturing_processes?.filter((pro) => pro.id === currentProd?.manufacturing_process_id)[0]?.name }</td>
+                            <td><button className='edit-button' onClick={() => setEditManu(!editManu)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Product Weight (g)</th>
-                            <td>{currentProd?.product_weight_g}</td>
+                            <td>{editProdWeight ? [editor] : currentProd?.product_weight_g}</td>
+                            <td><button className='edit-button' onClick={() => setEditProdWeight(!editProdWeight)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Package Weight (g)</th>
-                            <td>{currentProd?.package_weight_g}</td>
+                            <td>{editPackWeight ? [editor] : currentProd?.package_weight_g}</td>
+                            <td><button className='edit-button' onClick={() => setEditPackWeight(!editPackWeight)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Factory</th>
-                            <td>{factories?.filter((factory) => factory.id === currentProd?.factory_id)[0]?.name}</td>
+                            <td>{editFactId ? [editor] : factories?.filter((factory) => factory.id === currentProd?.factory_id)[0]?.name}</td>
+                            <td><button className='edit-button' onClick={() => setEditFactId(!editFactId)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Unit</th>
-                            <td>{currentProd?.unit}</td>
+                            <td>{editUnit ? [editor] : currentProd?.unit}</td>
+                            <td><button className='edit-button' onClick={() => setEditUnit(!editUnit)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Transport Mode</th>
-                            <td>{transport_modes?.filter((mode) => mode.id === currentProd?.transport_mode_id)[0]?.name}</td>
+                            <td>{editTransMode ? [editor] : transport_modes?.filter((mode) => mode.id === currentProd?.transport_mode_id)[0]?.name}</td>
+                            <td><button className='edit-button' onClick={() => setEditTransMode(!editTransMode)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Consumer Uses</th>
                             <td>
-                                {currentProd?.uses ? currentProd?.uses.map((use) => (
+                                {editUseArray ? [editor] : currentProd?.uses ? currentProd?.uses.map((use) => (
                                     <p key={use.id}>{use.name}</p>
                                 )) : <p>None</p>}
                             </td>
+                            <td><button className='edit-button' onClick={() => setEditUseArray(!editUseArray)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Number of Use Cycles</th>
-                            <td>{currentProd?.number_of_cycles}</td>
+                            <td>{editCycles ? [editor] : currentProd?.number_of_cycles}</td>
+                            <td><button className='edit-button' onClick={() => setEditCycles(!editCycles)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
                             <th>Returnable?</th>
-                            <td>{currentProd?.returnable ? "Yes" : "No"}</td>
+                            <td>{editRturnable ? [editor] : currentProd?.returnable ? "Yes" : "No"}</td>
+                            <td><button className='edit-button' onClick={() => setEditRetrunable(!editRturnable)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         {currentProd?.returnable ?
                         <>
                         <tr>
                             <th>Percentage Returned</th>
-                            <td>{currentProd?.product_returned_percent}</td>
+                            <td>{editProdReturn ? [editor] : currentProd?.product_returned_percent}</td>
+                            <td><button className='edit-button' onClick={() => setEditProdReturn(!editProdReturn)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
+
                         </tr>
                         <tr>
                             <th>Percentage Recycled</th>
-                            <td>{currentProd?.product_recycled_percent}</td>
+                            <td>{editProdRecycle ? [editor] : currentProd?.product_recycled_percent}</td>
+                            <td><button className='edit-button' onClick={() => setEditProdRecycle(!editProdRecycle)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         </> :
                         <></>
                         }
-                        <tr>
-                            <th>Carbon Footprint</th>
-                            <td>{`${currentProd?.carbon_footprint_kg}`}</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>

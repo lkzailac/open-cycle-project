@@ -4,6 +4,8 @@ import { Redirect } from "react-router-dom";
 import { companyLogin } from "../../../store/csession";
 import CompanyDemoButton from "../CompanyDemoButton/index";
 
+import logo from '../../../images/ocp-logo.svg'
+import cycle from '../../../images/cycle.png';
 import "./companyloginform.css";
 
 const CompanyLoginForm = () => {
@@ -39,16 +41,19 @@ const CompanyLoginForm = () => {
   }
 
   return (
-    <>
-      <div className='container'>
-        <form onSubmit={onCompanyLogin}>
+    <div className='c-login-contain'>
+      <div className='c-login-form-container'>
+        <div className='c-ocp-logo'>
+          <img src={logo} alt='logo' />
+        </div>
+        <form className='c-login-form' onSubmit={onCompanyLogin}>
           <div>
             {errors.map((error) => (
               <div>{error}</div>
             ))}
           </div>
           <div>
-            <label htmlFor="name">Company Name</label>
+            {/* <label htmlFor="name">Company Name</label> */}
             <input
               name="name"
               type="text"
@@ -58,7 +63,7 @@ const CompanyLoginForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="email">Admin Email</label>
+            {/* <label htmlFor="email">Admin Email</label> */}
             <input
               name="admin_email"
               type="text"
@@ -68,7 +73,7 @@ const CompanyLoginForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="password">Password</label>
+            {/* <label htmlFor="password">Password</label> */}
             <input
               name="password"
               type="password"
@@ -76,15 +81,20 @@ const CompanyLoginForm = () => {
               value={password}
               onChange={updatePassword}
             />
-            <button type="submit">Login</button>
+            <div className='c-button-div'>
+              <button className='c-login-button' type="submit">SIGN IN</button>
+              {/* <div className='c-demo-div'> */}
+              < CompanyDemoButton />
+              {/* </div> */}
+            </div>
+
           </div>
         </form>
-        <div className='demo'>
-          < CompanyDemoButton />
-        </div>
       </div>
-
-    </>
+      <div className='cycle-container'>
+        <img src={cycle} alt="cycle" />
+      </div>
+    </ div>
   );
 };
 

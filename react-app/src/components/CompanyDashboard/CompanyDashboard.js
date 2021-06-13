@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getProducts, deleteProduct } from '../../store/products';
-import ProductPage from "../ProductPage/index"
 
 
+import tags from '../../images/tag-background.svg';
 import downArrow from "../../images/down-arrow.svg";
 import editPencil from "../../images/edit-pencil.svg";
 import './companydashboard.css';
@@ -19,7 +19,7 @@ const CompanyDashboard = () => {
 
     useEffect(() => {
         dispatch(getProducts(company?.id))
-    }, [dispatch, company.id])
+    }, [dispatch])
 
 
     if (!company) {
@@ -35,35 +35,41 @@ const CompanyDashboard = () => {
     return (
         <>
             <div className='company-info-container'>
+                <div className='tag-contain'>
+                    <img src={tags} alt='tags' />
+                </div>
                 <div className='grid'>
                     <div className='col1'>
                         <div className='welcome'>
-                            <h1>{`Welcome ${company.name}!`}</h1>
+                            <h1>{`Welcome ${company?.name}!`}</h1>
                         </div>
                         <div className='carbon-footprint'>
                             <h2>Your Carbon Footprint:</h2>
-                            {company.c_footprint_mt !== 0 ? company.c_footprint_mt :
-                            <p>Please add 100% of your products to calculate your<br></br>
+                            {company?.c_footprint_mt !== 0 ? company?.c_footprint_mt :
+                            <p>Please add 100% of your products to calculate your
                             overall Carbon Footprint</p>}
                         </div>
                         <div className='transparency-score'>
                             <h2>Your Transparency Score:</h2>
-                            <p>{`${company.transparency_score}/10`}</p>
+                            <p>{`${company?.transparency_score}/10`}</p>
                         </div>
                     </div> {/* end col1 */}
                     <div className='col2'>
                         <div className='carbon-goal'>
-                            <h2>Your Carbon Goal:</h2>
+                            <h2>Your Carbon Goal</h2>
                         </div>
                         <div className='carbon-goal_container'>
-                            <h2>{company.carbon_goal}<br></br>tCO<span>&#8322;</span>e</h2>
-                            <p>{`Due: ${company.carbon_goal_date}`}</p>
+                            <h2>{company?.carbon_goal}<br></br>tCO<span>&#8322;</span>e</h2>
+                            {/* <p>{`Due: ${company?.carbon_goal_date}`}</p> */}
                         </div>
                     </div> {/* end col2 */}
                     <div className='col3'>
                         <div className='add-product'>
                             <p>Add more products to increase your<br></br>Transparency Score.</p>
-                            <img className='arrow' src={downArrow} />
+                            <div className='arrow-img bounce3'>
+                                <img className='arrow' src={downArrow} alt='arrow'/>
+                            </div>
+
                         </div>
                         <div className='add-container'>
                             <div className='add'>
@@ -76,16 +82,19 @@ const CompanyDashboard = () => {
                     </div> {/* end col3 */}
                 </div> {/* end grid */}
 
-                <div className='products-container'>
-                    <div className='your-products-header'>YOUR PRODUCTS</div>
-                    <div className='product-list'>
+                <div className='c-products-container'>
+                    <div className='flex-prods'>
+                        <div className='your-products-header'>
+                            <h3>YOUR PRODUCTS</h3>
+                        </div>
+                        <div className='product-list'>
 
                         {products?.map((product) => (
-                            <div className='single-product'>
-                                <div className='product-photo'>
+                            <div key={product.id} className='single-product'>
+                                <div className='c-product-photo'>
                                     <img src={product.photo_url} alt="product image"/>
                                 </div>
-                                <div className='product-table'>
+                                <div className='c-product-table'>
                                     <table>
                                         <thead>
                                             <tr>
@@ -109,12 +118,9 @@ const CompanyDashboard = () => {
 
                         ))}
 
+                        </div>
                     </div>
-
-
-
                 </div>
-
             </div>
 
         </>
