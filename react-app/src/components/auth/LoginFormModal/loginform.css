@@ -55,6 +55,7 @@ button.r-login-link:hover {
 
 .login-form input:hover {
     background-color: #efe8e120;
+
 }
 
 .login-form input[placeholder] {
@@ -86,6 +87,7 @@ button.r-login-link:hover {
 
 .user-login-button:hover {
     box-shadow: 0px 0px 10px #35353540 inset;
+    transform: translateY(2px);
 
 }
 
