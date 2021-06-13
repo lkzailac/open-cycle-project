@@ -56,17 +56,20 @@ const CompanyDashboard = () => {
                     </div> {/* end col1 */}
                     <div className='col2'>
                         <div className='carbon-goal'>
-                            <h2>Your Carbon Goal:</h2>
+                            <h2>Your Carbon Goal</h2>
                         </div>
                         <div className='carbon-goal_container'>
                             <h2>{company?.carbon_goal}<br></br>tCO<span>&#8322;</span>e</h2>
-                            <p>{`Due: ${company?.carbon_goal_date}`}</p>
+                            {/* <p>{`Due: ${company?.carbon_goal_date}`}</p> */}
                         </div>
                     </div> {/* end col2 */}
                     <div className='col3'>
                         <div className='add-product'>
                             <p>Add more products to increase your<br></br>Transparency Score.</p>
-                            <img className='arrow' src={downArrow} />
+                            <div className='arrow-img bounce3'>
+                                <img className='arrow' src={downArrow} alt='arrow'/>
+                            </div>
+
                         </div>
                         <div className='add-container'>
                             <div className='add'>

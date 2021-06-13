@@ -21,7 +21,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 @cauth_routes.route('/')
 def authenticate():
-    print("hitting company authhhhhhhhhhh")
+    print("request URL---------", request.url)
     """
     Authenticates a company.
     """
@@ -32,7 +32,7 @@ def authenticate():
 
 @cauth_routes.route('/company')
 def authenticateCompany():
-    print("hitting company authhhhhhhhhhh")
+    print("/company request URL---------", request.url)
     """
     Authenticates a company.
     """
