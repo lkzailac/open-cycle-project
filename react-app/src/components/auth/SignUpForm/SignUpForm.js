@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 
+import downArrow from "../../../images/down-arrow.svg";
+import checkout from "../../../images/checkout.svg";
+import question from "../../../images/question.svg";
 import './signup.css';
 
 const SignUpForm = () => {
@@ -37,15 +40,27 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to={`/consumer/${user.id}`} />;
   }
 
   return (
-    <div className='container'>
-      <form onSubmit={onSignUp}>
+    <div className='u-container'>
+      <div className='u-center-contain'>
+      <div className="u-share-container">
+        <div className='u-share-p'>
+          <p>Search carbon outputs <br></br>before you buy.</p>
+        </div>
+        <div className='u-arrow-img bounce3'>
+          <img class='arrow'src={downArrow} alt='arrow'/>
+        </div>
+      </div>
+      <form id='u-form' onSubmit={onSignUp}>
         <div>
-          <label>User Name</label>
+          <div className='u-label-container'>
+            <label>User Name</label>
+          </div>
           <input
+            className='u-input'
             type="text"
             name="username"
             onChange={updateUsername}
@@ -53,8 +68,11 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div>
-          <label>Email</label>
+          <div className='u-label-container'>
+            <label>Email</label>
+           </div>
           <input
+            className='u-input'
             type="text"
             name="email"
             onChange={updateEmail}
@@ -62,8 +80,11 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div>
-          <label>Password</label>
+          <div className='u-label-container'>
+            <label>Password</label>
+          </div>
           <input
+            className='u-input'
             type="password"
             name="password"
             onChange={updatePassword}
@@ -71,8 +92,11 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div>
-          <label>Repeat Password</label>
+          <div className='u-label-container'>
+            <label>Repeat Password</label>
+          </div>
           <input
+            className='u-input'
             type="password"
             name="repeat_password"
             onChange={updateRepeatPassword}
@@ -80,8 +104,14 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
-        <button type="submit">Sign Up</button>
+        <p className='u-full-width'>
+          <button className='u-join-button' type="submit">JOIN NOW</button>
+        </p>
       </form>
+      <div className='u-comp-container'>
+          <img src={checkout} alt='checkout' />
+      </div>
+      </div>
     </div>
 
   );
