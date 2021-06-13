@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
 import UserLoginModal from '../auth/LoginFormModal';
+import CompanyLoginModal from '../auth/CompanyLoginModal'
 // import { NavLink } from 'react-router-dom';
 // import LogoutButton from './auth/LogoutButton';
 import background_img from "../../images/background.svg"
@@ -42,11 +43,12 @@ const Welcome = () => {
                             </div>
                         </div>
                         <div className='login-container'>
-                            <div className='login'>
+                            <CompanyLoginModal />
+                            {/* <div className='login'>
                                 <Link className='login-link' to='/company/login'>
                                     SIGN IN
                                 </Link>
-                            </div>
+                            </div> */}
                         </div>
                     </div> {/* end left-container */}
 

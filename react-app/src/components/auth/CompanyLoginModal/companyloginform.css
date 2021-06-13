@@ -1,0 +1,26 @@
+/****** SIGN IN BUTTON ON WELCOME PG ********/
+button.l-login-link {
+    outline: none;
+    border: none;
+    color: white;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: .8em;
+    text-align: center;
+    width: 120px;
+    height: 35px;
+    background-color: #ff9700;
+}
+
+button.l-login-link:hover {
+    box-shadow: 0px 0px 10px #35353540 inset;
+    box-shadow: 0px 0px 10px #ffffff40;
+}
+
+
+.container {
+
+    display: block;
+    padding-top: 10em;
+}

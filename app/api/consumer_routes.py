@@ -9,14 +9,12 @@ consumer_routes = Blueprint('consumer', __name__)
 
 
 @consumer_routes.route('/')
-@login_required
 def users():
     users = User.query.all()
     return {"users": [user.to_dict() for user in users]}
 
 
 @consumer_routes.route('/<int:id>')
-@login_required
 def get_user_products(id):
 
     all_list = []
