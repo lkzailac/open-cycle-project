@@ -74,22 +74,22 @@ const CompanySignUpForm = () => {
     return <Redirect to={`/company/${company.id}`} />;
   }
 
-  const popUp =''
+  // const popUp =''
 
-  const handleClick = (value) => {
-    setShowHint(true)
-    if (showHint) {
-      if(value === "admin_email") {
-        popUp = (
-          <div className='pop-up'>
-            <p>This is admin email hint</p>
-          </div>
-        )
+  // const handleClick = (value) => {
+  //   setShowHint(true)
+  //   if (showHint) {
+  //     if(value === "admin_email") {
+  //       popUp = (
+  //         <div className='pop-up'>
+  //           <p>This is admin email hint</p>
+  //         </div>
+  //       )
 
-      }
-      return popUp;
-    }
-  }
+  //     }
+  //     return popUp;
+  //   }
+  // }
 
   return (
     <>
@@ -122,9 +122,9 @@ const CompanySignUpForm = () => {
             <div>
               <div className='label-container'>
                 <label>Admin Email</label>
-                <button className='question-button' value='admin_email' onClick={(e) => [handleClick(e.target.value), console.log("button")]}><img className='question' src={question} /></button>
+                {/* <button className='question-button' value='admin_email' onClick={(e) => [handleClick(e.target.value), console.log("button")]}><img className='question' src={question} /></button> */}
                 {/* <button className='question-button' value='admin_email' onClick={(e) => handleClick(e.target.value)}>Button</button> */}
-                {popUp}
+                {/* {popUp} */}
               </div>
               <input
                 type="text"
@@ -236,7 +236,7 @@ const CompanySignUpForm = () => {
           </div>
         </form>
         <div className='comp-container'>
-          <img src={computers} />
+          <img src={computers} alt='computers'/>
         </div>
       </div>
     </>
