@@ -222,12 +222,12 @@ const CompanySignUpForm = () => {
                 <label>Carbon Goal Due Date</label>
               </div>
               <input
-                type="datetime-local"
+                type="date"
                 name="carbon_goal_date"
                 onChange={updateCarbonGoalDate}
                 value={carbon_goal_date}
-                min="2021-06-07T00:00"
-                max="2021-06-14T00:00"
+                // min="2021-06-07T00:00"
+                // max="2021-06-14T00:00"
               ></input>
             </div>
             <p className='full-width'>
