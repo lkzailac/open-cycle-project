@@ -41,3 +41,55 @@
     64%  { transform: scale(1,1)   translateY(0); }
     100% { transform: scale(1,1)   translateY(0); }
 }
+
+.pf-form {
+    width: 1000px;
+    margin-top: 4em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pf-form input {
+    width: 270px;
+    height: 30px;
+}
+
+.pf-form select {
+    width: 270px;
+    height: 38px;
+    border: 2px solid #35353520;
+    border-radius: 3px;
+    color: #353535;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1em;
+}
+
+.pf-label-container {
+    margin-top: 1em;
+}
+
+
+
+button.create-button {
+    border: none;
+    outline: none;
+    background-color: #ff9700;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+    width: 14em;
+    height: 3em;
+    border-right: 2px solid #35353520;
+    border-bottom: 2px solid #35353520;
+
+}
+
+button.create-button:hover {
+    box-shadow: 5px 5px 10px #35353540 inset;
+    transform: translateY(2px);
+    border-bottom: none;
+    border-right: none;
+}

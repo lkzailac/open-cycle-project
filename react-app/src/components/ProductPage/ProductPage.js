@@ -26,12 +26,10 @@ const ProductPage = () => {
     const [editPhoto, setEditPhoto] = useState(false)
     const [product_category, setProductCategory] = useState("")
     const [editCategory , setEditCategory] =useState(false);
-    const [componentSaveed, setComponentSaveed] = useState(new Array(components?.length).fill(false))
-    // const [editcomponentSaveed , setEdit] =useState(false);
+    const [componentChecked, setComponentChecked] = useState(new Array(components?.length).fill(false))
     const [compArray, setCompArray] = useState(null)
     const [editcompArray , setEditCompArray] =useState(false);
     const [useSaveed, setUseSaveed] = useState(new Array(consumer_uses?.length).fill(false))
-    // const [edit , setEdit] =useState(false);
     const [useArray, setUseArray] = useState(null)
     const [editUseArray, setEditUseArray] =useState(false);
     const [manufacturing_process_id, setManufacturing_process_id] = useState(1)
@@ -239,15 +237,15 @@ const ProductPage = () => {
     }
 
 
-    let totalComponents = new Array();
+    let totalComponents = [];
     const updateComponents = (position) => {
-        const updatedSaveedState = componentSaveed.map((item, index) =>
+        const updatedCheckedState = componentChecked.map((item, index) =>
             index === position ? !item : item
         );
-        setComponentSaveed(updatedSaveedState);
+        setComponentChecked(updatedCheckedState);
 
-        let arr = new Array();
-        for (const [index, element] of updatedSaveedState.entries()) {
+        let arr = [];
+        for (const [index, element] of updatedCheckedState.entries()) {
             if (element === true) {
                 arr.push(components[index].id)
             } else {
@@ -393,7 +391,7 @@ const ProductPage = () => {
                             onChange={() => updateComponents(index)}
                             name={component.id}
                             value={component.id}
-                            Saveed={componentSaveed[index]} >
+                            checked={componentChecked[index]} >
 
                             </input>
                         </li>
@@ -526,7 +524,7 @@ const ProductPage = () => {
                                 id={use.id}
                                 name={use.id}
                                 value={use.id}
-                                Saveed={useSaveed[index]} >
+                                checked={useSaveed[index]} >
                                 </input>
                             </li>
                         ))}

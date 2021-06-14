@@ -173,7 +173,7 @@ const ProductForm = () => {
     if (returnable === "yes") {
         returnElements = (
             <>
-            <div>
+            <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Percentage Returned</label>
                 </div>
@@ -185,10 +185,10 @@ const ProductForm = () => {
                     value={product_returned_percent}
                     ></input>
             </div>
-            <div>
-            <div className='pf-label-container'>
-                <label>{`Percentage Recycled by ${company.name}`}</label>
-            </div>
+            <div className='field-contain'>
+                <div className='pf-label-container'>
+                    <label>{`Percentage Recycled by ${company.name}`}</label>
+                </div>
                 <input
                 type="number"
                 min="1" max="100"
@@ -230,7 +230,7 @@ const ProductForm = () => {
             <p>error</p>
           ))} */}
 
-            <div>
+            <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Product Name</label>
               </div>
@@ -242,7 +242,7 @@ const ProductForm = () => {
                 required={true}
               ></input>
             </div>
-            <div>
+            <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Image Url</label>
                 {/* <button className='question-button' value='admin_email' onClick={(e) => [handleClick(e.target.value), console.log("button")]}><img className='question' src={question} /></button> */}
@@ -255,7 +255,7 @@ const ProductForm = () => {
                 value={photo_url}
               ></input>
             </div>
-            <div>
+            <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Product Category</label>
               </div>
@@ -267,7 +267,7 @@ const ProductForm = () => {
               ></input>
             </div>
 
-            <div>
+            <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Components</label>
                 </div>
@@ -291,7 +291,7 @@ const ProductForm = () => {
                 </ul>
             </div>
 
-            <div>
+            <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Manufacturing Process</label>
               </div>
@@ -301,9 +301,9 @@ const ProductForm = () => {
                   ))}
               </select>
             </div>
-            <div>
+            <div className='field-contain'>
               <div className='pf-label-container'>
-                <label>Product Weight (g)</label>
+                <label>Product Weight (kg)</label>
               </div>
               <input
                 type="text"
@@ -312,9 +312,9 @@ const ProductForm = () => {
                 value={product_weight_g}
               ></input>
             </div>
-            <div>
+            <div className='field-contain'>
               <div className='pf-label-container'>
-                <label>Package Weight (g)</label>
+                <label>Package Weight (kg)</label>
               </div>
               <input
                 type="text"
@@ -323,7 +323,7 @@ const ProductForm = () => {
                 value={package_weight_g}
               ></input>
             </div>
-            <div>
+            <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Factory</label>
               </div>
@@ -333,7 +333,7 @@ const ProductForm = () => {
                   ))}
               </select>
             </div>
-            <div>
+            <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Unit</label>
               </div>
@@ -342,7 +342,7 @@ const ProductForm = () => {
                     <option key="unit2" value="Single">Single</option>
               </select>
             </div>
-            <div>
+            <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Transport Mode</label>
                 </div>
@@ -352,7 +352,7 @@ const ProductForm = () => {
                     ))}
                 </select>
             </div>
-            <div>
+            <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Consumer Uses</label>
                 </div>
@@ -374,7 +374,7 @@ const ProductForm = () => {
                 ))}
                 </ul>
             </div>
-            <div>
+            <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Number of Use Cycles</label>
                 </div>
@@ -387,7 +387,7 @@ const ProductForm = () => {
                         <option key="cycle6" value={500}>500</option>
                 </select>
             </div>
-            <div>
+            <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Returnable at End of Life?</label>
                 </div>

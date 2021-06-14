@@ -15,7 +15,7 @@ def seed_companies():
         products_sold=2,
         carbon_goal= 0,
         carbon_goal_date= '2022-06-03 16:08:33.882507',
-        transparency_score= 0,
+        transparency_score= 7,
         c_footprint_mt= 0,
         signup_date = '2021-06-03 16:08:33.882507',
 
@@ -31,7 +31,7 @@ def seed_companies():
         products_sold=100,
         carbon_goal= 0,
         carbon_goal_date= '2023-06-03 16:08:33.882507',
-        transparency_score= 0,
+        transparency_score= 3,
         c_footprint_mt= 0,
         signup_date = '2021-06-03 16:08:33.882507',
 
@@ -47,7 +47,7 @@ def seed_companies():
         products_sold=200,
         carbon_goal= 0,
         carbon_goal_date= '2025-06-03 16:08:33.882507',
-        transparency_score= 0,
+        transparency_score= 1,
         c_footprint_mt= 0,
         signup_date = '2021-06-03 16:08:33.882507',
 
@@ -63,7 +63,7 @@ def seed_companies():
         products_sold=200,
         carbon_goal= 0,
         carbon_goal_date= '2025-06-03 16:08:33.882507',
-        transparency_score= 0,
+        transparency_score= 2,
         c_footprint_mt= 0,
         signup_date = '2021-06-03 16:08:33.882507',
 
