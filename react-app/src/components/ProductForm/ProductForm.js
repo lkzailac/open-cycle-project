@@ -174,7 +174,7 @@ const ProductForm = () => {
         returnElements = (
             <>
             <div>
-                <div className='label-container'>
+                <div className='pf-label-container'>
                     <label>Percentage Returned</label>
                 </div>
                     <input
@@ -186,7 +186,7 @@ const ProductForm = () => {
                     ></input>
             </div>
             <div>
-            <div className='label-container'>
+            <div className='pf-label-container'>
                 <label>{`Percentage Recycled by ${company.name}`}</label>
             </div>
                 <input
@@ -215,14 +215,14 @@ const ProductForm = () => {
 
 
     return (
-        <>
+        <div className='pf-outer'>
       <div className='product-form-container'>
-        <div className="blurb-container">
-          <div className='blurb-p'>
+        <div className="pf-blurb-container">
+          <div className='pf-blurb-p'>
             <p>Share your product details <br></br>and spread transparency.</p>
           </div>
-          <div className='arrow'>
-            <img src={downArrow} />
+          <div className='pf-arrow bounce3'>
+            <img alt='arrow' src={downArrow} />
           </div>
         </div>
         <form onSubmit={onSubmit}>
@@ -231,7 +231,7 @@ const ProductForm = () => {
           ))} */}
 
             <div>
-              <div className='label-container'>
+              <div className='pf-label-container'>
                 <label>Product Name</label>
               </div>
               <input
@@ -243,7 +243,7 @@ const ProductForm = () => {
               ></input>
             </div>
             <div>
-              <div className='label-container'>
+              <div className='pf-label-container'>
                 <label>Image Url</label>
                 {/* <button className='question-button' value='admin_email' onClick={(e) => [handleClick(e.target.value), console.log("button")]}><img className='question' src={question} /></button> */}
                 {/* <button className='question-button' value='admin_email' onClick={(e) => handleClick(e.target.value)}>Button</button> */}
@@ -256,7 +256,7 @@ const ProductForm = () => {
               ></input>
             </div>
             <div>
-              <div className='label-container'>
+              <div className='pf-label-container'>
                 <label>Product Category</label>
               </div>
               <input
@@ -268,13 +268,13 @@ const ProductForm = () => {
             </div>
 
             <div>
-                <div className='label-container'>
+                <div className='pf-label-container'>
                     <label>Components</label>
                 </div>
                 <ul className= 'components-list'>
                 {components.map((component, index) => (
                     <li key={index}>
-                        <div className='label-container'>
+                        <div className='pf-label-container'>
                             <label htmlFor={component.id}>{component.name}</label>
                         </div>
                         <input
@@ -292,7 +292,7 @@ const ProductForm = () => {
             </div>
 
             <div>
-              <div className='label-container'>
+              <div className='pf-label-container'>
                 <label>Manufacturing Process</label>
               </div>
               <select value={manufacturing_process_id} onChange={updateManufProcess}>
@@ -302,7 +302,7 @@ const ProductForm = () => {
               </select>
             </div>
             <div>
-              <div className='label-container'>
+              <div className='pf-label-container'>
                 <label>Product Weight (g)</label>
               </div>
               <input
@@ -313,7 +313,7 @@ const ProductForm = () => {
               ></input>
             </div>
             <div>
-              <div className='label-container'>
+              <div className='pf-label-container'>
                 <label>Package Weight (g)</label>
               </div>
               <input
@@ -324,7 +324,7 @@ const ProductForm = () => {
               ></input>
             </div>
             <div>
-              <div className='label-container'>
+              <div className='pf-label-container'>
                 <label>Factory</label>
               </div>
               <select value={factory_id} onChange={updateFactId}>
@@ -334,7 +334,7 @@ const ProductForm = () => {
               </select>
             </div>
             <div>
-              <div className='label-container'>
+              <div className='pf-label-container'>
                 <label>Unit</label>
               </div>
               <select value={unit} onChange={updateUnit}>
@@ -343,7 +343,7 @@ const ProductForm = () => {
               </select>
             </div>
             <div>
-                <div className='label-container'>
+                <div className='pf-label-container'>
                     <label>Transport Mode</label>
                 </div>
                 <select value={transport_mode_id} onChange={updateTransMode}>
@@ -353,13 +353,13 @@ const ProductForm = () => {
                 </select>
             </div>
             <div>
-                <div className='label-container'>
+                <div className='pf-label-container'>
                     <label>Consumer Uses</label>
                 </div>
                 <ul className= 'uses-list'>
                 {consumer_uses.map((use, index) => (
                     <li key={index}>
-                        <div className='label-container'>
+                        <div className='pf-label-container'>
                             <label htmlFor={use.id}>{use.name}</label>
                         </div>
                         <input
@@ -375,7 +375,7 @@ const ProductForm = () => {
                 </ul>
             </div>
             <div>
-                <div className='label-container'>
+                <div className='pf-label-container'>
                     <label>Number of Use Cycles</label>
                 </div>
                 <select value={number_of_cycles} onChange={updateCycles}>
@@ -388,7 +388,7 @@ const ProductForm = () => {
                 </select>
             </div>
             <div>
-                <div className='label-container'>
+                <div className='pf-label-container'>
                     <label>Returnable at End of Life?</label>
                 </div>
                 <input type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
@@ -405,7 +405,7 @@ const ProductForm = () => {
         </form>
 
       </div>
-    </>
+    </div >
     )
 }
 

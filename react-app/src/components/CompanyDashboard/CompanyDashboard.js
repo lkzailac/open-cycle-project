@@ -73,7 +73,7 @@ const CompanyDashboard = () => {
                         </div>
                         <div className='add-container'>
                             <div className='add'>
-                                <Link className='add-link' to='/company/product'>
+                                <Link className='add-link' to='/product'>
                                     ADD PRODUCT
                                 </Link>
                             </div>

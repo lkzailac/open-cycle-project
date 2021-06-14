@@ -51,7 +51,7 @@ function CompanyApp() {
         <Route path="/company/:id" exact={true}>
           <CompanyDashboard />
         </Route>
-        <Route path="/company/product" exact={true}>
+        <Route path="/product" exact={true}>
           <ProductForm />
         </Route>
         <Route path="/company/product/:id" exact={true}>
