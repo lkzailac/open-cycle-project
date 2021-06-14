@@ -5,7 +5,7 @@ def seed_components():
     comp1 = Component(
         name = "sneaker outsole",
         material = "eva",
-        weight_g = 4.1,
+        weight_g = .5,
         total_used = 8,
         waste_recycled = False,
         material_recycled_percent = 0
@@ -14,7 +14,7 @@ def seed_components():
     comp2 = Component(
         name = "Pu lining",
         material = "pu",
-        weight_g = 1.1,
+        weight_g = .2,
         total_used = 8,
         waste_recycled = True,
         material_recycled_percent = 20
@@ -23,7 +23,7 @@ def seed_components():
     comp3 = Component(
         name = "Leather Upper",
         material = "cow leather",
-        weight_g = 3.5,
+        weight_g = .3,
         total_used = 10,
         waste_recycled = True,
         material_recycled_percent = 30
@@ -32,7 +32,7 @@ def seed_components():
     comp4 = Component(
         name = "Laces",
         material = "cotton",
-        weight_g = 1.5,
+        weight_g = .05,
         total_used = 18,
         waste_recycled = False,
         material_recycled_percent = 0
@@ -41,7 +41,7 @@ def seed_components():
     comp5 = Component(
         name = "Cotton",
         material = "cotton",
-        weight_g = 3.5,
+        weight_g = .2,
         total_used = 6,
         waste_recycled = True,
         material_recycled_percent = 40
@@ -50,7 +50,7 @@ def seed_components():
     comp6 = Component(
         name = "Rivet",
         material = "aluminium",
-        weight_g = .5,
+        weight_g = .002,
         total_used = 20,
         waste_recycled = True,
         material_recycled_percent = 80
@@ -59,7 +59,7 @@ def seed_components():
     comp7 = Component(
         name = "Denim",
         material = "denim",
-        weight_g = 7.5,
+        weight_g = .5,
         total_used = 25,
         waste_recycled = True,
         material_recycled_percent = 20
@@ -68,7 +68,7 @@ def seed_components():
     comp8 = Component(
         name = "Poly knit",
         material = "polyester",
-        weight_g = 3.6,
+        weight_g = .2,
         total_used = 37,
         waste_recycled = False,
         material_recycled_percent = 0
@@ -77,7 +77,7 @@ def seed_components():
     comp9 = Component(
         name = "Poly weave",
         material = "polyester",
-        weight_g = 3.6,
+        weight_g = .2,
         total_used = 37,
         waste_recycled = False,
         material_recycled_percent = 0
@@ -86,7 +86,7 @@ def seed_components():
     comp10 = Component(
         name = "Cast Iron body",
         material = "Iron conglomerate",
-        weight_g = 20,
+        weight_g = 3,
         total_used = 5,
         waste_recycled = True,
         material_recycled_percent = 70
@@ -95,7 +95,7 @@ def seed_components():
     comp11 = Component(
         name = "handle",
         material = "brass",
-        weight_g = 10,
+        weight_g = .3,
         total_used = 5,
         waste_recycled = True,
         material_recycled_percent = 33
@@ -104,7 +104,7 @@ def seed_components():
     comp12 = Component(
         name = "body",
         material = "ceramic",
-        weight_g = 8.5,
+        weight_g = 1,
         total_used = 12,
         waste_recycled = False,
         material_recycled_percent = 0

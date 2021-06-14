@@ -7,16 +7,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623192875/openCycleProject/air-jordan_c8wccz.jpg",
         product_category = "Sneaker",
         manufacturing_process_id = 2,
-        product_weight_g = 50.5,
+        product_weight_g = 1.2,
         unit = "pair",
         factory_id = 3,
-        package_weight_g = 72.5,
+        package_weight_g = 2.3,
         transport_mode_id = 1,
         number_of_cycles = 2,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 10.5,
     )
 
     p2 = Product(
@@ -25,16 +25,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623193262/openCycleProject/air-zoom_knryst.jpg",
         product_category = "Sneaker",
         manufacturing_process_id = 2,
-        product_weight_g = 40.5,
+        product_weight_g = 2.2,
         unit = "pair",
         factory_id = 1,
-        package_weight_g = 62.5,
+        package_weight_g = 3.2,
         transport_mode_id = 2,
         number_of_cycles = 3,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 9.6,
     )
 
     p3 = Product(
@@ -43,16 +43,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623193398/openCycleProject/blazer-low-77-vintage-mens-shoe-kw53J0_hpytzp.jpg",
         product_category = "Sneaker",
         manufacturing_process_id = 2,
-        product_weight_g = 47.5,
+        product_weight_g = 1.7,
         unit = "pair",
         factory_id = 2,
-        package_weight_g = 82.5,
+        package_weight_g = 2,
         transport_mode_id = 2,
         number_of_cycles = 3,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 8.3,
     )
 
     p4 = Product(
@@ -61,16 +61,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623193398/openCycleProject/waffle-racer-crater-womens-shoe-5cbMJ0_hv1imh.jpg",
         product_category = "Sneaker",
         manufacturing_process_id = 2,
-        product_weight_g = 37.5,
+        product_weight_g = 1.7,
         unit = "pair",
         factory_id = 2,
-        package_weight_g = 42.5,
+        package_weight_g = 2,
         transport_mode_id = 2,
         number_of_cycles = 3,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 10.1,
     )
 
     p5 = Product(
@@ -79,16 +79,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623193608/openCycleProject/original_nt4zmg.jpg",
         product_category = "Dress",
         manufacturing_process_id = 1,
-        product_weight_g = 7.5,
+        product_weight_g = 0.8,
         unit = "one",
         factory_id = 4,
-        package_weight_g = 12.5,
+        package_weight_g = 1.5,
         transport_mode_id = 3,
         number_of_cycles = 50,
         returnable = True,
         product_returned_percent = 5,
         product_recycled_percent = 40,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 12,
     )
 
     p6 = Product(
@@ -97,16 +97,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623193843/openCycleProject/original_1_jfhjye.jpg",
         product_category = "Denim",
         manufacturing_process_id = 1,
-        product_weight_g = 12.5,
+        product_weight_g = .8,
         unit = "one",
         factory_id = 4,
-        package_weight_g = 15.5,
+        package_weight_g = 1.5,
         transport_mode_id = 3,
         number_of_cycles = 100,
         returnable = True,
         product_returned_percent = 5,
         product_recycled_percent = 40,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 17,
     )
 
     p7 = Product(
@@ -115,16 +115,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623195710/openCycleProject/mako_shorts_yovgp2.jpg",
         product_category = "Men's Shorts",
         manufacturing_process_id = 1,
-        product_weight_g = 7.5,
+        product_weight_g = .8,
         unit = "one",
         factory_id = 4,
-        package_weight_g = 12.5,
+        package_weight_g = 1.5,
         transport_mode_id = 3,
         number_of_cycles = 120,
         returnable = True,
         product_returned_percent = 20,
         product_recycled_percent = 20,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 7.2,
     )
 
     p8 = Product(
@@ -133,16 +133,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623195710/openCycleProject/commuter_shirt_xhoctu.jpg",
         product_category = "Men's Dress Shirt",
         manufacturing_process_id = 1,
-        product_weight_g = 8.5,
+        product_weight_g = .8,
         unit = "one",
         factory_id = 4,
-        package_weight_g = 13.5,
+        package_weight_g = 1.5,
         transport_mode_id = 3,
         number_of_cycles = 80,
         returnable = True,
         product_returned_percent = 10,
         product_recycled_percent = 14,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 4.5,
     )
 
     p9 = Product(
@@ -151,16 +151,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623196146/openCycleProject/sara_pfonwq.webp",
         product_category = "Dress",
         manufacturing_process_id = 1,
-        product_weight_g = 10.5,
+        product_weight_g = .8,
         unit = "one",
         factory_id = 5,
-        package_weight_g = 13.5,
+        package_weight_g = 1.5,
         transport_mode_id = 2,
         number_of_cycles = 200,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 6.6,
     )
 
     p10 = Product(
@@ -169,16 +169,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623196365/openCycleProject/washed_t_bqznp0.webp",
         product_category = "T-shirt",
         manufacturing_process_id = 1,
-        product_weight_g = 8.2,
+        product_weight_g = 0.5,
         unit = "one",
         factory_id = 5,
-        package_weight_g = 17.5,
+        package_weight_g = 1,
         transport_mode_id = 2,
         number_of_cycles = 350,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 8.0,
     )
 
     p11 = Product(
@@ -187,16 +187,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623196687/openCycleProject/scarf_vzpcwe.webp",
         product_category = "T-shirt",
         manufacturing_process_id = 1,
-        product_weight_g = 10.6,
+        product_weight_g = 1.6,
         unit = "one",
         factory_id = 5,
-        package_weight_g = 18.7,
+        package_weight_g = 2,
         transport_mode_id = 2,
         number_of_cycles = 8,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 13,
     )
 
     p12 = Product(
@@ -205,16 +205,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623196946/openCycleProject/staub-5.5-qt-graphite-grey-cocotte_z6vlwp.jpg",
         product_category = "cookware",
         manufacturing_process_id = 3,
-        product_weight_g = 40.6,
+        product_weight_g = 5,
         unit = "one",
         factory_id = 3,
-        package_weight_g = 50.7,
+        package_weight_g = 5.6,
         transport_mode_id = 2,
         number_of_cycles = 500,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 14,
     )
 
     p13 = Product(
@@ -223,16 +223,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623196946/openCycleProject/staub1_trclm2.jpg",
         product_category = "cookware",
         manufacturing_process_id = 3,
-        product_weight_g = 30.6,
+        product_weight_g = 2,
         unit = "one",
         factory_id = 3,
-        package_weight_g = 50.7,
+        package_weight_g = 2.5,
         transport_mode_id = 2,
         number_of_cycles = 500,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 17.7,
     )
 
     p14 = Product(
@@ -241,16 +241,16 @@ def seed_products():
         photo_url = "https://res.cloudinary.com/dbu0tmeuc/image/upload/v1623196947/openCycleProject/staub2_f9hcpv.jpg",
         product_category = "cookware",
         manufacturing_process_id = 3,
-        product_weight_g = 30.6,
+        product_weight_g = 1,
         unit = "one",
         factory_id = 3,
-        package_weight_g = 50.7,
+        package_weight_g = 2,
         transport_mode_id = 2,
         number_of_cycles = 500,
         returnable = False,
         product_returned_percent = 0,
         product_recycled_percent = 0,
-        carbon_footprint_kg = 0,
+        carbon_footprint_kg = 10.2,
     )
 
     db.session.add(p1)
