@@ -202,7 +202,7 @@ const ProductForm = () => {
     } else if (returnable === "no") {
         returnElements = (
             <>
-                <p>Consider accepting your products back at the end of their life <br></br>in order to decrease their carbon footprint. </p>
+                <p>Consider accepting your product back at the end of its life <br></br>in order to decrease its carbon footprint. </p>
             </>
         )
     } else {
@@ -274,7 +274,7 @@ const ProductForm = () => {
                 <ul className= 'components-list'>
                 {components.map((component, index) => (
                     <li key={index}>
-                        <div className='pf-label-container'>
+                        <div className='ck-label-container'>
                             <label htmlFor={component.id}>{component.name}</label>
                         </div>
                         <input
@@ -359,7 +359,7 @@ const ProductForm = () => {
                 <ul className= 'uses-list'>
                 {consumer_uses.map((use, index) => (
                     <li key={index}>
-                        <div className='pf-label-container'>
+                        <div className='ck-label-container'>
                             <label htmlFor={use.id}>{use.name}</label>
                         </div>
                         <input
@@ -379,24 +379,27 @@ const ProductForm = () => {
                     <label>Number of Use Cycles</label>
                 </div>
                 <select value={number_of_cycles} onChange={updateCycles}>
-                        <option key="cycle1" value={5}>5</option>
-                        <option key="cycle2" value={25}>25</option>
-                        <option key="cycle3" value={50}>50</option>
-                        <option key="cycle4" value={100}>100</option>
-                        <option key="cycle5" value={200}>200</option>
-                        <option key="cycle6" value={500}>500</option>
+                        <option  key="cycle1" value={5}>5</option>
+                        <option  key="cycle2" value={25}>25</option>
+                        <option  key="cycle3" value={50}>50</option>
+                        <option  key="cycle4" value={100}>100</option>
+                        <option  key="cycle5" value={200}>200</option>
+                        <option  key="cycle6" value={500}>500</option>
                 </select>
             </div>
             <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Returnable at End of Life?</label>
                 </div>
-                <input type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
-                <label>Yes</label>
-                <input type="radio" name="returnable" value="no" onChange={updateReturn}></input>
-                <label>Not Yet</label>
+                <input className='pf-radio' type="radio" name="returnable" value="yes" onChange={updateReturn}></input>
+                <label className='pf-radio-label'>Yes</label>
+                <input className='pf-radio' type="radio" name="returnable" value="no" onChange={updateReturn}></input>
+                <label className='pf-radio-label'>Not Yet</label>
             </div>
-            { returnElements }
+            <div className='pf-return-elements'>
+                { returnElements }
+            </div>
+
 
             <p className='full-width'>
               <button className='create-button' type="submit">SUBMIT PRODUCT</button>
