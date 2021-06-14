@@ -19,7 +19,7 @@ function App() {
         <Route path="/" exact={true} >
           <Welcome />
         </Route>
-        <Route path='/company/'>
+        <Route path='/company'>
           <CompanyApp />
         </Route>
         <Route path='/consumer/'>

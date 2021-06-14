@@ -225,7 +225,7 @@ const ProductForm = () => {
             <img alt='arrow' src={downArrow} />
           </div>
         </div>
-        <form onSubmit={onSubmit}>
+        <form className='pf-form'onSubmit={onSubmit}>
           {/* {errors.map((error) => (
             <p>error</p>
           ))} */}
