@@ -665,12 +665,12 @@ const ProductPage = () => {
 
                         </tr>
                         <tr>
-                            <th>Product Weight (g)</th>
+                            <th>Product Weight (kg)</th>
                             <td>{editProdWeight ? [editor] : currentProd?.product_weight_g}</td>
                             <td><button className='edit-button' onClick={() => setEditProdWeight(!editProdWeight)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
                         </tr>
                         <tr>
-                            <th>Package Weight (g)</th>
+                            <th>Package Weight (kg)</th>
                             <td>{editPackWeight ? [editor] : currentProd?.package_weight_g}</td>
                             <td><button className='edit-button' onClick={() => setEditPackWeight(!editPackWeight)}><img className='edit-pencil' src={editPencil} alt="pencil"/></button></td>
 

@@ -41,7 +41,7 @@ const NavBar = (props) => {
 
       </div>
       <ul>
-        <li className='right-pad'>
+        <li className='right-pad hidden'>
           { company ?
           <NavLink to={`/company/${company.id}`} exact={true} activeClassName="active" className='nav-li r-pad'>
             Company Dashboard
@@ -52,12 +52,12 @@ const NavBar = (props) => {
           }
 
         </li>
-        <li className='right-pad'>
+        <li className='right-pad hidden'>
           <NavLink to="/consumers" exact={true} activeClassName="active" className='nav-li r-pad'>
             Consumers
           </NavLink>
         </li>
-        <li>
+        <li className='hidden'>
           <NavLink to="/ocp" exact={true} activeClassName="active" className='nav-li'>
             Why OCP
           </NavLink>

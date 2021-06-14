@@ -66,8 +66,8 @@ const CompanyDashboard = () => {
                     <div className='col3'>
                         <div className='add-product'>
                             <p>Add more products to increase your<br></br>Transparency Score.</p>
-                            <div className='arrow-img bounce3'>
-                                <img className='arrow' src={downArrow} alt='arrow'/>
+                            <div className='cm-arrow-img bounce3'>
+                                <img className='cm-arrow' src={downArrow} alt='arrow'/>
                             </div>
 
                         </div>
