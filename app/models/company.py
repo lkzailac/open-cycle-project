@@ -1,3 +1,4 @@
+
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -19,6 +20,9 @@ class Company(db.Model, UserMixin):
   transparency_score = db.Column(db.Integer)
   c_footprint_mt = db.Column(db.Float)
   signup_date = db.Column(db.DateTime, default=datetime.datetime.now())
+
+  # base_user_id = db.Column(db.Integer, db.ForeignKey("base_users.id"))
+  base_user = db.relationship("BaseUser", backref="company")
 
   products = db.relationship("Product", back_populates='company')
 

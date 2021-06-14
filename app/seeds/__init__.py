@@ -10,6 +10,7 @@ from .components import seed_components, undo_components
 from .products import seed_products, undo_products
 from .component_table import seed_component_table, undo_component_table
 from .use_table import seed_use_table, undo_use_table
+from .base_users import seed_base_users, undo_base_users
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -20,6 +21,7 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     seed_companies()
+    seed_base_users()
     seed_country_grids()
     seed_manufacturing_processes()
     seed_factories()
@@ -34,6 +36,7 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_base_users()
     undo_users()
     undo_companies()
     undo_country_grids()

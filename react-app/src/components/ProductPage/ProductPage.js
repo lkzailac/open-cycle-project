@@ -27,7 +27,7 @@ const ProductPage = () => {
     const [product_category, setProductCategory] = useState("")
     const [editCategory , setEditCategory] =useState(false);
     const [componentSaveed, setComponentSaveed] = useState(new Array(components?.length).fill(false))
-    // const [editcomponentSaveed , setEdit] =useState(false);
+    // const [editcomponentChecked , setEdit] =useState(false);
     const [compArray, setCompArray] = useState(null)
     const [editcompArray , setEditCompArray] =useState(false);
     const [useSaveed, setUseSaveed] = useState(new Array(consumer_uses?.length).fill(false))

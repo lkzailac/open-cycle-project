@@ -25,7 +25,6 @@ def authenticate():
     """
     Authenticates a company.
     """
-    print("current userrrrrr", dir(current_user ))
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Company Unauthorized']}
@@ -43,7 +42,7 @@ def login():
     if form.validate_on_submit():
         # Add the company to the session, we are logged in!
         company = Company.query.filter(Company.admin_email == form.data['admin_email']).first()
-        login_user(company)
+        login_user(company.base_user[0])
         return company.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -84,7 +83,7 @@ def sign_up():
         )
         db.session.add(company)
         db.session.commit()
-        login_user(company)
+        login_user(company.base_user[0])
         return company.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

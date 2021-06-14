@@ -1,3 +1,4 @@
+
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
@@ -6,7 +7,7 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
 
-
+from .models.base_user import BaseUser
 from .models import db, User, Company
 from .api.consumer_routes import consumer_routes
 from .api.company_routes import company_routes
@@ -20,8 +21,8 @@ app = Flask(__name__)
 
 # Setup login manager
 login = LoginManager(app)
-login.login_view = 'cauth.unauthorized'
-# login.login_view = 'auth.unauthorized'
+# login.login_view = 'cauth.unauthorized'
+login.login_view = 'auth.unauthorized'
 
 # @login.request_loader
 # def load_user_from_req(request):
@@ -43,25 +44,32 @@ login.login_view = 'cauth.unauthorized'
 #         def load_company(id):
 #             return Company.query.get(int(id))
 
-#     @login.user_loader
-#     def load_user(id):
-#         return User.query.get(int(id))
-
-
-@login.user_loader
-def load_company(id):
-    if request.url == "http://localhost:5000/api/cauth/":
-        return Company.query.get(int(id))
-
-@login.user_loader
-def load_user(id):
-    if request.url == "http://localhost:5000/api/auth/":
-        return User.query.get(int(id))
+# @login.user_loader
+# def load_user(id):
+#     return User.query.get(int(id))
 
 
 # @login.user_loader
 # def load_company(id):
-#     return Company.query.get(int(id))
+#     if request.url == "http://localhost:5000/api/cauth/":
+#         return Company.query.get(int(id))
+
+# @login.user_loader
+# def load_user(id):
+#     if request.url == "http://localhost:5000/api/auth/":
+#         return User.query.get(int(id))
+
+
+@login.user_loader
+def load_user(id):
+    # need base user where the id that comes through is not null
+    base = BaseUser.query.get(id)
+    if base.company_id:
+        return Company.query.get(base.company_id)
+    if base.user_id:
+        return User.query.get(base.user_id)
+
+
 
 # @login.user_loader
 # def load_user(id):

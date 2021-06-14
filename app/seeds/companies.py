@@ -2,7 +2,7 @@ from werkzeug.security import generate_password_hash
 from app.models import db, Company
 
 
-# Adds a demo user, you can add other users here if you want
+
 def seed_companies():
 
     demo_company = Company(
@@ -19,6 +19,7 @@ def seed_companies():
         c_footprint_mt= 0,
         signup_date = '2021-06-03 16:08:33.882507',
 
+
     )
     c2 = Company(
         name='Nike',
@@ -32,7 +33,9 @@ def seed_companies():
         carbon_goal_date= '2023-06-03 16:08:33.882507',
         transparency_score= 0,
         c_footprint_mt= 0,
-        signup_date = '2021-06-03 16:08:33.882507')
+        signup_date = '2021-06-03 16:08:33.882507',
+
+    )
 
     c3 = Company(
         name='Zara',
@@ -46,7 +49,9 @@ def seed_companies():
         carbon_goal_date= '2025-06-03 16:08:33.882507',
         transparency_score= 0,
         c_footprint_mt= 0,
-        signup_date = '2021-06-03 16:08:33.882507')
+        signup_date = '2021-06-03 16:08:33.882507',
+
+    )
 
     c4 = Company(
         name='Staub',
@@ -60,7 +65,9 @@ def seed_companies():
         carbon_goal_date= '2025-06-03 16:08:33.882507',
         transparency_score= 0,
         c_footprint_mt= 0,
-        signup_date = '2021-06-03 16:08:33.882507')
+        signup_date = '2021-06-03 16:08:33.882507',
+
+    )
 
 
     db.session.add(demo_company)
