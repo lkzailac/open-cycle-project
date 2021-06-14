@@ -1,15 +1,24 @@
-# Flask React Project
+# Open/ /Cycle/ /Project
 
-This is the backend for the Flask React project.
+ *by [Laura Zailac](https://www.linkedin.com/in/laura-zailac/)*
+___________________________________________________________________
 
-## Getting started
+##Table of Contents
+- What is OCP?
+- Installation
 
-1. Clone this repository (only this branch)
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+## What is OCP?
+Open Cycle Project is an application where companies hoping to both hold themselves accountable for and be more transparent with the carbon footprints of their products can come to register their products and calculate their carbon and transparency scores. They can also set goals for the future of their carbon output. The transparency scores grow as a company registers more products. This can be seen by the consumers and incentivizes companies to dive deep into their product offering and reflect on what they are willing to share. Consumers can come to the site to look up a company or a product and educate themselves on the impact of the goods they purchase. 
 
+Open Cycle Project was inspired by my background in consumer goods, my passion for nature and keeping the planet healthy, as well as many inspiring green initiatives gaining traction now more than ever. Specifically, I have taken inspiration from the brand [All Birds](https://www.allbirds.com/), who has created an open-source [carbon calculator](https://www.allbirds.com/pages/carbon-footprint-calculator). 
+
+
+
+
+
+
+## Installation
 2. Install dependencies
 
       ```bash
