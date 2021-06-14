@@ -3,11 +3,6 @@
  *by [Laura Zailac](https://www.linkedin.com/in/laura-zailac/)*
 ___________________________________________________________________
 
-##Table of Contents
-- What is OCP?
-- Installation
-
-
 ## What is OCP?
 Open Cycle Project is an application where companies hoping to both hold themselves accountable for and be more transparent with the carbon footprints of their products can come to register their products and calculate their carbon and transparency scores. They can also set goals for the future of their carbon output. The transparency scores grow as a company registers more products. This can be seen by the consumers and incentivizes companies to dive deep into their product offering and reflect on what they are willing to share. Consumers can come to the site to look up a company or a product and educate themselves on the impact of the goods they purchase. 
 
