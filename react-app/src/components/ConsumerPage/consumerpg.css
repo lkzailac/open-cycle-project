@@ -1,18 +1,22 @@
 .consumer-page-container {
-    position: relative;
+    padding-top:200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: 100%;
     z-index:0;
+    padding-bottom: 300px;
 
 }
 
 .consumer-page-content {
-    position: absolute;
+    /* position: absolute; */
 
     width: 75%;
     top: 26em;
     /* align-self: center; */
-    margin: 0 10em 0 12em;
+    margin: 0 10em 250px 12em;
     display: block;
 }
 
@@ -177,4 +181,5 @@ h2.prod-name {
     font-size: .8em;
     font-style: italic;
     color: #ff9700;
+    margin-bottom: 250px;
 }

@@ -2,6 +2,11 @@
 .company-info-container {
     display: block;
     padding-top: 0em;
+    padding-bottom: 250px;
+}
+
+.c-products-container {
+    margin-bottom: 250px;
 
 }
 
