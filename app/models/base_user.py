@@ -8,8 +8,8 @@ class BaseUser(db.Model, UserMixin):
   company_id = db.Column(db.Integer, db.ForeignKey("companies.id"))
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
-  company = db.relationship("Company", backref="base_user", uselist=False)
-  user = db.relationship("User", backref="base_user", uselist=False)
+  # company = db.relationship("Company", backref="base_user", uselist=False)
+  # user = db.relationship("User", backref="base_user", uselist=False)
 
 
 

@@ -1,11 +1,10 @@
-from app.models import base_user
-from app.models.base_user import BaseUser
+
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import datetime
 
-class Company(BaseUser, UserMixin):
+class Company(db.Model, UserMixin):
   __tablename__ = 'companies'
 
   id = db.Column(db.Integer, primary_key = True)
@@ -22,6 +21,8 @@ class Company(BaseUser, UserMixin):
   c_footprint_mt = db.Column(db.Float)
   signup_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
+  # base_user_id = db.Column(db.Integer, db.ForeignKey("base_users.id"))
+  base_user = db.relationship("BaseUser", backref="company")
 
   products = db.relationship("Product", back_populates='company')
 

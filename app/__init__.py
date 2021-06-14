@@ -44,33 +44,30 @@ login.login_view = 'auth.unauthorized'
 #         def load_company(id):
 #             return Company.query.get(int(id))
 
-#     @login.user_loader
-#     def load_user(id):
+# @login.user_loader
+# def load_user(id):
+#     return User.query.get(int(id))
+
+
+# @login.user_loader
+# def load_company(id):
+#     if request.url == "http://localhost:5000/api/cauth/":
+#         return Company.query.get(int(id))
+
+# @login.user_loader
+# def load_user(id):
+#     if request.url == "http://localhost:5000/api/auth/":
 #         return User.query.get(int(id))
 
 
 @login.user_loader
-def load_company(id):
-    if request.url == "http://localhost:5000/api/cauth/":
-        return Company.query.get(int(id))
-
-@login.user_loader
 def load_user(id):
-    if request.url == "http://localhost:5000/api/auth/":
-        return User.query.get(int(id))
-
-
-@login.user_loader
-def load_company(id):
     # need base user where the id that comes through is not null
-
     base = BaseUser.query.get(id)
-
     if base.company_id:
-        return base.company
-
+        return Company.query.get(base.company_id)
     if base.user_id:
-        return base.user
+        return User.query.get(base.user_id)
 
 
 
