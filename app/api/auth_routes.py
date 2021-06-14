@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, BaseUser
 from .forms import LoginForm
 from .forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -40,7 +40,7 @@ def login():
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
-        login_user(user.base_user[0])
+        login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -69,8 +69,17 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
-        login_user(user.base_user[0])
-        return user.to_dict()
+
+        # get this user and create base user
+        users = User.query.all()
+        last_user = users[-1]
+        newBase = BaseUser(user_id = last_user.id)
+
+        db.session.add(newBase)
+        db.session.commit()
+
+        login_user(last_user)
+        return last_user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
