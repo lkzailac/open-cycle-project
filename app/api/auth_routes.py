@@ -40,7 +40,7 @@ def login():
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
-        login_user(user)
+        login_user(user.base_user[0])
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -78,7 +78,7 @@ def sign_up():
         db.session.add(newBase)
         db.session.commit()
 
-        login_user(last_user)
+        login_user(last_user.base_user[0])
         return last_user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
