@@ -1,6 +1,6 @@
 /* hidden links to update */
 .hidden {
-    display: none;
+    /* display: none; */
 }
 
 body {
@@ -49,8 +49,8 @@ li{
     margin-top: 1.6em;
     width: 400px;
     height: auto;
-    margin-bottom: 2em;
-    /* margin: 0 auto; */
+    /* margin-bottom: 2em; */
+
 }
 
 .dont-hide {
