@@ -118,3 +118,12 @@ button.r-login-link:hover {
         transform: rotate(359deg);
     }
   }
+
+
+.errors {
+    color: red;
+    font-family: semplicitapro, sans-serif;
+    font-weight: 300;
+    font-size: .8em;
+
+}
