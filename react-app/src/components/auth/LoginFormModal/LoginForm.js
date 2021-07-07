@@ -10,7 +10,7 @@ import './loginform.css'
 
 const LoginForm = () => {
   const [emailErrors, setEmailErrors] = useState([]);
-  const [errors, setErrors] = useState([]);
+  const [passwordErrors, setPasswordErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const user = useSelector(state => state.session.user);
@@ -24,8 +24,12 @@ const LoginForm = () => {
       error.split(":")[0] === "email ").map((error) => {
         return error.split(":")[1];
       }))
-      console.log("split errors========", emailErrors)
-      setErrors(data.errors);
+
+      setPasswordErrors(data.errors.filter((error) =>
+      error.split(":")[0] === "password ").map((error) => {
+        return error.split(":")[1];
+      }))
+
     }
   };
 
@@ -49,14 +53,11 @@ const LoginForm = () => {
         </div>
         <form className='login-form' onSubmit={onLogin}>
           <div>
-            {emailErrors.map((error) => (
-
-
-              <div>{error}</div>
-            ))}
+            {emailErrors ? emailErrors.map((error) => (
+              <div className='errors'>{error}</div>
+            )) : null}
           </div>
           <div>
-            {/* <label htmlFor="email">Email</label> */}
             <input
               name="email"
               type="text"
@@ -66,7 +67,11 @@ const LoginForm = () => {
             />
           </div>
           <div>
-            {/* <label htmlFor="password">Password</label> */}
+            {passwordErrors ? passwordErrors.map((error) => (
+              <div className='errors'>{error}</div>
+            )) : null}
+          </div>
+          <div>
             <input
               name="password"
               type="password"
