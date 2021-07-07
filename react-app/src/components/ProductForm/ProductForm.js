@@ -303,7 +303,7 @@ const ProductForm = () => {
             </div>
             <div className='field-contain'>
               <div className='pf-label-container'>
-                <label>Product Weight (kg)</label>
+                <label>Product Weight (g)</label>
               </div>
               <input
                 type="text"
@@ -314,7 +314,7 @@ const ProductForm = () => {
             </div>
             <div className='field-contain'>
               <div className='pf-label-container'>
-                <label>Package Weight (kg)</label>
+                <label>Package Weight (g)</label>
               </div>
               <input
                 type="text"

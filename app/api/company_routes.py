@@ -84,8 +84,6 @@ def add_product():
     json_data = request.get_json()
 
 
-    # carbon_footprint_kg= json_data["newProduct"]["carbon_footprint_kg"]
-
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -283,18 +281,19 @@ def update_product(id):
 
 
     ####### CALC NEW CARBON FOOTPRINT
-    sumMaterials = 0
-    for comp in prod_update.components:
-        sumMaterials += comp.weight_g
-    manuf = prod_update.manufacturing_process.weight
-    trans = Transport_Mode.query.get(prod_update.transport_mode_id)
-    transport = trans.weight * prod_update.product_weight_g
-    sumuses = 0
-    for use in prod_update.consumer_uses:
-        sumuses += (use.weight * prod_update.product_weight_g)
-    eol= prod_update.product_weight_g - ((prod_update.product_weight_g * (prod_update.product_recycled_percent/100)))
-    newPrint = 10 * (sumMaterials + manuf + transport + sumuses + eol)
+    # sumMaterials = 0
+    # for comp in prod_update.components:
+    #     sumMaterials += comp.weight_g
+    # manuf = prod_update.manufacturing_process.weight
+    # trans = Transport_Mode.query.get(prod_update.transport_mode_id)
+    # transport = trans.weight * prod_update.product_weight_g
+    # sumuses = 0
+    # for use in prod_update.consumer_uses:
+    #     sumuses += (use.weight * prod_update.product_weight_g)
+    # eol= prod_update.product_weight_g - ((prod_update.product_weight_g * (prod_update.product_recycled_percent/100)))
+    # newPrint = 10 * (sumMaterials + manuf + transport + sumuses + eol)
 
+    newPrint = prod_update.calc_footprint()
     prod_update.carbon_footprint_kg = newPrint
     db.session.add(prod_update)
     db.session.commit()

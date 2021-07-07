@@ -57,3 +57,16 @@ class Product(db.Model):
             "product_recycled_percent": self.product_recycled_percent,
             "carbon_footprint_kg": self.carbon_footprint_kg,
         }
+
+    def calc_footprint(self):
+        sumMaterials = 0
+        for comp in self.components:
+            sumMaterials += comp.weight_g
+        manuf = (self.manufacturing_process.weight * 1000)
+        transport = (self.transport_mode.weight * 1000) * self.package_weight_g
+        sumUses = 0
+        for use in self.consumer_uses:
+            sumUses += ((use.weight * 1000) * self.product_weight_g)
+        eol = self.product_weight_g - ((self.product_weight_g * (self.product_recycled_percent/100)))
+        factory_grid = (self.factory.country_grid.electricity) * 1000
+        self.carbon_footprint_kg = (sumMaterials + manuf + transport + sumUses + eol + factory_grid)/1000
