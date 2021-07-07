@@ -9,6 +9,7 @@ import cycle from '../../../images/cycle.png';
 import './loginform.css'
 
 const LoginForm = () => {
+  const [emailErrors, setEmailErrors] = useState([]);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +20,11 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data.errors) {
+      setEmailErrors(data.errors.filter((error) =>
+      error.split(":")[0] === "email ").map((error) => {
+        return error.split(":")[1];
+      }))
+      console.log("split errors========", emailErrors)
       setErrors(data.errors);
     }
   };
@@ -43,7 +49,9 @@ const LoginForm = () => {
         </div>
         <form className='login-form' onSubmit={onLogin}>
           <div>
-            {errors.map((error) => (
+            {emailErrors.map((error) => (
+
+
               <div>{error}</div>
             ))}
           </div>
