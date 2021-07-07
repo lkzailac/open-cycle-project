@@ -9,7 +9,7 @@ def company_exists(form, field):
     admin_email = field.data
     company = Company.query.filter(Company.admin_email == admin_email).first()
     if not company:
-        raise ValidationError("Email provided not found.")
+        raise ValidationError("This Admin is not registered")
 
 
 def password_matches(form, field):
@@ -18,9 +18,9 @@ def password_matches(form, field):
     admin_email = form.data['admin_email']
     company = Company.query.filter(Company.admin_email == admin_email).first()
     if not company:
-        raise ValidationError("This Admin is not registered.")
+        raise ValidationError("Password is invalid.")
     if not company.check_password(password):
-        raise ValidationError("Password does not match account.")
+        raise ValidationError("Password is invalid.")
 
 # def company_names():
 #     companies = Company.query.all()

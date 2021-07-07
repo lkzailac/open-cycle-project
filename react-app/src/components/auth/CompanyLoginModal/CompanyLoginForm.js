@@ -9,7 +9,9 @@ import cycle from '../../../images/cycle.png';
 import "./companyloginform.css";
 
 const CompanyLoginForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [emailErrors, setEmailErrors] = useState([]);
+  const [passwordErrors, setPasswordErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const [name, setName] = useState("");
   const [admin_email, setAdminEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +22,16 @@ const CompanyLoginForm = () => {
     e.preventDefault();
     const data = await dispatch(companyLogin(name, admin_email, password));
     if (data.errors) {
-      setErrors(data.errors);
+      setEmailErrors(data.errors.filter((error) =>
+      error.split(":")[0] === "admin_email ").map((error) => {
+        return error.split(":")[1];
+      }))
+
+      setPasswordErrors(data.errors.filter((error) =>
+      error.split(":")[0] === "password ").map((error) => {
+        return error.split(":")[1];
+      }))
+
     }
   };
 
@@ -48,12 +59,6 @@ const CompanyLoginForm = () => {
         </div>
         <form className='c-login-form' onSubmit={onCompanyLogin}>
           <div>
-            {errors.map((error) => (
-              <div>{error}</div>
-            ))}
-          </div>
-          <div>
-            {/* <label htmlFor="name">Company Name</label> */}
             <input
               name="name"
               type="text"
@@ -63,7 +68,11 @@ const CompanyLoginForm = () => {
             />
           </div>
           <div>
-            {/* <label htmlFor="email">Admin Email</label> */}
+            {emailErrors ? emailErrors.map((error) => (
+              <div className='errors'>{error}</div>
+            )) : null}
+          </div>
+          <div>
             <input
               name="admin_email"
               type="text"
@@ -73,7 +82,11 @@ const CompanyLoginForm = () => {
             />
           </div>
           <div>
-            {/* <label htmlFor="password">Password</label> */}
+            {passwordErrors ? passwordErrors.map((error) => (
+              <div className='errors'>{error}</div>
+            )) : null}
+          </div>
+          <div>
             <input
               name="password"
               type="password"
