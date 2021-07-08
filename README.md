@@ -8,9 +8,11 @@ Open Cycle Project is an application where companies hoping to both hold themsel
 
 Open Cycle Project was inspired by my background in consumer goods, my passion for nature and keeping the planet healthy, as well as many inspiring green initiatives gaining traction now more than ever. Specifically, I have taken inspiration from the brand [All Birds](https://www.allbirds.com/), who has created an open-source [carbon calculator](https://www.allbirds.com/pages/carbon-footprint-calculator). 
 
-
-
-
+Please check out my wikis for more info and enjoy! 🌱
+- [Feature List](https://github.com/lkzailac/open-cycle-project/wiki/Feature-List)
+- [Database Schema](https://github.com/lkzailac/open-cycle-project/wiki/Database-Schema---Backend-Routes)
+- [Frontend Routes + Components](https://github.com/lkzailac/open-cycle-project/wiki/Frontend-Routes,-Components)
+- [Wireframes](https://github.com/lkzailac/open-cycle-project/wiki/Wireframes)
 
 
 ## Installation
@@ -84,26 +86,22 @@ CREATE DATABASE ocp_db WITH OWNER ocp_user;
    This will build the dockerfile and push the image to your heroku container registry
 
    ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
    heroku container:push web -a open-cycle-project
    ```
 
 8. Release your docker container to heroku
 
    ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
    heroku container:release web -a open-cycle-project
    ```
 
 9. set up your database:
 
    ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
    heroku run -a open-cycle-project flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
    heroku run -a open-cycle-project flask seed all
    ```
 
 10. Under Settings find "Config Vars" and add any additional/secret .env variables.
 
-11. profit
+
