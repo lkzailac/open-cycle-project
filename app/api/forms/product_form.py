@@ -28,6 +28,6 @@ class ProductForm(FlaskForm):
     transport_mode_id = IntegerField("transport_mode_id", validators=[DataRequired()])
     useArray = FieldList(IntegerField("useArray", validators=[DataRequired()]))
     number_of_cycles = IntegerField("number_of_cycles", validators=[DataRequired()])
-    returnable = BooleanField("returnable", validators=[DataRequired()])
+    returnable = BooleanField("returnable")
     product_returned_percent = FloatField("product_returned_percent")
     product_recycled_percent = FloatField("product_recycled_percent")

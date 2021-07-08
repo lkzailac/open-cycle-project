@@ -28,7 +28,7 @@ const ProductForm = () => {
     const [factory_id,  setFactory_id] = useState(1)
     const [unit, setUnit] = useState("pair")
     const [transport_mode_id, setTransport_mode_id] = useState(1)
-    const [number_of_cycles, setNumber_of_cycles] = useState(0)
+    const [number_of_cycles, setNumber_of_cycles] = useState(5)
     const [returnable, setReturnable] = useState("")
     const [product_returned_percent, setProduct_returned_percent] = useState(0)
     const [product_recycled_percent, setProduct_recycled_percent] = useState(0)
