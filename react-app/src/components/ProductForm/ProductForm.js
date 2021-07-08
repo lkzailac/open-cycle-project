@@ -66,10 +66,17 @@ const ProductForm = () => {
             "product_recycled_percent": Number(product_recycled_percent),
 
         }
-        const res= await dispatch(createProduct(product))
-        if(res) {
+        const data = await dispatch(createProduct(product))
+
+        if(data.errors) {
+            console.log("data.errors------", data.errors)
+        } else {
             history.push(`/company/${company.id}`)
         }
+
+
+
+
     }
 
     const updateName = (e) => {
@@ -281,8 +288,7 @@ const ProductForm = () => {
                         onChange={() => updateComponents(index)}
                         name={component.id}
                         value={component.id}
-                        checked={componentChecked[index]}
-                        >
+                        checked={componentChecked[index]}>
                         </input>
                     </li>
                 ))}

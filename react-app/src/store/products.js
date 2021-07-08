@@ -67,7 +67,6 @@ export const getProducts = (companyId) => async (dispatch) => {
 }
 
 export const createProduct = (newProduct) => async (dispatch) => {
-        console.log("newProduct.compArray thunk------------", newProduct.compArray)
         let name = newProduct.name;
         let photo_url = newProduct.photo_url;
         let company_id = newProduct.company_id;
@@ -109,11 +108,13 @@ export const createProduct = (newProduct) => async (dispatch) => {
             })
         })
 
-        if(res.ok) {
-            const addedProduct = await res.json()
-            dispatch(addProduct(addedProduct))
-            return addProduct;
+        const addedProduct = await res.json()
+
+        if(addedProduct.errors) {
+            return addedProduct;
         }
+        dispatch(addProduct(addedProduct))
+        return {}
 }
 
 // Delete a product

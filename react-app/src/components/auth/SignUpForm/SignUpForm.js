@@ -5,7 +5,7 @@ import { signUp } from '../../../store/session';
 
 import downArrow from "../../../images/down-arrow.svg";
 import checkout from "../../../images/checkout.svg";
-import question from "../../../images/question.svg";
+// import question from "../../../images/question.svg";
 import './signup.css';
 
 const SignUpForm = () => {
