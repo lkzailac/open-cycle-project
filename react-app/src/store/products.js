@@ -67,7 +67,7 @@ export const getProducts = (companyId) => async (dispatch) => {
 }
 
 export const createProduct = (newProduct) => async (dispatch) => {
-        console.log("newProduct.name thunk------------", newProduct.name)
+        console.log("newProduct.compArray thunk------------", newProduct.compArray)
         let name = newProduct.name;
         let photo_url = newProduct.photo_url;
         let company_id = newProduct.company_id;

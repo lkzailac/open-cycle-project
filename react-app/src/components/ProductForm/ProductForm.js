@@ -281,8 +281,8 @@ const ProductForm = () => {
                         onChange={() => updateComponents(index)}
                         name={component.id}
                         value={component.id}
-                        checked={componentChecked[index]} >
-
+                        checked={componentChecked[index]}
+                        >
                         </input>
                     </li>
                 ))}

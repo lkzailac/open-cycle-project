@@ -154,24 +154,24 @@ def add_product():
 
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("form data name----------------", form.data)
+    print("form.data comp array------------------", form.data['compArray'])
     if form.validate_on_submit():
-        print("Form validated")
+        print("Form validated-------------------------")
         product = Product(
-            name=form.data["newProduct"]['name'],
-            photo_url=form.data["newProduct"]['photo_url'],
-            company_id  = form.data["newProduct"]["company_id"],
-            product_category = form.data["newProduct"]["product_category"],
-            manufacturing_process_id = form.data["newProduct"]["manufacturing_process_id"],
-            product_weight_g = form.data["newProduct"]["product_weight_g"],
-            unit = form.data["newProduct"]["unit"],
-            factory_id = form.data["newProduct"]["factory_id"],
-            package_weight_g = form.data["newProduct"]["package_weight_g"],
-            transport_mode_id = form.data["newProduct"]["transport_mode_id"],
-            number_of_cycles = form.data["newProduct"]["number_of_cycles"],
-            returnable = form.data["newProduct"]["returnable"],
-            product_returned_percent = form.data["newProduct"]["product_returned_percent"],
-            product_recycled_percent = form.data["newProduct"]["product_recycled_percent"],
+            name=form.data['name'],
+            photo_url=form.data['photo_url'],
+            company_id  = form.data["company_id"],
+            product_category = form.data["product_category"],
+            manufacturing_process_id = form.data["manufacturing_process_id"],
+            product_weight_g = form.data["product_weight_g"],
+            unit = form.data["unit"],
+            factory_id = form.data["factory_id"],
+            package_weight_g = form.data["package_weight_g"],
+            transport_mode_id = form.data["transport_mode_id"],
+            number_of_cycles = form.data["number_of_cycles"],
+            returnable = form.data["returnable"],
+            product_returned_percent = form.data["product_returned_percent"],
+            product_recycled_percent = form.data["product_recycled_percent"],
         )
 
         db.session.add(product)
@@ -181,13 +181,13 @@ def add_product():
         products = Product.query.all()
         latest_product = products[-1]
 
-        comps_to_add = form.data["newProduct"]['compArray']
+        comps_to_add = form.data['compArray']
 
         for comp_id in comps_to_add:
             comp_to_add = Component.query.get(comp_id)
             latest_product.components.append(comp_to_add)
 
-        uses_to_add = form.data["newProduct"]['useArray']
+        uses_to_add = form.data['useArray']
 
         db.session.add(latest_product)
         db.session.commit()
