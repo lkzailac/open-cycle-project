@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createProduct } from '../../store/products';
-import { getFootprint } from "../../utils/carbonfootprintcalc"
 
 
 import downArrow from "../../images/down-arrow.svg";
@@ -47,7 +46,6 @@ const ProductForm = () => {
             returnBoolean = false
         }
 
-        let carbon_footprint_kg = getFootprint()
 
         const product = {
             name,
@@ -66,7 +64,7 @@ const ProductForm = () => {
             "returnable": returnBoolean,
             "product_returned_percent": Number(product_returned_percent),
             "product_recycled_percent": Number(product_recycled_percent),
-            carbon_footprint_kg
+
         }
         const res= await dispatch(createProduct(product))
         if(res) {

@@ -77,8 +77,78 @@ def company(id):
     }
 
 """
-Create a product
+Create a product using json data directly from submit
  """
+# @company_routes.route('/products', methods=["POST"])
+# def add_product():
+#     json_data = request.get_json()
+
+
+#     form = ProductForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+
+#     if form.validate_on_submit():
+
+#         product = Product(
+#             name=json_data["newProduct"]['name'],
+#             photo_url=json_data["newProduct"]['photo_url'],
+#             company_id  = json_data["newProduct"]["company_id"],
+#             product_category = json_data["newProduct"]["product_category"],
+#             manufacturing_process_id = json_data["newProduct"]["manufacturing_process_id"],
+#             product_weight_g = json_data["newProduct"]["product_weight_g"],
+#             unit = json_data["newProduct"]["unit"],
+#             factory_id = json_data["newProduct"]["factory_id"],
+#             package_weight_g = json_data["newProduct"]["package_weight_g"],
+#             transport_mode_id = json_data["newProduct"]["transport_mode_id"],
+#             number_of_cycles = json_data["newProduct"]["number_of_cycles"],
+#             returnable = json_data["newProduct"]["returnable"],
+#             product_returned_percent = json_data["newProduct"]["product_returned_percent"],
+#             product_recycled_percent = json_data["newProduct"]["product_recycled_percent"],
+#         )
+
+#         db.session.add(product)
+#         db.session.commit()
+
+#         # get the latest product and Append the components and uses.
+#         products = Product.query.all()
+#         latest_product = products[-1]
+
+#         comps_to_add = json_data["newProduct"]['compArray']
+
+#         for comp_id in comps_to_add:
+#             comp_to_add = Component.query.get(comp_id)
+#             latest_product.components.append(comp_to_add)
+
+#         uses_to_add = json_data["newProduct"]['useArray']
+
+#         db.session.add(latest_product)
+#         db.session.commit()
+
+#         products = Product.query.all()
+#         latest_product2 = products[-1]
+
+#         for use_id in uses_to_add:
+#             use_to_add = Consumer_Use.query.get(use_id)
+#             latest_product2.consumer_uses.append(use_to_add)
+
+#         db.session.add(latest_product2)
+#         db.session.commit()
+
+#         # get the latest product and calc the carbon footprint
+#         products = Product.query.all()
+#         latest_product3 = products[-1]
+
+#         latest_product3.calc_footprint()
+#         db.session.add(latest_product3)
+#         db.session.commit()
+
+#         return latest_product3.to_dict()
+
+#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+"""
+Create a product filtering through a Flask form
+"""
 @company_routes.route('/products', methods=["POST"])
 def add_product():
     json_data = request.get_json()
@@ -104,13 +174,12 @@ def add_product():
             returnable = json_data["newProduct"]["returnable"],
             product_returned_percent = json_data["newProduct"]["product_returned_percent"],
             product_recycled_percent = json_data["newProduct"]["product_recycled_percent"],
-            carbon_footprint_kg = json_data["newProduct"]["carbon_footprint_kg"]
         )
 
         db.session.add(product)
         db.session.commit()
 
-        # get the latest product and Append the components and uses
+        # get the latest product and Append the components and uses.
         products = Product.query.all()
         latest_product = products[-1]
 
@@ -135,7 +204,15 @@ def add_product():
         db.session.add(latest_product2)
         db.session.commit()
 
-        return latest_product2.to_dict()
+        # get the latest product and calc the carbon footprint
+        products = Product.query.all()
+        latest_product3 = products[-1]
+
+        latest_product3.calc_footprint()
+        db.session.add(latest_product3)
+        db.session.commit()
+
+        return latest_product3.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -281,17 +358,6 @@ def update_product(id):
 
 
     ####### CALC NEW CARBON FOOTPRINT
-    # sumMaterials = 0
-    # for comp in prod_update.components:
-    #     sumMaterials += comp.weight_g
-    # manuf = prod_update.manufacturing_process.weight
-    # trans = Transport_Mode.query.get(prod_update.transport_mode_id)
-    # transport = trans.weight * prod_update.product_weight_g
-    # sumuses = 0
-    # for use in prod_update.consumer_uses:
-    #     sumuses += (use.weight * prod_update.product_weight_g)
-    # eol= prod_update.product_weight_g - ((prod_update.product_weight_g * (prod_update.product_recycled_percent/100)))
-    # newPrint = 10 * (sumMaterials + manuf + transport + sumuses + eol)
 
     newPrint = prod_update.calc_footprint()
     prod_update.carbon_footprint_kg = newPrint

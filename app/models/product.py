@@ -58,11 +58,6 @@ class Product(db.Model):
             "carbon_footprint_kg": self.carbon_footprint_kg,
         }
 
-    # @property
-    # def calc_footprint(self):
-    #     return self.carbon_footprint_kg
-
-    # @calc_footprint.setter
     def calc_footprint(self):
         sumMaterials = 0
         for comp in self.components:
@@ -75,5 +70,4 @@ class Product(db.Model):
         eol = self.product_weight_g - ((self.product_weight_g * (self.product_recycled_percent/100)))
         factory_grid = (self.factory.country_grid.electricity) * 1000
         self.carbon_footprint_kg = (sumMaterials + manuf + transport + sumUses + eol + factory_grid) /1000
-        print("totals-----", sumMaterials, manuf, transport, sumUses, eol, factory_grid)
         return self.carbon_footprint_kg
