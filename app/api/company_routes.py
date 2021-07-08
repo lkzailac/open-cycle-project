@@ -154,7 +154,7 @@ def add_product():
 
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print("form data name----------------", form.data)
     if form.validate_on_submit():
         print("Form validated")
         product = Product(

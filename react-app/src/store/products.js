@@ -67,13 +67,45 @@ export const getProducts = (companyId) => async (dispatch) => {
 }
 
 export const createProduct = (newProduct) => async (dispatch) => {
+        console.log("newProduct.name thunk------------", newProduct.name)
+        let name = newProduct.name;
+        let photo_url = newProduct.photo_url;
+        let company_id = newProduct.company_id;
+        let product_category = newProduct.product_category;
+        let compArray = newProduct.compArray;
+        let manufacturing_process_id = newProduct.manufacturing_process_id;
+        let product_weight_g = newProduct.product_weight_g;
+        let package_weight_g = newProduct.package_weight_g;
+        let factory_id = newProduct.factory_id;
+        let unit = newProduct.unit;
+        let transport_mode_id = newProduct.transport_mode_id;
+        let useArray = newProduct.useArray;
+        let number_of_cycles = newProduct.number_of_cycles;
+        let returnable = newProduct.returnable;
+        let product_returned_percent = newProduct.product_returned_percent;
+        let product_recycled_percent = newProduct.product_recycled_percent;
         const res = await fetch("/api/company/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                newProduct
+                name,
+                photo_url,
+                company_id,
+                product_category,
+                compArray,
+                manufacturing_process_id,
+                product_weight_g,
+                package_weight_g,
+                factory_id,
+                unit,
+                transport_mode_id,
+                useArray,
+                number_of_cycles,
+                returnable,
+                product_returned_percent,
+                product_recycled_percent,
             })
         })
 

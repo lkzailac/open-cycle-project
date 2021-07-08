@@ -7,6 +7,11 @@ def weight_in_g(form, field):
     if weight_g < 10:
         raise ValidationError("Please enter weight in grams.")
 
+# def returnable_true(form, field):
+#     returnable = field.data
+#     if returnable:
+#         validators=[DataRequired()]
+
 
 class ProductForm(FlaskForm):
     # pass
@@ -24,5 +29,5 @@ class ProductForm(FlaskForm):
     useArray = FieldList(IntegerField("useArray", validators=[DataRequired()]))
     number_of_cycles = IntegerField("number_of_cycles", validators=[DataRequired()])
     returnable = BooleanField("returnable", validators=[DataRequired()])
-    product_returned_percent = FloatField("product_returned_percent", validators=[DataRequired()])
-    product_recycled_percent = FloatField("product_recycled_percent", validators=[DataRequired()])
+    product_returned_percent = FloatField("product_returned_percent")
+    product_recycled_percent = FloatField("product_recycled_percent")
