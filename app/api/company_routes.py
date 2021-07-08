@@ -151,29 +151,27 @@ Create a product filtering through a Flask form
 """
 @company_routes.route('/products', methods=["POST"])
 def add_product():
-    json_data = request.get_json()
-
 
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-
+        print("Form validated")
         product = Product(
-            name=json_data["newProduct"]['name'],
-            photo_url=json_data["newProduct"]['photo_url'],
-            company_id  = json_data["newProduct"]["company_id"],
-            product_category = json_data["newProduct"]["product_category"],
-            manufacturing_process_id = json_data["newProduct"]["manufacturing_process_id"],
-            product_weight_g = json_data["newProduct"]["product_weight_g"],
-            unit = json_data["newProduct"]["unit"],
-            factory_id = json_data["newProduct"]["factory_id"],
-            package_weight_g = json_data["newProduct"]["package_weight_g"],
-            transport_mode_id = json_data["newProduct"]["transport_mode_id"],
-            number_of_cycles = json_data["newProduct"]["number_of_cycles"],
-            returnable = json_data["newProduct"]["returnable"],
-            product_returned_percent = json_data["newProduct"]["product_returned_percent"],
-            product_recycled_percent = json_data["newProduct"]["product_recycled_percent"],
+            name=form.data["newProduct"]['name'],
+            photo_url=form.data["newProduct"]['photo_url'],
+            company_id  = form.data["newProduct"]["company_id"],
+            product_category = form.data["newProduct"]["product_category"],
+            manufacturing_process_id = form.data["newProduct"]["manufacturing_process_id"],
+            product_weight_g = form.data["newProduct"]["product_weight_g"],
+            unit = form.data["newProduct"]["unit"],
+            factory_id = form.data["newProduct"]["factory_id"],
+            package_weight_g = form.data["newProduct"]["package_weight_g"],
+            transport_mode_id = form.data["newProduct"]["transport_mode_id"],
+            number_of_cycles = form.data["newProduct"]["number_of_cycles"],
+            returnable = form.data["newProduct"]["returnable"],
+            product_returned_percent = form.data["newProduct"]["product_returned_percent"],
+            product_recycled_percent = form.data["newProduct"]["product_recycled_percent"],
         )
 
         db.session.add(product)
@@ -183,13 +181,13 @@ def add_product():
         products = Product.query.all()
         latest_product = products[-1]
 
-        comps_to_add = json_data["newProduct"]['compArray']
+        comps_to_add = form.data["newProduct"]['compArray']
 
         for comp_id in comps_to_add:
             comp_to_add = Component.query.get(comp_id)
             latest_product.components.append(comp_to_add)
 
-        uses_to_add = json_data["newProduct"]['useArray']
+        uses_to_add = form.data["newProduct"]['useArray']
 
         db.session.add(latest_product)
         db.session.commit()
@@ -213,7 +211,7 @@ def add_product():
         db.session.commit()
 
         return latest_product3.to_dict()
-
+    print("Form DID NOT validate", validation_errors_to_error_messages(form.errors))
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
