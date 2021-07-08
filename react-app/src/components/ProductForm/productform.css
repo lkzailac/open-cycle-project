@@ -77,6 +77,7 @@
 .pf-form li {
     margin-left: 0;
     margin-right: 20px;
+
 }
 
 .pf-label-container {
@@ -124,4 +125,12 @@ button.create-button:hover {
     transform: translateY(2px);
     border-bottom: none;
     border-right: none;
+}
+
+.inline-error {
+    display: inline;
+}
+
+ul.components-list {
+    align-items: flex-end;
 }

@@ -33,6 +33,12 @@ const ProductForm = () => {
     const [product_returned_percent, setProduct_returned_percent] = useState(0)
     const [product_recycled_percent, setProduct_recycled_percent] = useState(0)
     const [nameErrors, setNameErrors] = useState([]);
+    const [photoErrors, setPhotoErrors] = useState([]);
+    const [categoryErrors, setCategoryErrors] = useState([]);
+    const [compErrors, setCompErrors] = useState([]);
+    const [prodWeightErrors, setProdWeightErrors] = useState([]);
+    const [packWeightErrors, setPackWeightErrors] = useState([]);
+    const [useErrors, setUseErrors] = useState([]);
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -76,6 +82,38 @@ const ProductForm = () => {
             error.split(":")[0] === "name ").map((error) => {
                 return error.split(":")[1];
             }))
+
+            setPhotoErrors(data.errors.filter((error) =>
+            error.split(":")[0] === "photo_url ").map((error) => {
+                return error.split(":")[1];
+            }))
+
+            setCategoryErrors(data.errors.filter((error) =>
+            error.split(":")[0] === "product_category ").map((error) => {
+                return error.split(":")[1];
+            }))
+
+            setCompErrors(data.errors.filter((error) =>
+            error.split(":")[0] === "compArray ").map((error) => {
+                return "Please choose one or more.";
+            }))
+
+            setProdWeightErrors(data.errors.filter((error) =>
+            error.split(":")[0] === "product_weight_g ").map((error) => {
+                return error.split(":")[1];
+            }))
+
+            setPackWeightErrors(data.errors.filter((error) =>
+            error.split(":")[0] === "package_weight_g ").map((error) => {
+                return error.split(":")[1];
+            }))
+
+            setUseErrors(data.errors.filter((error) =>
+            error.split(":")[0] === "useArray ").map((error) => {
+                return "Please choose one or more.";
+            }))
+
+
         } else {
             history.push(`/company/${company.id}`)
         }
@@ -241,7 +279,7 @@ const ProductForm = () => {
               <div className='pf-label-container'>
                 <label>Product Name</label>
                 {nameErrors ? nameErrors.map((error) => (
-                    <div className='errors'>{error}</div>
+                    <div className='errors inline-error'>{error}</div>
                 )) : null}
               </div>
               <input
@@ -254,6 +292,9 @@ const ProductForm = () => {
             <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Image Url</label>
+                {photoErrors ? photoErrors.map((error) => (
+                    <div className='errors inline-error'>{error}</div>
+                )) : null}
                 {/* <button className='question-button' value='admin_email' onClick={(e) => [handleClick(e.target.value), console.log("button")]}><img className='question' src={question} /></button> */}
                 {/* <button className='question-button' value='admin_email' onClick={(e) => handleClick(e.target.value)}>Button</button> */}
               </div>
@@ -267,6 +308,9 @@ const ProductForm = () => {
             <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Product Category</label>
+                {categoryErrors ? categoryErrors.map((error) => (
+                    <div className='errors inline-error'>{error}</div>
+                )) : null}
               </div>
               <input
                 type="text"
@@ -279,6 +323,9 @@ const ProductForm = () => {
             <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Components</label>
+                    {compErrors ? compErrors.map((error) => (
+                    <div className='errors inline-error'>{error}</div>
+                )) : null}
                 </div>
                 <ul className= 'components-list'>
                 {components.map((component, index) => (
@@ -312,6 +359,9 @@ const ProductForm = () => {
             <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Product Weight (g)</label>
+                {prodWeightErrors ? prodWeightErrors.map((error) => (
+                    <div className='errors inline-error'>{error}</div>
+                )) : null}
               </div>
               <input
                 type="text"
@@ -323,6 +373,9 @@ const ProductForm = () => {
             <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Package Weight (g)</label>
+                {packWeightErrors ?packWeightErrors.map((error) => (
+                    <div className='errors inline-error'>{error}</div>
+                )) : null}
               </div>
               <input
                 type="text"
@@ -363,6 +416,9 @@ const ProductForm = () => {
             <div className='field-contain'>
                 <div className='pf-label-container'>
                     <label>Consumer Uses</label>
+                    {useErrors ? useErrors.map((error) => (
+                    <div className='errors inline-error'>{error}</div>
+                )) : null}
                 </div>
                 <ul className= 'uses-list'>
                 {consumer_uses.map((use, index) => (
