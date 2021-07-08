@@ -32,6 +32,7 @@ const ProductForm = () => {
     const [returnable, setReturnable] = useState("")
     const [product_returned_percent, setProduct_returned_percent] = useState(0)
     const [product_recycled_percent, setProduct_recycled_percent] = useState(0)
+    const [nameErrors, setNameErrors] = useState([]);
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -70,6 +71,11 @@ const ProductForm = () => {
 
         if(data.errors) {
             console.log("data.errors------", data.errors)
+
+            setNameErrors(data.errors.filter((error) =>
+            error.split(":")[0] === "name ").map((error) => {
+                return error.split(":")[1];
+            }))
         } else {
             history.push(`/company/${company.id}`)
         }
@@ -231,20 +237,18 @@ const ProductForm = () => {
           </div>
         </div>
         <form className='pf-form'onSubmit={onSubmit}>
-          {/* {errors.map((error) => (
-            <p>error</p>
-          ))} */}
-
             <div className='field-contain'>
               <div className='pf-label-container'>
                 <label>Product Name</label>
+                {nameErrors ? nameErrors.map((error) => (
+                    <div className='errors'>{error}</div>
+                )) : null}
               </div>
               <input
                 type="text"
                 name="name"
                 onChange={updateName}
                 value={name}
-                required={true}
               ></input>
             </div>
             <div className='field-contain'>
