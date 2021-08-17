@@ -136,14 +136,14 @@ const ProductForm = () => {
     }
 
 
-    let totalComponents = new Array();
+    let totalComponents = [];
     const updateComponents = (position) => {
         const updatedCheckedState = componentChecked.map((item, index) =>
             index === position ? !item : item
         );
         setComponentChecked(updatedCheckedState);
 
-        let arr = new Array();
+        let arr = [];
         for (const [index, element] of updatedCheckedState.entries()) {
             if (element === true) {
                 arr.push(components[index].id)
@@ -182,14 +182,14 @@ const ProductForm = () => {
         setTransport_mode_id(e.target.value)
     }
 
-    let totalUses = new Array();
+    let totalUses = [];
     const updateUse = (position) => {
         const updatedCheckedState = useChecked.map((item, index) =>
             index === position ? !item : item
         );
         setUseChecked(updatedCheckedState);
 
-        let arr = new Array();
+        let arr = [];
         for (const [index, element] of updatedCheckedState.entries()) {
             if (element === true) {
                 arr.push(consumer_uses[index].id)
