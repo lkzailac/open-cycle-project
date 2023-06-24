@@ -1,4 +1,4 @@
-# [Open/ /Cycle/ /Project](https://open-cycle-project.herokuapp.com/company/product/5)
+# [Open/ /Cycle/ /Project](https://open-cycle-project.herokuapp.com)
 
  *by [Laura Zailac](https://www.linkedin.com/in/laura-zailac/)*
 ___________________________________________________________________
