@@ -30,7 +30,7 @@ function CompanyDemoButton() {
     }
 
     return (
-        <button className='c-demo-button' onClick={handleClick} type='submit'>DEMO</button>
+        <button className='c-demo-button' onClick={handleClick}>DEMO</button>
     )
 }
 

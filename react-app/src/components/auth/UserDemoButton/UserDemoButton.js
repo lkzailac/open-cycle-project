@@ -26,7 +26,7 @@ function UserDemoButton() {
     }
 
     return (
-        <button className='user-demo-button' onClick={handleClick} type='submit'>Sign in as GUEST</button>
+        <button className='user-demo-button' onClick={handleClick}>Sign in as GUEST</button>
     )
 }
 
