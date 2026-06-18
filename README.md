@@ -1,10 +1,9 @@
-# [Open/ /Cycle/ /Project](https://quirky-slash-00184025.figma.site/)
+# [Open/ /Cycle/ /Project](https://quirky-slash-00184025.figma.site/) <- Click for new design, live site coming soon!
 
  *by [Laura Zailac](https://www.linkedin.com/in/laura-zailac/)*
 ___________________________________________________________________
 
 ## What is OCP?
-** note site is in the middle of an overhaul, link shows design only, fully functional site coming soon!
 
 Open Cycle Project is an application where companies hoping to both hold themselves accountable for and be more transparent with the carbon footprints of their products can come to register their products and calculate their carbon and transparency scores. They can also set goals for the future of their carbon output. The transparency scores grow as a company registers more products. This can be seen by the consumers and incentivizes companies to dive deep into their product offering and reflect on what they are willing to share. Consumers can come to the site to look up a company or a product and educate themselves on the impact of the goods they purchase. 
 
