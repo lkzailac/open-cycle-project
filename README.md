@@ -1,4 +1,4 @@
-# [Open/ /Cycle/ /Project]([https://open-cycle-project.herokuapp.com](https://quirky-slash-00184025.figma.site/])
+# [Open/ /Cycle/ /Project]([https://quirky-slash-00184025.figma.site/])
 
  *by [Laura Zailac](https://www.linkedin.com/in/laura-zailac/)*
 ___________________________________________________________________
