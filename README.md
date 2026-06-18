@@ -1,12 +1,15 @@
-# [Open/ /Cycle/ /Project](https://open-cycle-project.herokuapp.com)
+# [Open/ /Cycle/ /Project]([https://open-cycle-project.herokuapp.com](https://quirky-slash-00184025.figma.site/)
 
  *by [Laura Zailac](https://www.linkedin.com/in/laura-zailac/)*
 ___________________________________________________________________
 
 ## What is OCP?
+** note site is in the middle of an overhaul, link shows design only, fully functional site coming soon!
+
 Open Cycle Project is an application where companies hoping to both hold themselves accountable for and be more transparent with the carbon footprints of their products can come to register their products and calculate their carbon and transparency scores. They can also set goals for the future of their carbon output. The transparency scores grow as a company registers more products. This can be seen by the consumers and incentivizes companies to dive deep into their product offering and reflect on what they are willing to share. Consumers can come to the site to look up a company or a product and educate themselves on the impact of the goods they purchase. 
 
 Open Cycle Project was inspired by my background in consumer goods, my passion for nature and keeping the planet healthy, as well as many inspiring green initiatives gaining traction now more than ever. Specifically, I have taken inspiration from the brand [All Birds](https://www.allbirds.com/), who has created an open-source [carbon calculator](https://www.allbirds.com/pages/carbon-footprint-calculator). 
+
 
 Please check out my wikis for more info and enjoy! 🌱
 - [Feature List](https://github.com/lkzailac/open-cycle-project/wiki/Feature-List)
